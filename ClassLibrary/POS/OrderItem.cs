@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary.Inventory;
+﻿using ClassLibrary.Inventory;
 
-namespace ClassLibrary
+namespace ClassLibrary.POS
 {
     public class OrderItem
     {

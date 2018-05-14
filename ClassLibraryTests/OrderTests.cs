@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.Inventory;
+using ClassLibrary.POS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClassLibraryTests

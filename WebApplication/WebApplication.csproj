@@ -145,6 +145,10 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\RestoBackdrop.jpg" />
+    <Content Include="Content\Materialize\css\materialize.css" />
+    <Content Include="Content\Materialize\css\materialize.min.css" />
+    <Content Include="Content\Materialize\javascript\materialize.js" />
+    <Content Include="Content\Materialize\javascript\materialize.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard\Index.aspx" />
     <Content Include="Default.aspx" />

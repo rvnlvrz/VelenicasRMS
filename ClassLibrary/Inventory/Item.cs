@@ -37,5 +37,10 @@
         {
             return Quantity <= Threshold;
         }
+
+        public bool IsAvailable()
+        {
+            return Quantity != 0;
+        }
     }
 }

@@ -155,6 +155,9 @@
     <Content Include="Content\Images\restaurants\restoB.jpg" />
     <Content Include="Content\Images\restaurants\restoC.jpeg" />
     <Content Include="Content\Images\RestoBackdrop.jpg" />
+    <Content Include="Content\Images\Scenery\presentation1.jpg" />
+    <Content Include="Content\Images\Scenery\presentation1a.jpg" />
+    <Content Include="Content\Images\Scenery\presentation2.jpg" />
     <Content Include="Content\Images\setups\tableA.jpg" />
     <Content Include="Content\Images\setups\tableB.jpg" />
     <Content Include="Content\Materialize\css\materialize.css" />

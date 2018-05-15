@@ -178,6 +178,7 @@ textarea {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: 5px 5px 5px 5px;
 }
 
 #present-B {
@@ -188,6 +189,8 @@ textarea {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: 5px 5px 5px 5px;
+    margin-left: -10px;
 }
 
 #present-C {
@@ -198,4 +201,5 @@ textarea {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: 5px 5px 5px 5px;
 }

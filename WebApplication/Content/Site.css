@@ -1,8 +1,8 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
-/*body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}*/
+﻿/*Move down content because we have a fixed navbar that is 50px tall*/
+body {
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -19,18 +19,36 @@ textarea {
 }*/
 
 
-/* Responsive: Portrait tablets and up */
-/*@media screen and (min-width: 768px) {
-    .jumbotron {
-        margin-top: 20px;
+ /*Responsive: Portrait tablets and up*/
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    .header-white-persist {
+        font-family: Arvo-Regular;
+        font-size: 4rem;
+        color: white;
+        letter-spacing: 2.0rem;
+        z-index: 999;
+        text-align: center;
+        line-height: 100px;
     }
-
-    .body-content {
-        padding: 0;
-    }
-}*/
+}
 
 /* USER DEFINED STYLE RULES */
+
+@font-face {
+    font-family: 'Ikaros-Regular';
+    src: url('fonts/Ikaros/Ikaros-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Arvo-Regular';
+    src: url('fonts/Arvo/Arvo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Exo-Light';
+    src: url('fonts/Exo/Exo-Light.ttf') format('truetype');
+}
+
 .backdrop {
     background-image: url('Images/RestoBackdrop.jpg');
     position: fixed;
@@ -39,7 +57,6 @@ textarea {
     z-index: 0; /* In the back you goo */
     width: 100%;
     height: 100%;
-
     padding-top: 0px;
     padding-bottom: 20px;
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -80,10 +97,10 @@ textarea {
     margin-bottom: 10px;
 }
 
-.divider hr {
-    margin: 7px 0px;
-    width: 30%;
-}
+    .divider hr {
+        margin: 7px 0px;
+        width: 30%;
+    }
 
 .left {
     float: left;
@@ -91,4 +108,55 @@ textarea {
 
 .right {
     float: right;
+}
+
+/*HOME*/
+
+#home-banner {
+    background-image: url('Images/restaurants/restoA.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+.image-holder:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(40,40,40, 0.8);
+    transition: all .3s linear;
+}
+
+.image-holder {
+    height: auto;
+    width: auto;
+    position: relative;
+}
+
+.header-white-persist {
+    font-family: Arvo-Regular;
+    font-size: 8rem;
+    color: white;
+    letter-spacing: 2.5rem;
+    z-index: 999;
+    text-align: center;
+    line-height: 150px;
+}
+
+.header-black-20 {
+    font-family: Arvo-Regular;
+    text-align: center;
+    line-height: 150px;
+    font-size: 20px;
+    color:black;
+}
+
+.header-text-ikaros-black {
+    font-family:Ikaros-Regular;
 }

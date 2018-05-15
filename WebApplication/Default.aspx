@@ -1,42 +1,37 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebApplication._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <div class="image-holder">
+        <section id="home-banner" class="d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <p class="header-white-persist">VELENICA'S KITCHEN</p>
+                </div>
+                <hr class="style11" />
+            </div>
+        </section>
     </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+    <section style="margin-top: 120px;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="container">
+                    <div>
+                        <p class="display-2" style="line-height: 0.2rem; text-align: center; opacity: 0.5;">FUCKTASTIC MEAL</p>
+                        <p class="display-4" style="line-height: 0.99rem; text-align: center;">with us</p>
+                    </div>
+                    <div class="container">
+                        <div class="m-5 text-center header-text-ikaros-black">
+                            <p>
+                                Duis luctus nunc justo, id eleifend neque luctus vel. Maecenas mollis neque vel nunc dignissim venenatis. Mauris iaculis ut elit a molestie. 
+                        Mauris at libero non ex tempor molestie. Suspendisse eu tellus fermentum, lacinia nisl sed, maximus nisl. 
+                        Sed turpis tortor, dictum non mi vitae, porttitor pellentesque elit. Pellentesque convallis vestibulum velit, 
+                        nec ultricies augue viverra non. Vestibulum tempor leo ipsum, et vehicula dolor iaculis quis. Quisque vitae bibendum 
+                        sem. In hac habitasse platea dictumst. Nullam pharetra ante ut lacus bibendum porttitor.  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
-
+    </section>
 </asp:Content>

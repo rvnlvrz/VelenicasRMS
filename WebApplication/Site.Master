@@ -12,8 +12,10 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="Content/Materialize/css/materialize.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -68,5 +70,7 @@
         </div>
 
     </form>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="Content/Materialize/javascript/materialize.js"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@ textarea {
 }*/
 
 
- /*Responsive: Portrait tablets and up*/
+/*Responsive: Portrait tablets and up*/
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
     .header-white-persist {
         font-family: Arvo-Regular;
@@ -155,11 +155,11 @@ textarea {
     text-align: center;
     line-height: 150px;
     font-size: 20vw;
-    color:black;
+    color: black;
 }
 
 .header-text-ikaros-black {
-    font-family:Exo-Light;
+    font-family: Exo-Light;
 }
 
 .crop {
@@ -168,4 +168,34 @@ textarea {
     overflow: hidden;
     margin: 0 0 0 0;
     box-shadow: 5px 5px 5px 5px;
+}
+
+#present-A {
+    background-image: url('Images/food/foodE.jpeg');
+    height: 691px;
+    width: 465px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#present-B {
+    background-image: url('Images/food/foodD.jpeg');
+    height: 691px;
+    width: 465px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#present-C {
+    background-image: url('Images/food/foodG.jpeg');
+    height: 691px;
+    width: 465px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

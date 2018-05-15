@@ -53,7 +53,8 @@
                 <div class="col-sm-6">
                     <div class="row align-items-end justify-content-between">
                         <div class="col-sm-4 ml-4">
-                            <img src="Content/Images/Scenery/presentation1.jpg" class="crop" />
+                            <%--<img src="Content/Images/Scenery/presentation1.jpg" class="crop" />--%>
+                            <section id="present-A"></section>
                         </div>
                     </div>
                 </div>
@@ -120,7 +121,8 @@
                 <div class="col-sm-6">
                     <div class="row align-items-end justify-content-between">
                         <div class="col-sm-4 ml-4">
-                            <img src="Content/Images/Scenery/presentation4.jpg" class="crop" />
+                            <%--<img src="Content/Images/Scenery/presentation4.jpg" class="crop" />--%>
+                            <section id="present-B"></section>
                         </div>
                     </div>
                 </div>
@@ -145,7 +147,8 @@
                 <div class="col-sm-6">
                     <div class="row align-items-end justify-content-between">
                         <div class="col-sm-4 ml-4">
-                            <img src="Content/Images/Scenery/presentation6.jpg" class="crop" />
+                            <%--<img src="Content/Images/Scenery/presentation6.jpg" class="crop" />--%>
+                            <section id="present-C"></section>
                         </div>
                     </div>
                 </div>

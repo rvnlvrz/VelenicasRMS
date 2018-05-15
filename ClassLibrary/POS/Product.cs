@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClassLibrary.Inventory;
 
 namespace ClassLibrary.POS
 {
-    class Product
+    public class Product
     {
         private int _id;
         private List<Tuple<Item, int>> ingredients;
         private decimal price;
+
+        public int Id()
+        {
+            return _id;
+        }
 
         public bool IsAvailable()
         {

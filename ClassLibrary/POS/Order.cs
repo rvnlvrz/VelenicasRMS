@@ -4,14 +4,14 @@ namespace ClassLibrary.POS
 {
     public class Order
     {
-        public List<OrderItem> OrderItems { get; private set; }
-        private decimal Total { get; set; }
-
         public Order()
         {
             Total = 0.00m;
             OrderItems = new List<OrderItem>();
         }
+
+        public List<OrderItem> OrderItems { get; }
+        public decimal Total { get; private set; }
 
         public bool AddOrder(OrderItem orderItem)
         {

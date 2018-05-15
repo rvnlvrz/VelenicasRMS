@@ -4,14 +4,14 @@ namespace ClassLibrary.POS
 {
     public class OrderItem
     {
-        public Item Item { get; }
-        private int Quantity { get; set; }
-
         public OrderItem(Item item, int quantity)
         {
             Quantity = quantity;
             Item = item;
         }
+
+        public Item Item { get; }
+        private int Quantity { get; set; }
 
         public bool AddQuantity(int value)
         {

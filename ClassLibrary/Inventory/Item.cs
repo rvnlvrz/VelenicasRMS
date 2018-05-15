@@ -3,10 +3,6 @@
     public class Item
     {
         private int _id;
-        public decimal Price { get; private set; }
-        private bool Resellable { get; set; }
-        private int Threshold { get; set; }
-        public int Quantity { get; private set; }
 
         public Item(int quantity, decimal price, bool resellable, int threshold)
         {
@@ -15,6 +11,11 @@
             Resellable = resellable;
             Threshold = threshold;
         }
+
+        public int Quantity { get; private set; }
+        private int Threshold { get; }
+        public decimal Price { get; }
+        private bool Resellable { get; }
 
         public bool AddQuantity(int value)
         {

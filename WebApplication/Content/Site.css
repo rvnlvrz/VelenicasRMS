@@ -121,6 +121,7 @@ textarea {
     width: 100%;
 }
 
+
 .image-holder:before {
     content: "";
     display: block;
@@ -141,7 +142,7 @@ textarea {
 
 .header-white-persist {
     font-family: Arvo-Regular;
-    font-size: 8rem;
+    font-size: 8vw;
     color: white;
     letter-spacing: 2.5rem;
     z-index: 999;
@@ -153,10 +154,18 @@ textarea {
     font-family: Arvo-Regular;
     text-align: center;
     line-height: 150px;
-    font-size: 20px;
+    font-size: 20vw;
     color:black;
 }
 
 .header-text-ikaros-black {
     font-family:Exo-Light;
+}
+
+.crop {
+    width: 465px;
+    height: 691px;
+    overflow: hidden;
+    margin: 0 0 0 0;
+    box-shadow: 5px 5px 5px 5px;
 }

@@ -11,6 +11,7 @@
             </div>
         </section>
     </div>
+    <%--header--%>
     <section style="margin-top: 120px;">
         <div class="container">
             <div class="row justify-content-center align-items-center">
@@ -33,26 +34,32 @@
                 </div>
             </div>
         </div>
+        <div class="container p-5">
+            <div class="row justify-content-center align-items-center">
+                <img src="Content/Images/flourish.png" />
+            </div>
+        </div>
     </section>
-    <section style="margin-top: 50px;">
+    <%--first banner--%>
+    <section>
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="container">
                     <p class="display-2 text-center" style="opacity: 0.5; line-height: 0.4rem;">YOUR FOOD</p>
-                    <p class="display-4 text-center">is a work of art</p>
+                    <p class="display-4 text-center">a work of art</p>
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="col-sm-6">
                     <div class="row align-items-end justify-content-between">
                         <div class="col-sm-4 ml-4">
-                            <img src="Content/Images/Scenery/presentation1.jpg" />
+                            <img src="Content/Images/Scenery/presentation1.jpg" class="crop" />
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="container">
-                        <div class="m-3 right-align header-text-ikaros-black">
+                        <div class="m-4 right-align header-text-ikaros-black">
                             <p class="display-4">
                                 <strong>Praesent elementum.</strong>
                             </p>
@@ -77,5 +84,98 @@
                 </div>
             </div>
         </div>
+        <div class="container p-5">
+            <div class="row justify-content-center align-items-center">
+                <img src="Content/Images/flourish.png" />
+            </div>
+        </div>
     </section>
+    <%--second banner--%>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="container">
+                    <p class="display-2 text-center" style="opacity: 0.5; line-height: 0.4rem;">YOUR MEALS</p>
+                    <p class="display-4 text-center">made with love</p>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-6">
+                    <div class="container">
+                        <div class="m-3 right-align header-text-ikaros-black">
+                            <p class="display-4">
+                                <strong>Vivamus vitae.</strong>
+                            </p>
+                            <p>
+                               Vivamus cursus enim id maximus consectetur. Nulla eros enim, porta sed venenatis posuere, viverra nec felis. 
+                                Integer risus dolor, accumsan et rutrum quis, hendrerit at leo. Vestibulum non nisl vitae quam ultrices cursus. 
+                                Etiam eleifend viverra mi, eget congue erat euismod vel. Donec ullamcorper mi ipsum, eu lacinia tortor elementum et.
+                                Phasellus ac sapien ornare, pretium purus in, efficitur ipsum. Integer at purus libero. Nullam pharetra ex ac enim vulputate tincidunt.
+                                Nulla vitae ex quis arcu scelerisque viverra in placerat velit. Ut volutpat pulvinar quam ac sagittis. 
+                                Phasellus dictum orci sit amet enim congue aliquam. Morbi est enim, tincidunt sed dolor ut, ornare maximus lorem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-sm-4 ml-4">
+                            <img src="Content/Images/Scenery/presentation4.jpg" class="crop" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-5">
+            <div class="row justify-content-center align-items-center">
+                <img src="Content/Images/flourish.png" />
+            </div>
+        </div>
+    </section>
+    <%--third banner--%>
+    <section class="p-2">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="container">
+                    <p class="display-2 text-center" style="opacity: 0.5; line-height: 0.4rem;">DINE WITH US</p>
+                    <p class="display-4 text-center">feel fantastic</p>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-6">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-sm-4 ml-4">
+                            <img src="Content/Images/Scenery/presentation6.jpg" class="crop" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="container">
+                        <div class="m-4 right-align header-text-ikaros-black">
+                            <p class="display-4">
+                                <strong>Curabitur aliquet.</strong>
+                            </p>
+                            <p>
+                                Sed blandit tincidunt ultrices. Duis rutrum justo felis, at venenatis ante consequat laoreet. 
+                                Ut eu sapien dui. In suscipit consectetur venenatis. Class aptent taciti sociosqu ad litora torquent 
+                                per conubia nostra, per inceptos himenaeos. Nulla congue feugiat laoreet. Maecenas faucibus rutrum interdum. 
+                                Etiam rhoncus, nibh a auctor sollicitudin, nisl mi euismod elit, eu dapibus eros sapien at odio. In a erat 
+                                malesuada, rutrum nisi vitae, feugiat orci. Mauris vel tortor enim. Donec ornare bibendum ex, vel vehicula enim 
+                                vulputate sit amet.
+                            </p>
+                            <br />
+                            <p>
+                                Nulla finibus leo et libero ornare tincidunt. Ut laoreet varius mi. Etiam blandit lacus et erat laoreet, et maximus mauris feugiat. 
+                                Suspendisse sed justo sit amet magna imperdiet pharetra. Mauris hendrerit ultricies augue nec vulputate. 
+                                Duis eleifend commodo purus, non consequat eros tristique non. Suspendisse auctor at ipsum feugiat semper. 
+                                Donec quis feugiat odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                                Sed vulputate convallis vehicula.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%--fourth banner--%>
 </asp:Content>

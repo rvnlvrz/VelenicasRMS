@@ -144,6 +144,7 @@
     <Content Include="Content\Dashboard\admin.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\flourish.png" />
     <Content Include="Content\Images\food\foodA.jpg" />
     <Content Include="Content\Images\food\foodB.jpeg" />
     <Content Include="Content\Images\food\foodC.jpeg" />
@@ -151,6 +152,7 @@
     <Content Include="Content\Images\food\foodE.jpeg" />
     <Content Include="Content\Images\food\foodF.jpeg" />
     <Content Include="Content\Images\food\foodG.jpeg" />
+    <Content Include="Content\Images\restaurants\bg-chief.jpg" />
     <Content Include="Content\Images\restaurants\restoA.jpeg" />
     <Content Include="Content\Images\restaurants\restoB.jpg" />
     <Content Include="Content\Images\restaurants\restoC.jpeg" />
@@ -158,6 +160,8 @@
     <Content Include="Content\Images\Scenery\presentation1.jpg" />
     <Content Include="Content\Images\Scenery\presentation1a.jpg" />
     <Content Include="Content\Images\Scenery\presentation2.jpg" />
+    <Content Include="Content\Images\Scenery\presentation4.jpg" />
+    <Content Include="Content\Images\Scenery\presentation6.jpg" />
     <Content Include="Content\Images\setups\tableA.jpg" />
     <Content Include="Content\Images\setups\tableB.jpg" />
     <Content Include="Content\Materialize\css\materialize.css" />

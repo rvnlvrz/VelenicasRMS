@@ -180,6 +180,7 @@
     </Content>
     <Content Include="Dashboard\Dashboard.Master" />
     <Content Include="Login.aspx" />
+    <Content Include="POS.aspx" />
     <Content Include="Scripts\admin-min.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -319,6 +320,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="POS.aspx.cs">
+      <DependentUpon>POS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="POS.aspx.designer.cs">
+      <DependentUpon>POS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

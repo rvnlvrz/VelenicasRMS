@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebApplication._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="image-holder">
+    <div class="image-holder" style="padding:0 !important;">
         <section id="home-banner" class="d-flex align-items-center">
             <div class="container">
                 <div class="row justify-content-center align-items-center">

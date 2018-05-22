@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/22/2018 16:24:28
+-- Date Created: 05/22/2018 19:52:01
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\ClassLibrary\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -24,19 +24,19 @@ IF OBJECT_ID(N'[dbo].[FK_MenuMenuItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MenuItems] DROP CONSTRAINT [FK_MenuMenuItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_OrderOrderItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrderItemSet] DROP CONSTRAINT [FK_OrderOrderItem];
+    ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_OrderOrderItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_OrderItemMenuItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrderItemSet] DROP CONSTRAINT [FK_OrderItemMenuItem];
+    ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_OrderItemMenuItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FoodProduct]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FoodSet] DROP CONSTRAINT [FK_FoodProduct];
+    ALTER TABLE [dbo].[Foods] DROP CONSTRAINT [FK_FoodProduct];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BeverageProduct]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[BeverageSet] DROP CONSTRAINT [FK_BeverageProduct];
+    ALTER TABLE [dbo].[Beverages] DROP CONSTRAINT [FK_BeverageProduct];
 GO
 IF OBJECT_ID(N'[dbo].[FK_InventoryProduct]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InventorySet] DROP CONSTRAINT [FK_InventoryProduct];
+    ALTER TABLE [dbo].[Inventory] DROP CONSTRAINT [FK_InventoryProduct];
 GO
 
 -- --------------------------------------------------
@@ -52,20 +52,20 @@ GO
 IF OBJECT_ID(N'[dbo].[MenuItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MenuItems];
 GO
-IF OBJECT_ID(N'[dbo].[OrderSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[OrderSet];
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
 GO
-IF OBJECT_ID(N'[dbo].[OrderItemSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[OrderItemSet];
+IF OBJECT_ID(N'[dbo].[OrderItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OrderItems];
 GO
-IF OBJECT_ID(N'[dbo].[FoodSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FoodSet];
+IF OBJECT_ID(N'[dbo].[Foods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Foods];
 GO
-IF OBJECT_ID(N'[dbo].[BeverageSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[BeverageSet];
+IF OBJECT_ID(N'[dbo].[Beverages]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Beverages];
 GO
-IF OBJECT_ID(N'[dbo].[InventorySet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[InventorySet];
+IF OBJECT_ID(N'[dbo].[Inventory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Inventory];
 GO
 
 -- --------------------------------------------------
@@ -82,21 +82,25 @@ GO
 
 -- Creating table 'Products'
 CREATE TABLE [dbo].[Products] (
-    [ID] int IDENTITY(1,1) NOT NULL
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Price] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'MenuItems'
 CREATE TABLE [dbo].[MenuItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [ProductID] int  NOT NULL,
-    [MenuID] int  NOT NULL
+    [MenuID] int  NOT NULL,
+    [ProductID] int  NOT NULL
 );
 GO
 
 -- Creating table 'Orders'
 CREATE TABLE [dbo].[Orders] (
-    [ID] int IDENTITY(1,1) NOT NULL
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Total] decimal(19,2)  NOT NULL,
+    [ItemCount] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -113,25 +117,22 @@ GO
 CREATE TABLE [dbo].[Foods] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [ProductID] int  NOT NULL,
-    [PersonCount] int  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL
+    [PersonCount] int  NOT NULL
 );
 GO
 
 -- Creating table 'Beverages'
 CREATE TABLE [dbo].[Beverages] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [ProductID] int  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL
+    [ProductID] int  NOT NULL
 );
 GO
 
 -- Creating table 'Inventory'
 CREATE TABLE [dbo].[Inventory] (
     [ProductID] int  NOT NULL,
-    [Quantity] nvarchar(max)  NOT NULL
+    [Quantity] smallint  NOT NULL,
+    [Unit] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -169,16 +170,16 @@ ADD CONSTRAINT [PK_OrderItems]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Foods'
+-- Creating primary key on [ID], [ProductID] in table 'Foods'
 ALTER TABLE [dbo].[Foods]
 ADD CONSTRAINT [PK_Foods]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [ProductID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Beverages'
+-- Creating primary key on [ID], [ProductID] in table 'Beverages'
 ALTER TABLE [dbo].[Beverages]
 ADD CONSTRAINT [PK_Beverages]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
+    PRIMARY KEY CLUSTERED ([ID], [ProductID] ASC);
 GO
 
 -- Creating primary key on [ProductID] in table 'Inventory'

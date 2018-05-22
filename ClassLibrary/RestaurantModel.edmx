@@ -56,20 +56,24 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductID" Type="int" Nullable="false" />
     <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Total" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+    <Property Name="ItemCount" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderItems">
     <Key>
@@ -83,28 +87,27 @@
   <EntityType Name="Foods">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
     <Property Name="PersonCount" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Beverages">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Inventory">
     <Key>
       <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ProductID" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FoodMenuItem">
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="*" />
@@ -250,14 +253,16 @@
           <NavigationProperty Name="Food" Relationship="RestaurantModel.FoodProduct" FromRole="Product" ToRole="Food" />
           <NavigationProperty Name="Beverage" Relationship="RestaurantModel.BeverageProduct" FromRole="Product" ToRole="Beverage" />
           <NavigationProperty Name="Inventory" Relationship="RestaurantModel.InventoryProduct" FromRole="Product" ToRole="Inventory" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="MenuItem">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="RestaurantModel.FoodMenuItem" FromRole="MenuItem" ToRole="Food" />
           <NavigationProperty Name="Menu" Relationship="RestaurantModel.MenuMenuItem" FromRole="MenuItem" ToRole="Menu" />
           <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderItemMenuItem" FromRole="MenuItem" ToRole="OrderItem" />
@@ -292,6 +297,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="ItemCount" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -331,22 +338,20 @@
         <EntityType Name="Food">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="PersonCount" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="RestaurantModel.FoodProduct" FromRole="Food" ToRole="Product" />
         </EntityType>
         <EntityType Name="Beverage">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="RestaurantModel.BeverageProduct" FromRole="Beverage" ToRole="Product" />
         </EntityType>
         <Association Name="FoodProduct">
@@ -379,7 +384,8 @@
           </Key>
           <NavigationProperty Name="Product" Relationship="RestaurantModel.InventoryProduct" FromRole="Inventory" ToRole="Product" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="String" Nullable="false" />
+          <Property Name="Quantity" Type="Int16" Nullable="false" />
+          <Property Name="Unit" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="InventoryProduct">
           <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" />
@@ -412,6 +418,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Product)">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -419,8 +427,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.MenuItem)">
         <MappingFragment StoreEntitySet="MenuItems">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -428,6 +436,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Order)">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -447,8 +457,6 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="PersonCount" ColumnName="PersonCount" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -457,8 +465,6 @@
         <MappingFragment StoreEntitySet="Beverages">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -467,6 +473,7 @@
         <MappingFragment StoreEntitySet="Inventory">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

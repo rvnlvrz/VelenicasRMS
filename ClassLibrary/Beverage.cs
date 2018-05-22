@@ -16,8 +16,6 @@ namespace ClassLibrary
     {
         public int ID { get; set; }
         public int ProductID { get; set; }
-        public string Name { get; set; }
-        public string Price { get; set; }
     
         public virtual Product Product { get; set; }
     }

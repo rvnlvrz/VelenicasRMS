@@ -21,8 +21,8 @@ namespace ClassLibrary
         }
     
         public int ID { get; set; }
-        public int ProductID { get; set; }
         public int MenuID { get; set; }
+        public int ProductID { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Menu Menu { get; set; }

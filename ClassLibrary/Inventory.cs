@@ -15,7 +15,8 @@ namespace ClassLibrary
     public partial class Inventory
     {
         public int ProductID { get; set; }
-        public string Quantity { get; set; }
+        public short Quantity { get; set; }
+        public string Unit { get; set; }
     
         public virtual Product Product { get; set; }
     }

@@ -7,35 +7,40 @@
     <Schema Namespace="RestaurantModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="RestaurantModelStoreContainer">
     <EntitySet Name="Menus" EntityType="RestaurantModel.Store.Menus" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Foods" EntityType="RestaurantModel.Store.Foods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="RestaurantModel.Store.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MenuItems" EntityType="RestaurantModel.Store.MenuItems" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="IngredientSet" EntityType="RestaurantModel.Store.IngredientSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RawMaterialSet" EntityType="RestaurantModel.Store.RawMaterialSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="InventorySet" EntityType="RestaurantModel.Store.InventorySet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="OrderSet" EntityType="RestaurantModel.Store.OrderSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FoodMenuItem" Association="RestaurantModel.Store.FoodMenuItem">
+    <EntitySet Name="Orders" EntityType="RestaurantModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderItems" EntityType="RestaurantModel.Store.OrderItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Foods" EntityType="RestaurantModel.Store.Foods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Beverages" EntityType="RestaurantModel.Store.Beverages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inventory" EntityType="RestaurantModel.Store.Inventory" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProductMenuItem" Association="RestaurantModel.Store.FoodMenuItem">
       <End Role="MenuItem" EntitySet="MenuItems" />
-      <End Role="Food" EntitySet="Foods" />
+      <End Role="Food" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="MenuMenuItem" Association="RestaurantModel.Store.MenuMenuItem">
       <End Role="Menu" EntitySet="Menus" />
       <End Role="MenuItem" EntitySet="MenuItems" />
     </AssociationSet>
-    <AssociationSet Name="IngredientFood" Association="RestaurantModel.Store.IngredientFood">
-      <End Role="Ingredient" EntitySet="IngredientSet" />
-      <End Role="Food" EntitySet="Foods" />
+    <AssociationSet Name="OrderOrderItem" Association="RestaurantModel.Store.OrderOrderItem">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
     </AssociationSet>
-    <AssociationSet Name="IngredientRawMaterial" Association="RestaurantModel.Store.IngredientRawMaterial">
-      <End Role="Ingredient" EntitySet="IngredientSet" />
-      <End Role="RawMaterial" EntitySet="RawMaterialSet" />
-    </AssociationSet>
-    <AssociationSet Name="InventoryRawMaterial" Association="RestaurantModel.Store.InventoryRawMaterial">
-      <End Role="Inventory" EntitySet="InventorySet" />
-      <End Role="RawMaterial" EntitySet="RawMaterialSet" />
-    </AssociationSet>
-    <AssociationSet Name="OrderMenuItem" Association="RestaurantModel.Store.OrderMenuItem">
-      <End Role="Order" EntitySet="OrderSet" />
+    <AssociationSet Name="OrderItemMenuItem" Association="RestaurantModel.Store.OrderItemMenuItem">
+      <End Role="OrderItem" EntitySet="OrderItems" />
       <End Role="MenuItem" EntitySet="MenuItems" />
+    </AssociationSet>
+    <AssociationSet Name="FoodProduct" Association="RestaurantModel.Store.FoodProduct">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="BeverageProduct" Association="RestaurantModel.Store.BeverageProduct">
+      <End Role="Beverage" EntitySet="Beverages" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="InventoryProduct" Association="RestaurantModel.Store.InventoryProduct">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Menus">
@@ -44,8 +49,9 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="Foods">
+  <EntityType Name="Products">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -56,50 +62,59 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FoodID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
     <Property Name="MenuID" Type="int" Nullable="false" />
-    <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="IngredientSet">
-    <Key>
-      <PropertyRef Name="FoodID" />
-      <PropertyRef Name="RawMaterialID" />
-    </Key>
-    <Property Name="FoodID" Type="int" Nullable="false" />
-    <Property Name="RawMaterialID" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RawMaterialSet">
+  <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="InventorySet">
-    <Key>
-      <PropertyRef Name="RawMaterialID" />
-    </Key>
-    <Property Name="RawMaterialID" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="OrderSet">
+  <EntityType Name="OrderItems">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
     <Property Name="MenuItemID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Foods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="PersonCount" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Beverages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FoodMenuItem">
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="*" />
-    <End Role="Food" Type="RestaurantModel.Store.Foods" Multiplicity="1" />
+    <End Role="Food" Type="RestaurantModel.Store.Products" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Food">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="MenuItem">
-        <PropertyRef Name="FoodID" />
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -115,51 +130,63 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="IngredientFood">
-    <End Role="Ingredient" Type="RestaurantModel.Store.IngredientSet" Multiplicity="*" />
-    <End Role="Food" Type="RestaurantModel.Store.Foods" Multiplicity="1" />
+  <Association Name="OrderOrderItem">
+    <End Role="Order" Type="RestaurantModel.Store.Orders" Multiplicity="1" />
+    <End Role="OrderItem" Type="RestaurantModel.Store.OrderItems" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Food">
+      <Principal Role="Order">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Ingredient">
-        <PropertyRef Name="FoodID" />
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="OrderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="IngredientRawMaterial">
-    <End Role="Ingredient" Type="RestaurantModel.Store.IngredientSet" Multiplicity="*" />
-    <End Role="RawMaterial" Type="RestaurantModel.Store.RawMaterialSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="RawMaterial">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Ingredient">
-        <PropertyRef Name="RawMaterialID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="InventoryRawMaterial">
-    <End Role="Inventory" Type="RestaurantModel.Store.InventorySet" Multiplicity="0..1" />
-    <End Role="RawMaterial" Type="RestaurantModel.Store.RawMaterialSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="RawMaterial">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Inventory">
-        <PropertyRef Name="RawMaterialID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderMenuItem">
-    <End Role="Order" Type="RestaurantModel.Store.OrderSet" Multiplicity="*" />
+  <Association Name="OrderItemMenuItem">
+    <End Role="OrderItem" Type="RestaurantModel.Store.OrderItems" Multiplicity="*" />
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MenuItem">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Order">
+      <Dependent Role="OrderItem">
         <PropertyRef Name="MenuItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FoodProduct">
+    <End Role="Food" Type="RestaurantModel.Store.Foods" Multiplicity="*" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BeverageProduct">
+    <End Role="Beverage" Type="RestaurantModel.Store.Beverages" Multiplicity="*" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Beverage">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InventoryProduct">
+    <End Role="Inventory" Type="RestaurantModel.Store.Inventory" Multiplicity="0..1" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -169,35 +196,40 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="RestaurantModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="RestaurantModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Menus" EntityType="RestaurantModel.Menu" />
-          <EntitySet Name="Foods" EntityType="RestaurantModel.Food" />
+          <EntitySet Name="Products" EntityType="RestaurantModel.Product" />
           <EntitySet Name="MenuItems" EntityType="RestaurantModel.MenuItem" />
-          <AssociationSet Name="FoodMenuItem" Association="RestaurantModel.FoodMenuItem">
+          <AssociationSet Name="ProductMenuItem" Association="RestaurantModel.FoodMenuItem">
             <End Role="MenuItem" EntitySet="MenuItems" />
-            <End Role="Food" EntitySet="Foods" />
+            <End Role="Food" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="MenuMenuItem" Association="RestaurantModel.MenuMenuItem">
             <End Role="Menu" EntitySet="Menus" />
             <End Role="MenuItem" EntitySet="MenuItems" />
           </AssociationSet>
-          <EntitySet Name="IngredientSet" EntityType="RestaurantModel.Ingredient" />
-          <AssociationSet Name="IngredientFood" Association="RestaurantModel.IngredientFood">
-            <End Role="Ingredient" EntitySet="IngredientSet" />
-            <End Role="Food" EntitySet="Foods" />
+          <EntitySet Name="Orders" EntityType="RestaurantModel.Order" />
+          <EntitySet Name="OrderItems" EntityType="RestaurantModel.OrderItem" />
+          <AssociationSet Name="OrderOrderItem" Association="RestaurantModel.OrderOrderItem">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
-          <EntitySet Name="RawMaterialSet" EntityType="RestaurantModel.RawMaterial" />
-          <AssociationSet Name="IngredientRawMaterial" Association="RestaurantModel.IngredientRawMaterial">
-            <End Role="Ingredient" EntitySet="IngredientSet" />
-            <End Role="RawMaterial" EntitySet="RawMaterialSet" />
-          </AssociationSet>
-          <EntitySet Name="InventorySet" EntityType="RestaurantModel.Inventory" />
-          <AssociationSet Name="InventoryRawMaterial" Association="RestaurantModel.InventoryRawMaterial">
-            <End Role="Inventory" EntitySet="InventorySet" />
-            <End Role="RawMaterial" EntitySet="RawMaterialSet" />
-          </AssociationSet>
-          <EntitySet Name="OrderSet" EntityType="RestaurantModel.Order" />
-          <AssociationSet Name="OrderMenuItem" Association="RestaurantModel.OrderMenuItem">
-            <End Role="Order" EntitySet="OrderSet" />
+          <AssociationSet Name="OrderItemMenuItem" Association="RestaurantModel.OrderItemMenuItem">
+            <End Role="OrderItem" EntitySet="OrderItems" />
             <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
+          <EntitySet Name="Foods" EntityType="RestaurantModel.Food" />
+          <EntitySet Name="Beverages" EntityType="RestaurantModel.Beverage" />
+          <AssociationSet Name="FoodProduct" Association="RestaurantModel.FoodProduct">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="BeverageProduct" Association="RestaurantModel.BeverageProduct">
+            <End Role="Beverage" EntitySet="Beverages" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Inventory" EntityType="RestaurantModel.Inventory" />
+          <AssociationSet Name="InventoryProduct" Association="RestaurantModel.InventoryProduct">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Menu">
@@ -207,36 +239,38 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="MenuItem" Relationship="RestaurantModel.MenuMenuItem" FromRole="Menu" ToRole="MenuItem" />
+          <Property Name="Description" Type="String" Nullable="false" />
         </EntityType>
-        <EntityType Name="Food">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="MenuItem" Relationship="RestaurantModel.FoodMenuItem" FromRole="Food" ToRole="MenuItem" />
-          <NavigationProperty Name="Ingredient" Relationship="RestaurantModel.IngredientFood" FromRole="Food" ToRole="Ingredient" />
+          <NavigationProperty Name="Food" Relationship="RestaurantModel.FoodProduct" FromRole="Product" ToRole="Food" />
+          <NavigationProperty Name="Beverage" Relationship="RestaurantModel.BeverageProduct" FromRole="Product" ToRole="Beverage" />
+          <NavigationProperty Name="Inventory" Relationship="RestaurantModel.InventoryProduct" FromRole="Product" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="MenuItem">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="MenuID" Type="Int32" Nullable="false" />
-          <Property Name="ItemName" Type="String" Nullable="false" />
-          <NavigationProperty Name="Food" Relationship="RestaurantModel.FoodMenuItem" FromRole="MenuItem" ToRole="Food" />
+          <NavigationProperty Name="Product" Relationship="RestaurantModel.FoodMenuItem" FromRole="MenuItem" ToRole="Food" />
           <NavigationProperty Name="Menu" Relationship="RestaurantModel.MenuMenuItem" FromRole="MenuItem" ToRole="Menu" />
-          <NavigationProperty Name="Order" Relationship="RestaurantModel.OrderMenuItem" FromRole="MenuItem" ToRole="Order" />
+          <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderItemMenuItem" FromRole="MenuItem" ToRole="OrderItem" />
         </EntityType>
         <Association Name="FoodMenuItem">
           <End Type="RestaurantModel.MenuItem" Role="MenuItem" Multiplicity="*" />
-          <End Type="RestaurantModel.Food" Role="Food" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Food" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Food">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MenuItem">
-              <PropertyRef Name="FoodID" />
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -252,88 +286,110 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Ingredient" >
-          <Key>
-            <PropertyRef Name="FoodID" />
-            <PropertyRef Name="RawMaterialID" />
-          </Key>
-          <NavigationProperty Name="Food" Relationship="RestaurantModel.IngredientFood" FromRole="Ingredient" ToRole="Food" />
-          <Property Name="FoodID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RawMaterial" Relationship="RestaurantModel.IngredientRawMaterial" FromRole="Ingredient" ToRole="RawMaterial" />
-          <Property Name="RawMaterialID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="IngredientFood">
-          <End Type="RestaurantModel.Ingredient" Role="Ingredient" Multiplicity="*" />
-          <End Type="RestaurantModel.Food" Role="Food" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Food">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ingredient">
-              <PropertyRef Name="FoodID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="RawMaterial">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Ingredient" Relationship="RestaurantModel.IngredientRawMaterial" FromRole="RawMaterial" ToRole="Ingredient" />
-          <NavigationProperty Name="Inventory" Relationship="RestaurantModel.InventoryRawMaterial" FromRole="RawMaterial" ToRole="Inventory" />
-        </EntityType>
-        <Association Name="IngredientRawMaterial">
-          <End Type="RestaurantModel.Ingredient" Role="Ingredient" Multiplicity="*" />
-          <End Type="RestaurantModel.RawMaterial" Role="RawMaterial" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="RawMaterial">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ingredient">
-              <PropertyRef Name="RawMaterialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Inventory" >
-          <Key>
-            <PropertyRef Name="RawMaterialID" />
-          </Key>
-          <NavigationProperty Name="RawMaterial" Relationship="RestaurantModel.InventoryRawMaterial" FromRole="Inventory" ToRole="RawMaterial" />
-          <Property Name="RawMaterialID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="String" Nullable="false" />
-        </EntityType>
-        <Association Name="InventoryRawMaterial">
-          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="RestaurantModel.RawMaterial" Role="RawMaterial" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="RawMaterial">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="RawMaterialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MenuItem" Relationship="RestaurantModel.OrderMenuItem" FromRole="Order" ToRole="MenuItem" />
-          <Property Name="MenuItemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
         </EntityType>
-        <Association Name="OrderMenuItem">
-          <End Type="RestaurantModel.Order" Role="Order" Multiplicity="*" />
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Order" Relationship="RestaurantModel.OrderOrderItem" FromRole="OrderItem" ToRole="Order" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MenuItem" Relationship="RestaurantModel.OrderItemMenuItem" FromRole="OrderItem" ToRole="MenuItem" />
+          <Property Name="MenuItemID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="OrderOrderItem">
+          <End Type="RestaurantModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="RestaurantModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItemMenuItem">
+          <End Type="RestaurantModel.OrderItem" Role="OrderItem" Multiplicity="*" />
           <End Type="RestaurantModel.MenuItem" Role="MenuItem" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="MenuItem">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="OrderItem">
               <PropertyRef Name="MenuItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="PersonCount" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="RestaurantModel.FoodProduct" FromRole="Food" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Beverage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="RestaurantModel.BeverageProduct" FromRole="Beverage" ToRole="Product" />
+        </EntityType>
+        <Association Name="FoodProduct">
+          <End Type="RestaurantModel.Food" Role="Food" Multiplicity="*" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BeverageProduct">
+          <End Type="RestaurantModel.Beverage" Role="Beverage" Multiplicity="*" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Beverage">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Inventory" >
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <NavigationProperty Name="Product" Relationship="RestaurantModel.InventoryProduct" FromRole="Inventory" ToRole="Product" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="InventoryProduct">
+          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -348,12 +404,13 @@
         <MappingFragment StoreEntitySet="Menus">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Foods">
-      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Food)">
-        <MappingFragment StoreEntitySet="Foods">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Product)">
+        <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -362,43 +419,54 @@
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.MenuItem)">
         <MappingFragment StoreEntitySet="MenuItems">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="IngredientSet">
-      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Ingredient)">
-        <MappingFragment StoreEntitySet="IngredientSet">
-          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
-          <ScalarProperty Name="RawMaterialID" ColumnName="RawMaterialID" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RawMaterialSet">
-      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.RawMaterial)">
-        <MappingFragment StoreEntitySet="RawMaterialSet">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InventorySet">
-      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Inventory)">
-        <MappingFragment StoreEntitySet="InventorySet">
-          <ScalarProperty Name="RawMaterialID" ColumnName="RawMaterialID" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderSet">
+    <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Order)">
-        <MappingFragment StoreEntitySet="OrderSet">
+        <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderItems">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.OrderItem)">
+        <MappingFragment StoreEntitySet="OrderItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Food)">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PersonCount" ColumnName="PersonCount" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Beverages">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Beverage)">
+        <MappingFragment StoreEntitySet="Beverages">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Inventory)">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -415,7 +483,7 @@
     <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>

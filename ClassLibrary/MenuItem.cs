@@ -17,17 +17,16 @@ namespace ClassLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MenuItem()
         {
-            this.Order = new HashSet<Order>();
+            this.OrderItem = new HashSet<OrderItem>();
         }
     
         public int ID { get; set; }
-        public int FoodID { get; set; }
+        public int ProductID { get; set; }
         public int MenuID { get; set; }
-        public string ItemName { get; set; }
     
-        public virtual Food Food { get; set; }
+        public virtual Product Product { get; set; }
         public virtual Menu Menu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<OrderItem> OrderItem { get; set; }
     }
 }

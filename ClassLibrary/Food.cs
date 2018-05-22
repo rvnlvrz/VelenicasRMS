@@ -14,18 +14,12 @@ namespace ClassLibrary
     
     public partial class Food
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Food()
-        {
-            this.MenuItem = new HashSet<MenuItem>();
-            this.Ingredient = new HashSet<Ingredient>();
-        }
-    
         public int ID { get; set; }
+        public int ProductID { get; set; }
+        public int PersonCount { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MenuItem> MenuItem { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ingredient> Ingredient { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -12,17 +12,14 @@ namespace ClassLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class OrderItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.OrderItem = new HashSet<OrderItem>();
-        }
-    
         public int ID { get; set; }
+        public int OrderID { get; set; }
+        public int MenuItemID { get; set; }
+        public int Quantity { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual MenuItem MenuItem { get; set; }
     }
 }

@@ -26,11 +26,12 @@ namespace ClassLibrary
         }
     
         public virtual DbSet<Menu> Menus { get; set; }
-        public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
-        public virtual DbSet<Ingredient> IngredientSet { get; set; }
-        public virtual DbSet<RawMaterial> RawMaterialSet { get; set; }
-        public virtual DbSet<Inventory> InventorySet { get; set; }
-        public virtual DbSet<Order> OrderSet { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<Beverage> Beverages { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
     }
 }

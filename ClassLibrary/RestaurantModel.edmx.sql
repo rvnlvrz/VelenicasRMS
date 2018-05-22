@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/17/2018 15:09:31
+-- Date Created: 05/22/2018 16:24:28
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\ClassLibrary\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -23,14 +23,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_MenuMenuItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MenuItems] DROP CONSTRAINT [FK_MenuMenuItem];
 GO
-IF OBJECT_ID(N'[dbo].[FK_IngredientFood]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IngredientSet] DROP CONSTRAINT [FK_IngredientFood];
+IF OBJECT_ID(N'[dbo].[FK_OrderOrderItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderItemSet] DROP CONSTRAINT [FK_OrderOrderItem];
 GO
-IF OBJECT_ID(N'[dbo].[FK_IngredientRawMaterial]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IngredientSet] DROP CONSTRAINT [FK_IngredientRawMaterial];
+IF OBJECT_ID(N'[dbo].[FK_OrderItemMenuItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderItemSet] DROP CONSTRAINT [FK_OrderItemMenuItem];
 GO
-IF OBJECT_ID(N'[dbo].[FK_InventoryRawMaterial]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InventorySet] DROP CONSTRAINT [FK_InventoryRawMaterial];
+IF OBJECT_ID(N'[dbo].[FK_FoodProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FoodSet] DROP CONSTRAINT [FK_FoodProduct];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BeverageProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BeverageSet] DROP CONSTRAINT [FK_BeverageProduct];
+GO
+IF OBJECT_ID(N'[dbo].[FK_InventoryProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InventorySet] DROP CONSTRAINT [FK_InventoryProduct];
 GO
 
 -- --------------------------------------------------
@@ -40,17 +46,23 @@ GO
 IF OBJECT_ID(N'[dbo].[Menus]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Menus];
 GO
-IF OBJECT_ID(N'[dbo].[Foods]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Foods];
+IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Products];
 GO
 IF OBJECT_ID(N'[dbo].[MenuItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MenuItems];
 GO
-IF OBJECT_ID(N'[dbo].[IngredientSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[IngredientSet];
+IF OBJECT_ID(N'[dbo].[OrderSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OrderSet];
 GO
-IF OBJECT_ID(N'[dbo].[RawMaterialSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RawMaterialSet];
+IF OBJECT_ID(N'[dbo].[OrderItemSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OrderItemSet];
+GO
+IF OBJECT_ID(N'[dbo].[FoodSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FoodSet];
+GO
+IF OBJECT_ID(N'[dbo].[BeverageSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BeverageSet];
 GO
 IF OBJECT_ID(N'[dbo].[InventorySet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[InventorySet];
@@ -63,12 +75,13 @@ GO
 -- Creating table 'Menus'
 CREATE TABLE [dbo].[Menus] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL
 );
 GO
 
--- Creating table 'Foods'
-CREATE TABLE [dbo].[Foods] (
+-- Creating table 'Products'
+CREATE TABLE [dbo].[Products] (
     [ID] int IDENTITY(1,1) NOT NULL
 );
 GO
@@ -76,39 +89,49 @@ GO
 -- Creating table 'MenuItems'
 CREATE TABLE [dbo].[MenuItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [FoodID] int  NOT NULL,
-    [MenuID] int  NOT NULL,
-    [ItemName] nvarchar(max)  NOT NULL
+    [ProductID] int  NOT NULL,
+    [MenuID] int  NOT NULL
 );
 GO
 
--- Creating table 'IngredientSet'
-CREATE TABLE [dbo].[IngredientSet] (
-    [FoodID] int  NOT NULL,
-    [RawMaterialID] int  NOT NULL,
+-- Creating table 'Orders'
+CREATE TABLE [dbo].[Orders] (
+    [ID] int IDENTITY(1,1) NOT NULL
+);
+GO
+
+-- Creating table 'OrderItems'
+CREATE TABLE [dbo].[OrderItems] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [OrderID] int  NOT NULL,
+    [MenuItemID] int  NOT NULL,
     [Quantity] int  NOT NULL
 );
 GO
 
--- Creating table 'RawMaterialSet'
-CREATE TABLE [dbo].[RawMaterialSet] (
+-- Creating table 'Foods'
+CREATE TABLE [dbo].[Foods] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [ProductID] int  NOT NULL,
+    [PersonCount] int  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Price] nvarchar(max)  NOT NULL
 );
 GO
 
--- Creating table 'InventorySet'
-CREATE TABLE [dbo].[InventorySet] (
-    [RawMaterialID] int  NOT NULL,
+-- Creating table 'Beverages'
+CREATE TABLE [dbo].[Beverages] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [ProductID] int  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Price] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Inventory'
+CREATE TABLE [dbo].[Inventory] (
+    [ProductID] int  NOT NULL,
     [Quantity] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'OrderSet'
-CREATE TABLE [dbo].[OrderSet] (
-    [ID] int IDENTITY(1,1) NOT NULL,
-    [Quantity] int  NOT NULL,
-    [MenuItemID] int  NOT NULL
 );
 GO
 
@@ -122,9 +145,9 @@ ADD CONSTRAINT [PK_Menus]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Foods'
-ALTER TABLE [dbo].[Foods]
-ADD CONSTRAINT [PK_Foods]
+-- Creating primary key on [ID] in table 'Products'
+ALTER TABLE [dbo].[Products]
+ADD CONSTRAINT [PK_Products]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
@@ -134,39 +157,45 @@ ADD CONSTRAINT [PK_MenuItems]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [FoodID], [RawMaterialID] in table 'IngredientSet'
-ALTER TABLE [dbo].[IngredientSet]
-ADD CONSTRAINT [PK_IngredientSet]
-    PRIMARY KEY CLUSTERED ([FoodID], [RawMaterialID] ASC);
-GO
-
--- Creating primary key on [ID] in table 'RawMaterialSet'
-ALTER TABLE [dbo].[RawMaterialSet]
-ADD CONSTRAINT [PK_RawMaterialSet]
+-- Creating primary key on [ID] in table 'Orders'
+ALTER TABLE [dbo].[Orders]
+ADD CONSTRAINT [PK_Orders]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [RawMaterialID] in table 'InventorySet'
-ALTER TABLE [dbo].[InventorySet]
-ADD CONSTRAINT [PK_InventorySet]
-    PRIMARY KEY CLUSTERED ([RawMaterialID] ASC);
+-- Creating primary key on [ID] in table 'OrderItems'
+ALTER TABLE [dbo].[OrderItems]
+ADD CONSTRAINT [PK_OrderItems]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'OrderSet'
-ALTER TABLE [dbo].[OrderSet]
-ADD CONSTRAINT [PK_OrderSet]
+-- Creating primary key on [ID] in table 'Foods'
+ALTER TABLE [dbo].[Foods]
+ADD CONSTRAINT [PK_Foods]
     PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'Beverages'
+ALTER TABLE [dbo].[Beverages]
+ADD CONSTRAINT [PK_Beverages]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ProductID] in table 'Inventory'
+ALTER TABLE [dbo].[Inventory]
+ADD CONSTRAINT [PK_Inventory]
+    PRIMARY KEY CLUSTERED ([ProductID] ASC);
 GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [FoodID] in table 'MenuItems'
+-- Creating foreign key on [ProductID] in table 'MenuItems'
 ALTER TABLE [dbo].[MenuItems]
 ADD CONSTRAINT [FK_FoodMenuItem]
-    FOREIGN KEY ([FoodID])
-    REFERENCES [dbo].[Foods]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [dbo].[Products]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
@@ -174,7 +203,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_FoodMenuItem'
 CREATE INDEX [IX_FK_FoodMenuItem]
 ON [dbo].[MenuItems]
-    ([FoodID]);
+    ([ProductID]);
 GO
 
 -- Creating foreign key on [MenuID] in table 'MenuItems'
@@ -192,52 +221,73 @@ ON [dbo].[MenuItems]
     ([MenuID]);
 GO
 
--- Creating foreign key on [FoodID] in table 'IngredientSet'
-ALTER TABLE [dbo].[IngredientSet]
-ADD CONSTRAINT [FK_IngredientFood]
-    FOREIGN KEY ([FoodID])
-    REFERENCES [dbo].[Foods]
+-- Creating foreign key on [OrderID] in table 'OrderItems'
+ALTER TABLE [dbo].[OrderItems]
+ADD CONSTRAINT [FK_OrderOrderItem]
+    FOREIGN KEY ([OrderID])
+    REFERENCES [dbo].[Orders]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [RawMaterialID] in table 'IngredientSet'
-ALTER TABLE [dbo].[IngredientSet]
-ADD CONSTRAINT [FK_IngredientRawMaterial]
-    FOREIGN KEY ([RawMaterialID])
-    REFERENCES [dbo].[RawMaterialSet]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderOrderItem'
+CREATE INDEX [IX_FK_OrderOrderItem]
+ON [dbo].[OrderItems]
+    ([OrderID]);
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_IngredientRawMaterial'
-CREATE INDEX [IX_FK_IngredientRawMaterial]
-ON [dbo].[IngredientSet]
-    ([RawMaterialID]);
-GO
-
--- Creating foreign key on [RawMaterialID] in table 'InventorySet'
-ALTER TABLE [dbo].[InventorySet]
-ADD CONSTRAINT [FK_InventoryRawMaterial]
-    FOREIGN KEY ([RawMaterialID])
-    REFERENCES [dbo].[RawMaterialSet]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [MenuItemID] in table 'OrderSet'
-ALTER TABLE [dbo].[OrderSet]
-ADD CONSTRAINT [FK_OrderMenuItem]
+-- Creating foreign key on [MenuItemID] in table 'OrderItems'
+ALTER TABLE [dbo].[OrderItems]
+ADD CONSTRAINT [FK_OrderItemMenuItem]
     FOREIGN KEY ([MenuItemID])
     REFERENCES [dbo].[MenuItems]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_OrderMenuItem'
-CREATE INDEX [IX_FK_OrderMenuItem]
-ON [dbo].[OrderSet]
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderItemMenuItem'
+CREATE INDEX [IX_FK_OrderItemMenuItem]
+ON [dbo].[OrderItems]
     ([MenuItemID]);
+GO
+
+-- Creating foreign key on [ProductID] in table 'Foods'
+ALTER TABLE [dbo].[Foods]
+ADD CONSTRAINT [FK_FoodProduct]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [dbo].[Products]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FoodProduct'
+CREATE INDEX [IX_FK_FoodProduct]
+ON [dbo].[Foods]
+    ([ProductID]);
+GO
+
+-- Creating foreign key on [ProductID] in table 'Beverages'
+ALTER TABLE [dbo].[Beverages]
+ADD CONSTRAINT [FK_BeverageProduct]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [dbo].[Products]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BeverageProduct'
+CREATE INDEX [IX_FK_BeverageProduct]
+ON [dbo].[Beverages]
+    ([ProductID]);
+GO
+
+-- Creating foreign key on [ProductID] in table 'Inventory'
+ALTER TABLE [dbo].[Inventory]
+ADD CONSTRAINT [FK_InventoryProduct]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [dbo].[Products]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- --------------------------------------------------

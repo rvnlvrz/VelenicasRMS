@@ -12,19 +12,24 @@ namespace ClassLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class RawMaterial
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RawMaterial()
+        public Product()
         {
-            this.Ingredient = new HashSet<Ingredient>();
+            this.MenuItem = new HashSet<MenuItem>();
+            this.Food = new HashSet<Food>();
+            this.Beverage = new HashSet<Beverage>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ingredient> Ingredient { get; set; }
+        public virtual ICollection<MenuItem> MenuItem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Food> Food { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Beverage> Beverage { get; set; }
         public virtual Inventory Inventory { get; set; }
     }
 }

@@ -14,9 +14,9 @@ namespace ClassLibrary
     
     public partial class Inventory
     {
-        public int RawMaterialID { get; set; }
+        public int ProductID { get; set; }
         public string Quantity { get; set; }
     
-        public virtual RawMaterial RawMaterial { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace ClassLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingredient
+    public partial class Beverage
     {
-        public int FoodID { get; set; }
-        public int RawMaterialID { get; set; }
-        public int Quantity { get; set; }
+        public int ID { get; set; }
+        public int ProductID { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
     
-        public virtual Food Food { get; set; }
-        public virtual RawMaterial RawMaterial { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -6,7 +6,7 @@
             <div class="text-center mx-auto">
                 <div class="row justify-content-center align-items-center">
                     <div class="title-border">
-                        <h4 style="font-size: 26px;">Velenica's Kitchen</h4>
+                        <h4 class="my-1">Velenica's Kitchen</h4>
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center">
@@ -30,7 +30,7 @@
                                 Font-Size="14px" />
                             <div class="divider">
                                 <hr class="left">
-                                <small>Found any problems?</small>
+                                <span class="text-muted">Found any problems?</span>
                                 <hr class="right">
                             </div>
                             <div class="form-group">

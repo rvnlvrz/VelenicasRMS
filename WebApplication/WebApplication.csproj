@@ -170,6 +170,7 @@
     <Content Include="Content\Materialize\javascript\materialize.js" />
     <Content Include="Content\Materialize\javascript\materialize.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Dashboard\Debug.aspx" />
     <Content Include="Dashboard\Index.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -259,6 +260,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControl\AddItemControl.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -296,6 +298,13 @@
     </Compile>
     <Compile Include="Dashboard\Dashboard.Master.designer.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Debug.aspx.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Debug.aspx.designer.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -342,6 +351,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AddItemControl.ascx.cs">
+      <DependentUpon>AddItemControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\AddItemControl.ascx.designer.cs">
+      <DependentUpon>AddItemControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

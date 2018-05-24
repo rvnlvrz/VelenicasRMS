@@ -255,6 +255,7 @@
           <NavigationProperty Name="Inventory" Relationship="RestaurantModel.InventoryProduct" FromRole="Product" ToRole="Inventory" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="MenuItem">
           <Key>

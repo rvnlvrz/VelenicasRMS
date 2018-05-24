@@ -369,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SQL Scipts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

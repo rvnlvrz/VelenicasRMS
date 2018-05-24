@@ -300,6 +300,7 @@
           <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
           <Property Name="ItemCount" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>

@@ -23,6 +23,7 @@ namespace ClassLibrary
         public int ID { get; set; }
         public decimal Total { get; set; }
         public string ItemCount { get; set; }
+        public System.DateTime Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItem { get; set; }

@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication.Dashboard {
+namespace WebApplication.UserControl {
     
     
-    public partial class Debug {
+    public partial class DataTableControl {
         
         /// <summary>
-        /// AddProductControl control.
+        /// GridViewTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebApplication.UserControl.AddItemControl AddProductControl;
-        
-        /// <summary>
-        /// DataTableControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebApplication.UserControl.DataTableControl DataTableControl;
+        protected global::System.Web.UI.WebControls.GridView GridViewTable;
     }
 }

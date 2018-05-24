@@ -30,6 +30,7 @@
 
 .backdrop {
     background-image: url('Images/RestoBackdrop.jpg');
+    background-size: cover;
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 13px;
     font-style: normal;
@@ -44,7 +45,6 @@
     top: 0;
     width: 100%;
     z-index: 0; /* In the back you goo */
-    background-size: cover;
 }
 
 .backdrop-tint {
@@ -77,14 +77,18 @@
     text-align: center;
 }
 
-.divider hr {
-    margin: 7px 0px;
-    width: 5rem;
+    .divider hr {
+        margin: 7px 0px;
+        width: 5rem;
+    }
+
+.left {
+    float: left;
 }
 
-.left { float: left; }
-
-.right { float: right; }
+.right {
+    float: right;
+}
 
 /*HOME*/
 
@@ -134,7 +138,9 @@
     text-align: center;
 }
 
-.header-text-ikaros-black { font-family: Exo-Light; }
+.header-text-ikaros-black {
+    font-family: Exo-Light;
+}
 
 .crop {
     box-shadow: 5px 5px 5px 5px;

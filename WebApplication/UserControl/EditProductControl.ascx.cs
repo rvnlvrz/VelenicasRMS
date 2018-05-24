@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication.Dashboard
+namespace WebApplication.UserControl
 {
-    public partial class Debug : System.Web.UI.Page
+    public partial class EditProductControl : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

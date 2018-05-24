@@ -13,12 +13,21 @@ namespace WebApplication.Dashboard {
     public partial class Debug {
         
         /// <summary>
-        /// AddItemControl control.
+        /// AddProductControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebApplication.UserControl.AddItemControl AddItemControl;
+        protected global::WebApplication.UserControl.AddItemControl AddProductControl;
+        
+        /// <summary>
+        /// EditProductControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebApplication.UserControl.EditProductControl EditProductControl;
     }
 }

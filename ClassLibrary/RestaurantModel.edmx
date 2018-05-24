@@ -74,6 +74,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Total" Type="decimal" Nullable="false" Precision="19" Scale="2" />
     <Property Name="ItemCount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderItems">
     <Key>
@@ -103,11 +104,11 @@
   </EntityType>
   <EntityType Name="Inventory">
     <Key>
-      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="Date" />
     </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="ProductID" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="smallint" Nullable="false" />
-    <Property Name="Unit" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FoodMenuItem">
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="*" />
@@ -182,7 +183,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="InventoryProduct">
-    <End Role="Inventory" Type="RestaurantModel.Store.Inventory" Multiplicity="0..1" />
+    <End Role="Inventory" Type="RestaurantModel.Store.Inventory" Multiplicity="*" />
     <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -381,15 +382,15 @@
         </Association>
         <EntityType Name="Inventory" >
           <Key>
-            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Date" />
           </Key>
           <NavigationProperty Name="Product" Relationship="RestaurantModel.InventoryProduct" FromRole="Inventory" ToRole="Product" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int16" Nullable="false" />
-          <Property Name="Unit" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="InventoryProduct">
-          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="*" />
           <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -439,6 +440,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -472,9 +474,9 @@
     <EntitySetMapping Name="Inventory">
       <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.Inventory)">
         <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Unit" ColumnName="Unit" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

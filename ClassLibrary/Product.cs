@@ -20,6 +20,7 @@ namespace ClassLibrary
             this.MenuItem = new HashSet<MenuItem>();
             this.Food = new HashSet<Food>();
             this.Beverage = new HashSet<Beverage>();
+            this.Inventory = new HashSet<Inventory>();
         }
     
         public int ID { get; set; }
@@ -32,6 +33,7 @@ namespace ClassLibrary
         public virtual ICollection<Food> Food { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beverage> Beverage { get; set; }
-        public virtual Inventory Inventory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

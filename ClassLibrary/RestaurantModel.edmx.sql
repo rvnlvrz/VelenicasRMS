@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/24/2018 12:50:44
+-- Date Created: 05/24/2018 22:12:28
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\ClassLibrary\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -84,8 +84,7 @@ GO
 CREATE TABLE [dbo].[Products] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL,
-    [Type] nvarchar(max)  NOT NULL
+    [Price] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -101,7 +100,8 @@ GO
 CREATE TABLE [dbo].[Orders] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Total] decimal(19,2)  NOT NULL,
-    [ItemCount] nvarchar(max)  NOT NULL
+    [ItemCount] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -131,9 +131,9 @@ GO
 
 -- Creating table 'Inventory'
 CREATE TABLE [dbo].[Inventory] (
+    [Date] datetime  NOT NULL,
     [ProductID] int  NOT NULL,
-    [Quantity] smallint  NOT NULL,
-    [Unit] nvarchar(max)  NOT NULL
+    [Quantity] smallint  NOT NULL
 );
 GO
 
@@ -183,10 +183,10 @@ ADD CONSTRAINT [PK_Beverages]
     PRIMARY KEY CLUSTERED ([ID], [ProductID] ASC);
 GO
 
--- Creating primary key on [ProductID] in table 'Inventory'
+-- Creating primary key on [Date] in table 'Inventory'
 ALTER TABLE [dbo].[Inventory]
 ADD CONSTRAINT [PK_Inventory]
-    PRIMARY KEY CLUSTERED ([ProductID] ASC);
+    PRIMARY KEY CLUSTERED ([Date] ASC);
 GO
 
 -- --------------------------------------------------
@@ -290,6 +290,12 @@ ADD CONSTRAINT [FK_InventoryProduct]
     REFERENCES [dbo].[Products]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InventoryProduct'
+CREATE INDEX [IX_FK_InventoryProduct]
+ON [dbo].[Inventory]
+    ([ProductID]);
 GO
 
 -- --------------------------------------------------

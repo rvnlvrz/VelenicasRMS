@@ -1,9 +1,10 @@
-﻿USE VelenicasRMS;  
+﻿SET ANSI_NULLS ON
 GO
-SET ANSI_NULLS ON
+USE VelenicasRMS;  
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 -- =============================================
 -- Author:		Aristan Fradejas
 -- Create date: May 23, 2018
@@ -17,6 +18,7 @@ AS
 		DELETE FROM Products WHERE ID = @ID
 	END
 GO
+
 -- =============================================
 -- Author:		Aristan Fradejas
 -- Create date: May 23, 2018

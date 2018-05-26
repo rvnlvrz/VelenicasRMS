@@ -26,14 +26,15 @@ GO
 -- =============================================
 CREATE OR ALTER PROCEDURE [dbo].uspInsertBeverage   
     @Name nvarchar(max),
-	@Price nvarchar(max)
+	@Price nvarchar(max),
+	@Quantity nvarchar(max)
 AS   
     SET NOCOUNT ON; 
 	BEGIN
 	
 	DECLARE @ID INT
 
-		INSERT INTO Products(Name, Price) VALUES (@Name, @Price);
+		INSERT INTO Products(Name, Price) VALUES (@Name, @Price, @Quantity);
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
 	END
 GO

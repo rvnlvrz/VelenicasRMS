@@ -172,7 +172,9 @@
   </Association>
   <Association Name="BeverageProduct">
     <End Role="Beverage" Type="RestaurantModel.Store.Beverages" Multiplicity="*" />
-    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ID" />
@@ -370,7 +372,9 @@
         </Association>
         <Association Name="BeverageProduct">
           <End Type="RestaurantModel.Beverage" Role="Beverage" Multiplicity="*" />
-          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />

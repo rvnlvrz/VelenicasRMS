@@ -1,13 +1,20 @@
+﻿USE VelenicasRMS
+GO
+
 -- INVENTORY VIEW
-SELECT Products.ID, Products.[Name], Products.[Type], Products.Price,
-	Inventory.Quantity, Inventory.Unit, Foods.PersonCount
+CREATE OR ALTER VIEW [All Products] AS
+SELECT Products.ID, Products.[Name], Products.Price,
+	Inventory.Quantity, Foods.PersonCount
 	FROM Products
 	INNER JOIN Inventory ON Inventory.ProductID = Products.ID
 	INNER JOIN Foods ON Foods.ProductID = Products.ID
+GO
 
 -- ORDERS VIEW (Order ID, item count, total)
+CREATE OR ALTER VIEW [All Orders wit Products] AS
 SELECT Products.ID, Products.[Name], (Products.Price * OrderItems.Quantity)  
 	FROM Products INNER JOIN OrderItems ON OrderItems.OrderID = Orders.ID
+GO
 
 --SELECT Products.ID, Products.[Name], OrderItems.Quantity, OrderItems.OrderID
 --	FROM OrderItems

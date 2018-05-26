@@ -8,4 +8,5 @@
     <uc1:AddProductControl runat="server" ID="AddProductControl" />
     <br />
     <uc1:DataTableControl runat="server" id="DataTableControl" />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
 </asp:Content>

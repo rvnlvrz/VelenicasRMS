@@ -28,6 +28,11 @@
     src: url('../fonts/Exo/Exo-Light.ttf') format('truetype');
 }
 
+.wrap {
+    font-size: 14px;
+    padding: 30px;
+}
+
 .backdrop {
     background-image: url('Images/RestoBackdrop.jpg');
     background-size: cover;

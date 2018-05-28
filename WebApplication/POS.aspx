@@ -2,77 +2,62 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
+
         <div class="container">
             <div class="row">
                 <div class="col">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <div class="row no-gutters">
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button1" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button2" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button3" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button4" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button5" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button6" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button7" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button8" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button9" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button10" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button11" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;" />
-                                </div>
-                                <div class="col mb-1 mr-1">
-                                    <asp:Button ID="Button12" runat="server" Text="Button" CssClass="btn btn-block btn-lg btn-primary" Style="padding: 55px;"
-                                        data-toggle="modal" data-target="#CategoricalMenuModal" />
-                                </div>
-                            </div>
+                            <asp:ListView ID="ListView1" runat="server" DataKeyNames="categoryID" DataSourceID="SqlDataSource1"
+                                GroupItemCount="3" OnItemCommand="ListView1_ItemCommand" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+                                <EmptyDataTemplate>
+                                    <table runat="server" style="">
+                                        <tr>
+                                            <td>No data was returned.</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <EmptyItemTemplate>
+                                    <td runat="server" />
+                                </EmptyItemTemplate>
+                                <GroupTemplate>
+                                    <div class="col mb-1 mr-1" id="itemPlaceholderContainer" runat="server">
+                                        <div id="itemPlaceholder" runat="server"></div>
+                                    </div>
+                                </GroupTemplate>
+                                <ItemTemplate>
+                                    <asp:Button ID="Button1" runat="server" Text='<%# Eval("categoryName") %>'
+                                        CssClass="btn btn-block btn-lg btn-primary" data-toggle="modal"
+                                        data-target="#CategoricalMenuModal" CommandArgument='<%# Eval("categoryID") %>' />
+                                </ItemTemplate>
+                                <LayoutTemplate>
+                                    <div class="container" id="groupPlaceholderContainer" runat="server">
+                                        <div class="row no-gutters">
+                                            <div class="" id="groupPlaceholder" runat="server">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </LayoutTemplate>
+                            </asp:ListView>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
+
                 <div class="col">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridView1" runat="server" ShowHeaderWhenEmpty="True" CssClass="table" AutoGenerateColumns="False" DataKeyNames="commentID" DataSourceID="SqlDataSource1" BorderStyle="None" GridLines="Horizontal">
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="commentID" DataSourceID="Sourceitems" CssClass="table" BorderStyle="None" GridLines="Horizontal">
                                 <Columns>
                                     <asp:BoundField DataField="commentID" HeaderText="commentID" InsertVisible="False" ReadOnly="True" SortExpression="commentID" />
                                     <asp:BoundField DataField="productID" HeaderText="productID" SortExpression="productID" />
-                                    <asp:BoundField DataField="commenter" HeaderText="commenter" SortExpression="commenter" />
                                     <asp:BoundField DataField="comment" HeaderText="comment" SortExpression="comment" />
-                                    <asp:TemplateField HeaderText="Actions" ItemStyle-Wrap="false">
+                                    <asp:TemplateField HeaderText="Actions">
                                         <ItemTemplate>
-                                            <asp:Button ID="GrdBtnDeletePub" runat="server" Text="Remove" CssClass="btn btn-danger"
-                                                CommandArgument="" CausesValidation="false" data-toggle="modal"
-                                                data-target="#EditLibIndexModal" />
+                                            <asp:Button ID="Button2" runat="server" Text="Remove" CssClass="btn btn-danger btn-block" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <HeaderStyle BorderStyle="Solid" VerticalAlign="Middle" />
+                                <HeaderStyle BorderStyle="Solid" />
                             </asp:GridView>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -86,21 +71,33 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="CategoricalMenuModalLongTitle">Category Title</h5>
+                        <h5 class="modal-title" id="CategoricalMenuModalLongTitle"><strong>Add Item</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                            <ContentTemplate>
+                                <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SourceFoods" 
+                                    DataTextField="foodName" DataValueField="foodID" 
+                                    CssClass="lead"></asp:CheckBoxList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:FANTASTICConnectionString %>" SelectCommand="SELECT * FROM [ProductComments]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RestoTempConnectionString %>" SelectCommand="SELECT * FROM [Categories]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SourceFoods" runat="server" ConnectionString="<%$ ConnectionStrings:RestoTempConnectionString %>" ProviderName="<%$ ConnectionStrings:RestoTempConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Foods] WHERE categoryID = @id">
+        <SelectParameters>
+            <asp:SessionParameter Name="id" SessionField="foodKey" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="Sourceitems" runat="server" ConnectionString="<%$ ConnectionStrings:FANTASTICConnectionString %>" SelectCommand="SELECT * FROM [ProductComments]"></asp:SqlDataSource>
 </asp:Content>
+

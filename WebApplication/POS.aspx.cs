@@ -13,5 +13,15 @@ namespace WebApplication
         {
 
         }
+
+        protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            Session["foodKey"] = e.CommandArgument.ToString();
+         }
+
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

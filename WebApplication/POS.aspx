@@ -86,6 +86,8 @@
                         </asp:UpdatePanel>
                     </div>
                     <div class="modal-footer">
+                        <button id="BtnAddOrder" runat="server" type="button" class="btn btn-secondary"
+                            onserverclick="BtnAddOrder_ServerClick">Add</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

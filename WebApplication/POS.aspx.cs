@@ -23,5 +23,16 @@ namespace WebApplication
         {
 
         }
+
+        protected void BtnAddOrder_ServerClick(object sender, EventArgs e)
+        {
+            // Go get each selected item from the checkbox list
+            List<string> selectedValues = CheckBoxList1.Items.Cast<ListItem>()
+                .Where(li => li.Selected)
+                .Select(li => li.Value)
+                .ToList();
+
+            // do black magic here
+        }
     }
 }

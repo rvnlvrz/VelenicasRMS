@@ -60,10 +60,6 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Stored Procedures" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Views\" />
-    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Create Views.sql" />
@@ -71,18 +67,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Stored Procedures\Stored Procedures.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\Menus.sql" />
-    <Build Include="dbo\Tables\Products.sql" />
-    <Build Include="dbo\Tables\MenuItems.sql" />
-    <Build Include="dbo\Tables\Orders.sql" />
-    <Build Include="dbo\Tables\OrderItems.sql" />
-    <Build Include="dbo\Tables\Foods.sql" />
-    <Build Include="dbo\Tables\Beverages.sql" />
-    <Build Include="dbo\Tables\Inventory.sql" />
-    <Build Include="dbo\Views\All Products.sql" />
-    <Build Include="dbo\Stored Procedures\uspDeleteBeverage.sql" />
-    <Build Include="dbo\Stored Procedures\uspInsertBeverage.sql" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,6 @@
 GO
 
 -- INVENTORY VIEW
-CREATE OR ALTER VIEW [All Products] AS
 SELECT Products.ID, Products.[Name], Products.Price,
 	Inventory.Quantity, Foods.PersonCount
 	FROM Products
@@ -27,11 +26,18 @@ SELECT Products.ID, Products.Name, Products.Price, OrderItems.Quantity,
 	INNER JOIN MenuItems ON MenuItems.ProductID = Products.ID
 	INNER JOIN OrderItems ON OrderItems.OrderID = MenuItems.ID
 	INNER JOIN Orders ON OrderItems.OrderID = Orders.ID
+GO
 
 -- BEVERAGE LIST 
+CREATE OR ALTER VIEW [Beverage Products]
+AS
 SELECT Products.ID, Products.[Name], Products.Price   
-	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Beverages)
+	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Beverages) 
+GO
 
 -- FOOD LIST
+CREATE OR ALTER VIEW [Food Products]
+AS
 SELECT Products.ID, Products.[Name], Products.Price 
 	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Foods)
+GO

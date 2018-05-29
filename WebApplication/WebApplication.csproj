@@ -175,6 +175,7 @@
     <Content Include="Dashboard\Debug.aspx" />
     <Content Include="Dashboard\Index.aspx" />
     <Content Include="Dashboard\Inventory.aspx" />
+    <Content Include="Dashboard\Foods.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -274,7 +275,6 @@
     <Content Include="Site.Master" />
     <Content Include="UserControl\AddProductControl.ascx" />
     <Content Include="UserControl\DataTableControl.ascx" />
-    <Content Include="UserControl\EditProductControl.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -333,6 +333,13 @@
     </Compile>
     <Compile Include="Dashboard\Inventory.aspx.designer.cs">
       <DependentUpon>Inventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Foods.aspx.cs">
+      <DependentUpon>Foods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Foods.aspx.designer.cs">
+      <DependentUpon>Foods.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -398,13 +405,6 @@
     </Compile>
     <Compile Include="UserControl\DataTableControl.ascx.designer.cs">
       <DependentUpon>DataTableControl.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\EditProductControl.ascx.cs">
-      <DependentUpon>EditProductControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControl\EditProductControl.ascx.designer.cs">
-      <DependentUpon>EditProductControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

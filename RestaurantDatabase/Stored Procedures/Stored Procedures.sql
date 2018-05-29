@@ -34,7 +34,7 @@ AS
 	
 	DECLARE @ID INT
 
-		INSERT INTO Products(Name, Price) VALUES (@Name, @Price, @Quantity);
+		INSERT INTO Products(Name, Price) VALUES (@Name, @Price);
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
 	END
 GO

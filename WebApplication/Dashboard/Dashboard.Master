@@ -64,6 +64,12 @@
                 <span class="nav-link-text">Debug</span>
             </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Products">
+            <a class="nav-link" href="Foods.aspx">
+                <i class="fa fa-fw fa-cutlery"></i>
+                <span class="nav-link-text">Foods</span>
+            </a>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
             <a class="nav-link" href="Inventory.aspx">
                 <i class="fa fa-fw fa-table"></i>

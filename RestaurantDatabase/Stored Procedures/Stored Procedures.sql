@@ -84,3 +84,57 @@ BEGIN
  
 END
 GO
+
+-- MENU PROCEDURES
+CREATE OR ALTER PROCEDURE AddMenuItem(@menuID INT, @productID INT) AS
+	INSERT INTO MenuItems VALUES (@menuID, @productID)
+GO
+
+-- POS PROCEDURES
+CREATE OR ALTER PROCEDURE AddNewTransaction AS
+	INSERT INTO Orders VALUES(0,0)
+GO
+
+CREATE OR ALTER PROCEDURE AddToTransaction (@MenuItemID INT, @quant INT) AS
+	DECLARE @totalPrice DECIMAL
+	DECLARE @totalCount INT
+	DECLARE @prodPrice DECIMAL
+	SELECT @prodPrice = Price FROM Products WHERE ID IN (SELECT productID FROM MenuItems WHERE ID = @MenuItemID)
+	INSERT INTO OrderItems VALUES (IDENT_CURRENT('Orders'), @MenuItemID, @quant, @prodPrice)
+	SELECT @totalPrice = SUM(Price) FROM OrderItems WHERE OrderID = IDENT_CURRENT('orders')
+	SELECT @totalCount = SUM(Quantity) FROM OrderItems WHERE OrderID = IDENT_CURRENT('orders')
+	UPDATE Orders SET Total = @totalPrice, ItemCount = @totalCount WHERE ID = IDENT_CURRENT('orders')
+GO
+
+CREATE OR ALTER PROCEDURE UpdateTransaction (@tranID INT, @itemID INT, @itemQuant INT, @itemPrice DECIMAL) AS
+	DECLARE @total DECIMAL
+	DECLARE @count INT
+	UPDATE OrderItems SET Quantity = @itemQuant, Price = @itemPrice 
+	WHERE OrderID = @tranID AND MenuItemID = @itemID
+	SELECT @total = SUM(Price) FROM OrderItems WHERE OrderID = @tranID
+	SELECT @count = SUM(Quantity) FROM OrderItems WHERE OrderID = @tranID
+	UPDATE Orders SET Total = @total, ItemCount = @count WHERE ID = @tranID
+GO
+
+CREATE OR ALTER PROCEDURE DeleteFromTransaction (@tranID INT, @itemID INT) AS
+	DECLARE @totalPrice DECIMAL
+	DECLARE @totalCount INT
+	DELETE FROM OrderItems WHERE OrderID = @tranID AND MenuItemID = @itemID
+	IF (SELECT SUM(Price) FROM OrderItems WHERE OrderID = IDENT_CURRENT('orders')) IS NOT NULL
+		BEGIN
+			SELECT @totalPrice = SUM(Price) FROM OrderItems WHERE OrderID = IDENT_CURRENT('orders');
+			SELECT @totalCount = SUM(Quantity) FROM OrderItems WHERE OrderID = IDENT_CURRENT('orders');
+		END
+	ELSE
+		BEGIN
+			SET @totalCount = 0
+			SET @totalPrice = 0
+		END
+
+	UPDATE Orders SET Total = @totalPrice, ItemCount = @totalCount WHERE ID = IDENT_CURRENT('orders')
+GO
+
+CREATE OR ALTER PROCEDURE DeleteTransaction (@tranID INT) AS
+	DELETE FROM OrderItems WHERE OrderID = @tranID
+	DELETE FROM Orders WHERE ID = @tranID
+GO

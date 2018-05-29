@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
 
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ListView1" />
@@ -111,7 +112,6 @@
                                                             CssClass="h6" />
                                                     </div>
                                                 </div>
-
                                             </ItemTemplate>
                                             <LayoutTemplate>
                                                 <div id="itemPlaceholderContainer" runat="server" style="">
@@ -128,14 +128,20 @@
                                 <div class="col">
                                     <asp:HiddenField ID="HfdTransacID" runat="server" />
                                     <div class="form-group">
-                                        <asp:Button ID="BtnNewTransac" runat="server" Text="New Transaction" CssClass="btn btn-primary"
-                                            CausesValidation="false" data-toggle="modal" data-target="#NewTransacModal" />
-                                        <asp:Button ID="BtnCancelTransac" runat="server" Text="Cancel Transaction" CssClass="btn btn-danger"
-                                            CausesValidation="false" data-toggle="modal" data-target="#CancelTransacModal" />
-                                        <asp:Button ID="BtnPay" runat="server" Text="Checkout" CssClass="btn btn-info"
-                                            CausesValidation="false" data-toggle="modal" data-target="#CancelTransacModal" />
-                                    </div>
+                                        <asp:UpdatePanel runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="BtnNewTransac" runat="server" Text="New Transaction" CssClass="btn btn-primary"
+                                                    CausesValidation="false" data-toggle="modal" data-target="#NewTransacModal" />
+                                                <asp:Button ID="BtnCancelTransac" runat="server" Text="Cancel Transaction" CssClass="btn btn-danger"
+                                                    CausesValidation="false" data-toggle="modal" data-target="#CancelTransacModal"
+                                                    Enabled='<%# IsInTransaction() %>' />
+                                                <asp:Button ID="BtnPay" runat="server" Text="Checkout" CssClass="btn btn-info"
+                                                    CausesValidation="false" data-toggle="modal" data-target="#EndTranModal"
+                                                    OnClick="BtnPay_Click" Enabled='<%# IsInTransaction() %>' />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +191,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="NewTransacLabel"><strong>Rental Request</strong></h5>
+                        <h5 class="modal-title" id="NewTransacLabel"><strong>New Transaction</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -223,7 +229,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="CancelTransacLabel"><strong>Rental Request</strong></h5>
+                        <h5 class="modal-title" id="CancelTransacLabel"><strong>Cancel Transaction</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -261,7 +267,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="DeleteProdLabel"><strong>Rental Request</strong></h5>
+                        <h5 class="modal-title" id="DeleteProdLabel"><strong>Delete Item</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -355,6 +361,78 @@
                                     onserverclick="BtnUpdateTransac_ServerClick">
                                     Update</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Transaction modal -->
+        <div class="modal fade" id="EndTranModal" tabindex="-1" role="dialog" aria-labelledby="EndTranLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="EndTranLabel"><strong>Checkout</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" ChildrenAsTriggers="true">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="FvwTotal" />
+                            <asp:AsyncPostBackTrigger ControlID="TbxTender" />
+                            <asp:AsyncPostBackTrigger ControlID="TbxChange" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <div class="modal-body">
+                                <div class="justify-content-center align-items-center">
+                                    <asp:FormView ID="FvwTotal" runat="server" DataKeyNames="ID" DataSourceID="SourceTotals">
+                                        <ItemTemplate>
+                                            <div class="form-group mb-1">
+                                                <asp:Label ID="TotalLabel" runat="server" Text='<%# Bind("Total") %>'
+                                                    Visible="false" Enabled="false" />
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:FormView>
+                                    <div class="form-group mb-1">
+                                        <p class="h6">Amount Due</p>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">$</div>
+                                            </div>
+                                            <asp:TextBox ID="TbxPayable" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-1">
+                                        <p class="h6">Cash Tendered</p>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">$</div>
+                                            </div>
+                                            <asp:TextBox ID="TbxTender" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="TbxTender_TextChanged"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-1">
+                                        <p class="h6">Change</p>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">$</div>
+                                            </div>
+                                            <asp:TextBox ID="TbxChange" runat="server" CssClass="form-control" Enabled="false" AutoPostBack="true"></asp:TextBox>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" id="BtnEndTran" runat="server"
+                                    onserverclick="BtnEndTran_ServerClick">
+                                    CONFIRM CHECKOUT</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                    id="BtnCancelCheckout" runat="server" onserverclick="BtnCancelCheckout_ServerClick">CANCEL</button>
+
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>

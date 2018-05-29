@@ -223,5 +223,54 @@ namespace WebApplication
             ScriptManager.RegisterStartupScript(Button2, GetType(), "DeleteProdModal",
                 @"$('#DeleteProdModal').modal('hide');", true);
         }
+
+        protected void BtnPay_Click(object sender, EventArgs e)
+        {
+            FvwTotal.DataBind();
+            Label TotalLabel = (Label)FvwTotal.FindControl("TotalLabel");
+            //Session["totalPayable"] = Convert.ToDecimal(TotalLabel.Text);
+            TbxPayable.Text = TotalLabel.Text;
+        }
+
+        protected void TbxTender_TextChanged(object sender, EventArgs e)
+        {
+            if(TbxTender.Text != string.Empty)
+            {
+                decimal tender = Convert.ToDecimal(TbxTender.Text);
+                decimal payable = Convert.ToDecimal(TbxPayable.Text);
+                decimal change = Math.Abs(payable - tender);
+                TbxChange.Text = change.ToString();
+            }
+            else
+            {
+                TbxChange.Text = 0.ToString();
+            }
+        }
+
+        protected void BtnEndTran_ServerClick(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand comm = new SqlCommand("DeleteTransaction", conn))
+                {
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@tranID", SqlDbType.Int).Value = Convert.ToInt32(Session["transacID"]);
+                    conn.Open();
+                    comm.ExecuteNonQuery();
+                }
+            }
+
+            Session.Remove("transacID");
+            LvwTotals.DataBind();
+            GridView1.DataBind();
+            ScriptManager.RegisterStartupScript(BtnEndTran, GetType(), "EndTranModal",
+                @"$('#EndTranModal').modal('hide');", true);
+        }
+
+        protected void BtnCancelCheckout_ServerClick(object sender, EventArgs e)
+        {
+            TbxTender.Text = "";
+            TbxChange.Text = 0.ToString();
+        }
     }
 }

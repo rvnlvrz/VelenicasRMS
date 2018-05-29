@@ -68,7 +68,7 @@
                                                             <asp:HiddenField ID="HiddenField2" runat="server" />
                                                             <asp:Button ID="GrdBtnUpdateProd" runat="server" Text="Edit" CssClass="btn btn-success btn-block"
                                                                 CommandArgument='<%# Eval("menuItemID") %>' CausesValidation="false" data-toggle="modal"
-                                                                data-target="#UpdateTransacModal" />
+                                                                data-target="#UpdateTransacModal" CommandName="upd" />
                                                         </div>
                                                         <div class="col-sm ml-1">
                                                             <asp:Button ID="GrdBtnDeleteProd" runat="server" Text="Delete" CssClass="btn btn-danger btn-block"
@@ -360,7 +360,8 @@
                                 <button type="button" class="btn btn-success" id="BtnUpdateTransac" runat="server"
                                     onserverclick="BtnUpdateTransac_ServerClick">
                                     Update</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                    id="CancelUpd" runat="server" onserverclick="CancelUpd_ServerClick">Cancel</button>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>

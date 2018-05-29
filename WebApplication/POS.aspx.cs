@@ -23,6 +23,7 @@ namespace WebApplication
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             Session["foodKey"] = e.CommandArgument.ToString();
+            
         }
 
         protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -182,12 +183,13 @@ namespace WebApplication
                 decimal discountedPrice = originalPrice = discountAmount;
                 decimal computedPrice = discountedPrice * Convert.ToDecimal(quantTbx.Text);
                 priceTbx.Text = computedPrice.ToString();
+                string name = (string)Session["foodKey"] + "discount";
+                Session[name] = DiscountTextBox.Text;
             }
             else
             {
                 priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(originalPrice)).ToString();
             }
-
 
             FvwTransacItem.UpdateItem(true);
             
@@ -271,6 +273,10 @@ namespace WebApplication
         {
             TbxTender.Text = "";
             TbxChange.Text = 0.ToString();
+        }
+
+        protected void CancelUpd_ServerClick(object sender, EventArgs e)
+        {
         }
     }
 }

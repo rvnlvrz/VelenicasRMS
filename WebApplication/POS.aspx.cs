@@ -44,6 +44,8 @@ namespace WebApplication
             {
                 AddToTransaction(Convert.ToInt32(value));
             }
+
+            GridView1.DataBind();
         }
 
         protected void BtnConfirmStart_ServerClick(object sender, EventArgs e)
@@ -90,9 +92,10 @@ namespace WebApplication
             }
 
             Session["transacID"] = transactionID;
-
+            GridView1.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "NewTransacModal",
                 @"$('#NewTransacModal').modal('hide');", true);
+
         }
 
         protected void AddToTransaction(int menuItemID)

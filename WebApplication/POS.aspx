@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
-
         <div class="container">
             <div class="row no-gutters">
                 <div class="col">
@@ -13,7 +12,6 @@
                         <ContentTemplate>
                             <asp:ListView ID="ListView1" runat="server" DataKeyNames="ID" DataSourceID="SourceCategories"
                                 GroupItemCount="3" OnItemCommand="ListView1_ItemCommand" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
-
                                 <EmptyDataTemplate>
                                     <table runat="server" style="">
                                         <tr>

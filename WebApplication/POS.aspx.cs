@@ -40,12 +40,14 @@ namespace WebApplication
 
             // do black magic here
 
-            foreach(var value in selectedValues)
+            foreach (var value in selectedValues)
             {
                 AddToTransaction(Convert.ToInt32(value));
             }
 
             GridView1.DataBind();
+            ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CategoricalMenuModal",
+                @"$('#CategoricalMenuModal').modal('hide');", true);
         }
 
         protected void BtnConfirmStart_ServerClick(object sender, EventArgs e)

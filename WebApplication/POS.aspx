@@ -53,16 +53,35 @@
                         <ContentTemplate>
                             <div class="row">
                                 <div class="col">
-                                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
+                                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
                                         DataSourceID="SourceItems" CssClass="table" BorderStyle="None" GridLines="Horizontal"
                                         ShowHeaderWhenEmpty="True">
                                         <Columns>
-                                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
+                                            <%-- <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
+                                            <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" SortExpression="MenuItemID" />--%>
                                             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                                             <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
+                                            <asp:TemplateField HeaderText="Actions" ItemStyle-Wrap="false">
+                                                <ItemTemplate>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-sm-0 mr-1">
+                                                            <asp:Button ID="GrdBtnUpdateProd" runat="server" Text="Edit" CssClass="btn btn-success btn-block"
+                                                                CommandArgument='<%# Eval("ID") %>' CausesValidation="false" data-toggle="modal"
+                                                                data-target="#EditLibIndexModal" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <asp:Button ID="GrdBtnDeleteProd" runat="server" Text="Delete" CssClass="btn btn-danger btn-block"
+                                                                CommandArgument='<%# Eval("ID") %>' CausesValidation="false" data-toggle="modal"
+                                                                data-target="#EditLibIndexModal" />
+                                                        </div>
+                                                    </div>
+                                                </ItemTemplate>
+                                                <ItemStyle Wrap="False" />
+                                            </asp:TemplateField>
                                         </Columns>
                                         <HeaderStyle BorderStyle="Solid" />
+                                        <RowStyle Wrap="False" />
                                     </asp:GridView>
                                 </div>
                                 <div class="w-100"></div>
@@ -101,12 +120,17 @@
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
-                    <div class="modal-footer">
-                        <button id="BtnAddOrder" runat="server" type="button" class="btn btn-secondary"
-                            onserverclick="BtnAddOrder_ServerClick">
-                            Add</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <div class="modal-footer">
+                                <button id="BtnAddOrder" runat="server" type="button" class="btn btn-secondary"
+                                    onserverclick="BtnAddOrder_ServerClick">
+                                    Add</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                 </div>
             </div>
         </div>

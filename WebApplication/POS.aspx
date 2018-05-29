@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="ListView1" />
@@ -82,11 +83,54 @@
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col">
+                                    <div class="jumbotron">
+                                        <asp:ListView ID="LvwTotals" runat="server" DataKeyNames="ID" DataSourceID="SourceTotals">
+                                            <EmptyDataTemplate>
+                                                <span>No data was returned.</span>
+                                            </EmptyDataTemplate>
+                                            <ItemTemplate>
+                                                <div class="row no-gutters">
+                                                    <div class="col-sm-3 text-center"
+                                                        style="border-right: solid; border-right-width: 1px;">
+                                                        <p class="h6">ITEMS</p>
+                                                    </div>
+                                                    <div class="col-sm-3 text-center"
+                                                        style="border-right: solid; border-right-width: 1px;">
+                                                        <asp:Label ID="ItemCountLabel" runat="server" Text='<%# Eval("ItemCount") %>'
+                                                            CssClass="h6" />
+
+                                                    </div>
+                                                    <div class="col-sm-3 text-center"
+                                                        style="border-right: solid; border-right-width: 1px;">
+                                                        <p class="h6">TOTAL</p>
+                                                    </div>
+                                                    <div class="col-sm-3 text-center">
+                                                        <asp:Label ID="TotalLabel" runat="server" Text='<%# Eval("Total","{0:c}") %>'
+                                                            CssClass="h6" />
+                                                    </div>
+                                                </div>
+
+                                            </ItemTemplate>
+                                            <LayoutTemplate>
+                                                <div id="itemPlaceholderContainer" runat="server" style="">
+                                                    <span runat="server" id="itemPlaceholder" />
+                                                </div>
+                                                <div style="">
+                                                </div>
+                                            </LayoutTemplate>
+                                        </asp:ListView>
+                                    </div>
+
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
                                     <asp:HiddenField ID="HfdTransacID" runat="server" />
                                     <div class="form-group">
                                         <asp:Button ID="BtnNewTransac" runat="server" Text="New Transaction" CssClass="btn btn-primary"
                                             CausesValidation="false" data-toggle="modal" data-target="#NewTransacModal" />
                                         <asp:Button ID="BtnCancelTransac" runat="server" Text="Cancel Transaction" CssClass="btn btn-danger"
+                                            CausesValidation="false" data-toggle="modal" data-target="#CancelTransacModal" />
+                                        <asp:Button ID="BtnPay" runat="server" Text="Checkout" CssClass="btn btn-info"
                                             CausesValidation="false" data-toggle="modal" data-target="#CancelTransacModal" />
                                     </div>
 
@@ -292,6 +336,11 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SourceItems" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM SpecificOrder WHERE ID = @id">
+        <SelectParameters>
+            <asp:SessionParameter Name="id" SessionField="transacID" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SourceTotals" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM Orders WHERE ID = @id">
         <SelectParameters>
             <asp:SessionParameter Name="id" SessionField="transacID" Type="Int32" />
         </SelectParameters>

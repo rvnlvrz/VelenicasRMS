@@ -49,6 +49,15 @@ namespace WebApplication {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
+        /// LvwTotals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView LvwTotals;
+        
+        /// <summary>
         /// HfdTransacID control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnCancelTransac;
+        
+        /// <summary>
+        /// BtnPay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnPay;
         
         /// <summary>
         /// UpdatePanel3 control.
@@ -218,5 +236,14 @@ namespace WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SourceItems;
+        
+        /// <summary>
+        /// SourceTotals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SourceTotals;
     }
 }

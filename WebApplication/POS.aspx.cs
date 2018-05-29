@@ -46,6 +46,7 @@ namespace WebApplication
             }
 
             GridView1.DataBind();
+            LvwTotals.DataBind();   
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CategoricalMenuModal",
                 @"$('#CategoricalMenuModal').modal('hide');", true);
         }
@@ -143,6 +144,19 @@ namespace WebApplication
 
         protected void BtnConCancelTransac_ServerClick(object sender, EventArgs e)
         {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand comm = new SqlCommand("DeleteTransaction", conn))
+                {
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.Add("@tranID", SqlDbType.Int).Value = Convert.ToInt32(Session["transacID"]);
+                    conn.Open();
+                    comm.ExecuteNonQuery();
+                }
+            }
+
+            Session.Remove("transacID");
+            LvwTotals.DataBind();
             GridView1.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CancelTransacModal",
                 @"$('#CancelTransacModal').modal('hide');", true);
@@ -171,13 +185,14 @@ namespace WebApplication
             }
             else
             {
-
                 priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(originalPrice)).ToString();
             }
 
 
             FvwTransacItem.UpdateItem(true);
+            
             GridView1.DataBind();
+            LvwTotals.DataBind();
 
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "UpdateTransacModal",
                 @"$('#UpdateTransacModal').modal('hide');", true);

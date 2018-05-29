@@ -73,7 +73,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Total" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-    <Property Name="ItemCount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ItemCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderItems">
     <Key>
@@ -301,7 +301,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="ItemCount" Type="String" Nullable="false" />
+          <Property Name="ItemCount" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>

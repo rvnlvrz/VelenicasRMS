@@ -68,7 +68,4 @@
   <ItemGroup>
     <None Include="Stored Procedures\Stored Procedures.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Build Include="Stored Procedures\StoredProcedures_Food.sql" />
-  </ItemGroup>
 </Project>

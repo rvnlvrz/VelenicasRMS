@@ -127,5 +127,55 @@ namespace WebApplication
                 }
             }
         }
+
+        protected void BtnConCancelTransac_ServerClick(object sender, EventArgs e)
+        {
+            GridView1.DataBind();
+            ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CancelTransacModal",
+                @"$('#CancelTransacModal').modal('hide');", true);
+        }
+
+        protected void BtnUpdateTransac_ServerClick(object sender, EventArgs e)
+        {
+            TextBox quantTbx = (TextBox)FvwTransacItem.Row.FindControl("QuantityTextBox");
+            TextBox priceTbx = (TextBox)FvwTransacItem.Row.FindControl("PriceTextBox");
+
+            if (DiscountTextBox.Enabled)
+            {
+                decimal price = Convert.ToDecimal(priceTbx.Text);
+                decimal discount = ((Convert.ToDecimal(DiscountTextBox.Text) / 100m));
+                decimal discountedPrice = price - (price * discount);
+                decimal newPrice = Convert.ToDecimal(discountedPrice) * Convert.ToInt32(quantTbx.Text);
+                priceTbx.Text = newPrice.ToString();
+            }
+            else
+            {
+                priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(priceTbx.Text)).ToString();
+            }
+
+
+            FvwTransacItem.UpdateItem(true);
+            GridView1.DataBind();
+
+            ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "UpdateTransacModal",
+                @"$('#UpdateTransacModal').modal('hide');", true);
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            HfdTransacID.Value = e.CommandArgument.ToString();
+        }
+
+        protected void ChkDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkDiscount.Checked)
+            {
+                DiscountTextBox.Enabled = true;
+            }
+            else
+            {
+                DiscountTextBox.Enabled = false;
+            }
+        }
     }
 }

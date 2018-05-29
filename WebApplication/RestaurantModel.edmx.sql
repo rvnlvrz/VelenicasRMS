@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/26/2018 11:46:33
--- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
+-- Date Created: 05/29/2018 21:19:01
+-- Generated from EDMX file: C:\Users\Carl Ivan\Documents\GitHub\VelenicasRMS\WebApplication\RestaurantModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -100,8 +100,7 @@ GO
 CREATE TABLE [dbo].[Orders] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Total] decimal(19,2)  NOT NULL,
-    [ItemCount] nvarchar(max)  NOT NULL,
-    [Date] datetime  NOT NULL
+    [ItemCount] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -110,7 +109,8 @@ CREATE TABLE [dbo].[OrderItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [OrderID] int  NOT NULL,
     [MenuItemID] int  NOT NULL,
-    [Quantity] int  NOT NULL
+    [Quantity] int  NOT NULL,
+    [Price] decimal(19,2)  NOT NULL
 );
 GO
 

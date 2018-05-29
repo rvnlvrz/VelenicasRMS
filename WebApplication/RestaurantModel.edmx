@@ -74,7 +74,6 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Total" Type="decimal" Nullable="false" Precision="19" Scale="2" />
     <Property Name="ItemCount" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderItems">
     <Key>
@@ -84,6 +83,7 @@
     <Property Name="OrderID" Type="int" Nullable="false" />
     <Property Name="MenuItemID" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="19" Scale="2" />
   </EntityType>
   <EntityType Name="Foods">
     <Key>
@@ -302,7 +302,6 @@
           <NavigationProperty Name="OrderItem" Relationship="RestaurantModel.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
           <Property Name="ItemCount" Type="String" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -314,6 +313,7 @@
           <NavigationProperty Name="MenuItem" Relationship="RestaurantModel.OrderItemMenuItem" FromRole="OrderItem" ToRole="MenuItem" />
           <Property Name="MenuItemID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Scale="2" Precision="19" />
         </EntityType>
         <Association Name="OrderOrderItem">
           <End Type="RestaurantModel.Order" Role="Order" Multiplicity="1" />
@@ -444,7 +444,6 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -455,6 +454,7 @@
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

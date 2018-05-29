@@ -10,12 +10,6 @@ SELECT Products.ID, Products.[Name], Products.Price,
 	INNER JOIN Foods ON Foods.ProductID = Products.ID
 GO
 
--- ORDERS VIEW (Order ID, item count, total)
-CREATE OR ALTER VIEW [All Orders wit Products] AS
-SELECT Products.ID, Products.[Name], (Products.Price * OrderItems.Quantity)  
-	FROM Products INNER JOIN OrderItems ON OrderItems.OrderID = Orders.ID
-GO
-
 --SELECT Products.ID, Products.[Name], OrderItems.Quantity, OrderItems.OrderID
 --	FROM OrderItems
 --	INNER JOIN MenuItems ON OrderItems.MenuItemID = MenuItems.ID

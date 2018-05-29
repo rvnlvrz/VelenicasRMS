@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
+
         <div class="container">
             <div class="row no-gutters">
                 <div class="col">
@@ -45,46 +46,44 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
+
                 <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="GridView1" />
-                                </Triggers>
-                                <ContentTemplate>
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="GridView1" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col">
                                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
                                         DataSourceID="SourceItems" CssClass="table" BorderStyle="None" GridLines="Horizontal"
                                         ShowHeaderWhenEmpty="True">
                                         <Columns>
-                                            <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
-                                            <asp:BoundField DataField="OrderID" HeaderText="OrderID" SortExpression="OrderID" />
-                                            <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" SortExpression="MenuItemID" />
+                                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
+                                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                                            <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
                                         </Columns>
                                         <HeaderStyle BorderStyle="Solid" />
                                     </asp:GridView>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col">
-                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                <ContentTemplate>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
                                     <asp:HiddenField ID="HfdTransacID" runat="server" />
                                     <div class="form-group">
                                         <asp:Button ID="BtnNewTransac" runat="server" Text="New Transaction" CssClass="btn btn-primary"
-                                            CausesValidation="false" data-toggle="modal" data-target="#NewTransacModal"/>
+                                            CausesValidation="false" data-toggle="modal" data-target="#NewTransacModal" />
                                     </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                    </div>
+
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
 
-        <!-- Breakfast and Plates Modal -->
+        <!-- Categorical Items Modal -->
         <div class="modal fade" id="CategoricalMenuModal" tabindex="-1" role="dialog" aria-labelledby="CategoricalMenuModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -98,7 +97,7 @@
                         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                             <ContentTemplate>
                                 <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SourceFoods"
-                                    DataTextField="productName" DataValueField="ProductID"
+                                    DataTextField="productName" DataValueField="itemID"
                                     CssClass="lead">
                                 </asp:CheckBoxList>
                             </ContentTemplate>
@@ -158,9 +157,9 @@
             <asp:SessionParameter Name="id" SessionField="foodKey" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SourceItems" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM OrderItems WHERE OrderID = @id">
+    <asp:SqlDataSource ID="SourceItems" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM SpecificOrder WHERE ID = @id">
         <SelectParameters>
-            <asp:ControlParameter Name="id" Type="Int32" ControlID="HfdTransacID" PropertyName="Value" />
+            <asp:SessionParameter Name="id" SessionField="transacID" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 </asp:Content>

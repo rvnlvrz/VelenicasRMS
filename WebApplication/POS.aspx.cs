@@ -95,9 +95,22 @@ namespace WebApplication
 
             Session["transacID"] = transactionID;
             GridView1.DataBind();
+            ListView1.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "NewTransacModal",
                 @"$('#NewTransacModal').modal('hide');", true);
 
+        }
+
+        protected bool IsInTransaction()
+        {
+            if(Session["transacID"] != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         protected void AddToTransaction(int menuItemID)
@@ -139,18 +152,27 @@ namespace WebApplication
         {
             TextBox quantTbx = (TextBox)FvwTransacItem.Row.FindControl("QuantityTextBox");
             TextBox priceTbx = (TextBox)FvwTransacItem.Row.FindControl("PriceTextBox");
+            TextBox idTbx= (TextBox)FvwTransacItem.Row.FindControl("MenuItemIDTextbox");
 
+            if(Session[idTbx.Text] == null)
+            {
+                Session[idTbx.Text] = priceTbx.Text;
+            }
+
+            decimal originalPrice = Convert.ToDecimal(Session[idTbx.Text]);
+            
             if (DiscountTextBox.Enabled)
             {
-                decimal price = Convert.ToDecimal(priceTbx.Text);
-                decimal discount = ((Convert.ToDecimal(DiscountTextBox.Text) / 100m));
-                decimal discountedPrice = price - (price * discount);
-                decimal newPrice = Convert.ToDecimal(discountedPrice) * Convert.ToInt32(quantTbx.Text);
-                priceTbx.Text = newPrice.ToString();
+                decimal discount = (Convert.ToDecimal(DiscountTextBox.Text) / 100m);
+                decimal discountAmount = originalPrice * discount;
+                decimal discountedPrice = originalPrice = discountAmount;
+                decimal computedPrice = discountedPrice * Convert.ToDecimal(quantTbx.Text);
+                priceTbx.Text = computedPrice.ToString();
             }
             else
             {
-                priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(priceTbx.Text)).ToString();
+
+                priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(originalPrice)).ToString();
             }
 
 

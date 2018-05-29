@@ -2,15 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="wrap">
-
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="ListView1" />
-                        </Triggers>
-                        <ContentTemplate>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="ListView1" />
+                <asp:AsyncPostBackTrigger ControlID="GridView1" />
+                <asp:AsyncPostBackTrigger ControlID="BtnNewTransac" />
+            </Triggers>
+            <ContentTemplate>
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col">
                             <asp:ListView ID="ListView1" runat="server" DataKeyNames="ID" DataSourceID="SourceCategories"
                                 GroupItemCount="3" OnItemCommand="ListView1_ItemCommand" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
                                 <EmptyDataTemplate>
@@ -31,7 +32,8 @@
                                 <ItemTemplate>
                                     <asp:Button ID="Button1" runat="server" Text='<%# Eval("Name") %>'
                                         CssClass="btn btn-block btn-lg btn-primary" data-toggle="modal"
-                                        data-target="#CategoricalMenuModal" CommandArgument='<%# Eval("ID") %>' />
+                                        data-target="#CategoricalMenuModal" CommandArgument='<%# Eval("ID") %>'
+                                        Enabled='<%# IsInTransaction() %>' />
                                 </ItemTemplate>
                                 <LayoutTemplate>
                                     <div class="container" id="groupPlaceholderContainer" runat="server">
@@ -42,16 +44,8 @@
                                     </div>
                                 </LayoutTemplate>
                             </asp:ListView>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-
-                <div class="col">
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" ChildrenAsTriggers="true">
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridView1" />
-                        </Triggers>
-                        <ContentTemplate>
+                        </div>
+                        <div class="col">
                             <div class="row">
                                 <div class="col">
                                     <asp:HiddenField ID="HfdItemID" runat="server" />
@@ -62,7 +56,7 @@
                                             <%-- <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
                                             <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" SortExpression="MenuItemID" />--%>
                                             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                                            <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                                            <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:c}" />
                                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
                                             <asp:TemplateField HeaderText="Actions" ItemStyle-Wrap="false">
                                                 <ItemTemplate>
@@ -98,11 +92,12 @@
 
                                 </div>
                             </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
 
         <!-- Categorical Items Modal -->
         <div class="modal fade" id="CategoricalMenuModal" tabindex="-1" role="dialog" aria-labelledby="CategoricalMenuModalCenterTitle" aria-hidden="true">
@@ -239,14 +234,14 @@
                                                 <p class="h6">Item Name</p>
                                                 <asp:TextBox ID="OrderIDTextBox" runat="server" Text='<%# Bind("ID") %>'
                                                     CssClass="form-control" Enabled="false" Visible="false" />
-                                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("MenuItemID") %>'
+                                                <asp:TextBox ID="MenuItemIDTextbox" runat="server" Text='<%# Bind("MenuItemID") %>'
                                                     CssClass="form-control" Enabled="false" Visible="false" />
                                                 <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'
                                                     CssClass="form-control" Enabled="false" />
                                             </div>
                                             <div class="form-group mb-1">
                                                 <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>'
-                                                    CssClass="form-control" Visible="false"/>
+                                                    CssClass="form-control" Visible="false" />
                                             </div>
                                             <div class="form-group mb-1">
                                                 <p class="h6">Quantity</p>
@@ -259,7 +254,7 @@
                                     <div class="form-group mb-1">
                                         <div class="form-group">
                                             <asp:CheckBox ID="ChkDiscount" runat="server" OnCheckedChanged="ChkDiscount_CheckedChanged"
-                                                 AutoPostBack="true" Text="Apply Discount"/>
+                                                AutoPostBack="true" Text="Apply Discount" />
                                         </div>
                                         <div class="input-group">
                                             <asp:TextBox ID="DiscountTextBox" runat="server" CssClass="form-control"

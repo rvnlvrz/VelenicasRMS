@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9c0f286303ab4475a0b334e49e3e36e2" Name="Diagram1" DisplayType="true" ZoomLevel="92" >
-        <EntityTypeShape EntityType="RestaurantModel.Menu" Width="1.75" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="RestaurantModel.Menu" Width="1.75" PointX="0.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RestaurantModel.Product" Width="1.75" PointX="3" PointY="3.375" />
         <EntityTypeShape EntityType="RestaurantModel.MenuItem" Width="1.75" PointX="3" PointY="0.5" />
         <AssociationConnector Association="RestaurantModel.FoodMenuItem" ></AssociationConnector>

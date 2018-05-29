@@ -49,6 +49,33 @@ namespace WebApplication {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
+        /// UpdatePanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
+        
+        /// <summary>
+        /// HfdTransacID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HfdTransacID;
+        
+        /// <summary>
+        /// BtnNewTransac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnNewTransac;
+        
+        /// <summary>
         /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
@@ -76,13 +103,31 @@ namespace WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlButton BtnAddOrder;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// UpdatePanel5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
+        
+        /// <summary>
+        /// BtnConfirmStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton BtnConfirmStart;
+        
+        /// <summary>
+        /// SourceCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SourceCategories;
         
         /// <summary>
         /// SourceFoods control.
@@ -94,12 +139,12 @@ namespace WebApplication {
         protected global::System.Web.UI.WebControls.SqlDataSource SourceFoods;
         
         /// <summary>
-        /// Sourceitems control.
+        /// SourceItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Sourceitems;
+        protected global::System.Web.UI.WebControls.SqlDataSource SourceItems;
     }
 }

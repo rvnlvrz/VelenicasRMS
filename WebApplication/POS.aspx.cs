@@ -34,5 +34,10 @@ namespace WebApplication
 
             // do black magic here
         }
+
+        protected void BtnConfirmStart_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

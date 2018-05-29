@@ -63,14 +63,16 @@
                                                 <ItemTemplate>
                                                     <div class="row no-gutters">
                                                         <div class="col-sm mr-1">
+                                                            <asp:HiddenField ID="Hfdtran" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField2" runat="server" />
                                                             <asp:Button ID="GrdBtnUpdateProd" runat="server" Text="Edit" CssClass="btn btn-success btn-block"
                                                                 CommandArgument='<%# Eval("menuItemID") %>' CausesValidation="false" data-toggle="modal"
                                                                 data-target="#UpdateTransacModal" />
                                                         </div>
                                                         <div class="col-sm ml-1">
                                                             <asp:Button ID="GrdBtnDeleteProd" runat="server" Text="Delete" CssClass="btn btn-danger btn-block"
-                                                                CommandArgument='<%# Eval("ID") %>' CausesValidation="false" data-toggle="modal"
-                                                                data-target="#EditLibIndexModal" />
+                                                                CommandArgument='<%# Eval("menuItemID") %>' CausesValidation="false" data-toggle="modal"
+                                                                data-target="#DeleteProdModal" />
                                                         </div>
                                                     </div>
                                                 </ItemTemplate>
@@ -254,6 +256,44 @@
             </div>
         </div>
 
+        <!-- Delete from Transaction modal -->
+        <div class="modal fade" id="DeleteProdModal" tabindex="-1" role="dialog" aria-labelledby="DeleteProdLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteProdLabel"><strong>Rental Request</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row align-items-center">
+                            <div class="col-sm-4 text-center">
+                                <i class="fas fa-info-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p class="text-justify">
+                                    Are you sure you wish to remove this item from the transaction?
+                                    This action cannot be undone.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" id="Button2" runat="server"
+                                    onserverclick="Button2_ServerClick">
+                                    YES</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+
         <!-- Update Transaction modal -->
         <div class="modal fade" id="UpdateTransacModal" tabindex="-1" role="dialog" aria-labelledby="UpdateTransacLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -329,7 +369,11 @@
             <asp:SessionParameter Name="id" SessionField="foodKey" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SourceTransacItemEdit" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM SpecificOrder WHERE ID = @id AND MenuItemID = @itemID" UpdateCommand="EXEC UpdateTransaction @ID, @menuItemID, @Quantity, @Price">
+    <asp:SqlDataSource ID="SourceTransacItemEdit" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" ProviderName="<%$ ConnectionStrings:VelenicasRMSConnectionString.ProviderName %>" SelectCommand="SELECT * FROM SpecificOrder WHERE ID = @id AND MenuItemID = @itemID" UpdateCommand="EXEC UpdateTransaction @ID, @menuItemID, @Quantity, @Price" DeleteCommand="EXEC DeleteFromTransaction @tranID, @itemID">
+        <DeleteParameters>
+            <asp:SessionParameter Name="tranID" SessionField="transacID" Type="Int32" />
+            <asp:ControlParameter ControlID="HfdTransacID" Name="itemID" PropertyName="Value" />
+        </DeleteParameters>
         <SelectParameters>
             <asp:SessionParameter Name="id" SessionField="transacID" Type="Int32" />
             <asp:ControlParameter ControlID="HfdTransacID" Name="itemID" PropertyName="Value" Type="Int32" />

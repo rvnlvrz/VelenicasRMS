@@ -158,7 +158,7 @@ namespace WebApplication
             Session.Remove("transacID");
             LvwTotals.DataBind();
             GridView1.DataBind();
-            ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CancelTransacModal",
+            ScriptManager.RegisterStartupScript(BtnCancelTransac, GetType(), "CancelTransacModal",
                 @"$('#CancelTransacModal').modal('hide');", true);
         }
 
@@ -213,6 +213,15 @@ namespace WebApplication
             {
                 DiscountTextBox.Enabled = false;
             }
+        }
+
+        protected void Button2_ServerClick(object sender, EventArgs e)
+        {
+            SourceTransacItemEdit.Delete();
+            LvwTotals.DataBind();
+            GridView1.DataBind();
+            ScriptManager.RegisterStartupScript(Button2, GetType(), "DeleteProdModal",
+                @"$('#DeleteProdModal').modal('hide');", true);
         }
     }
 }

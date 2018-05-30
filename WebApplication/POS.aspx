@@ -103,7 +103,7 @@
                                                                     <div class="row no-gutters">
                                                                         <div class="col-sm-3 text-center"
                                                                             style="border-right: solid; border-right-width: 1px;">
-                                                                            <p class="h6">ITEMS</p>
+                                                                            <strong class="h6">ITEMS</strong>
                                                                         </div>
                                                                         <div class="col-sm-3 text-center"
                                                                             style="border-right: solid; border-right-width: 1px;">
@@ -133,7 +133,7 @@
 
                                                     </div>
                                                     <div class="w-100"></div>
-                                                    <div class="col">
+                                                    <div class="col text-center">
                                                         <asp:HiddenField ID="HfdTransacID" runat="server" />
                                                         <div class="form-group">
                                                             <asp:Button ID="BtnNewTransac" runat="server" Text="New Transaction" CssClass="btn btn-primary"
@@ -167,7 +167,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="CategoricalMenuModalLongTitle"><strong>Add Item</strong></h5>
+                    <h5 class="modal-title" id="CategoricalMenuModalLongTitle">
+                        <strong>
+                        <i class="fas fa-list"></i> &nbsp;Add Item
+                        </strong>
+
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -177,7 +182,7 @@
                         <ContentTemplate>
                             <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SourceFoods"
                                 DataTextField="productName" DataValueField="itemID"
-                                CssClass="lead">
+                                CssClass="form-check">
                             </asp:CheckBoxList>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -185,10 +190,10 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <div class="modal-footer">
-                            <button id="BtnAddOrder" runat="server" type="button" class="btn btn-secondary"
+                            <button id="BtnAddOrder" runat="server" type="button" class="btn btn-success"
                                 onserverclick="BtnAddOrder_ServerClick">
                                 Add</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -210,7 +215,7 @@
                 <div class="modal-body">
                     <div class="row align-items-center">
                         <div class="col-sm-4 text-center">
-                            <i class="fas fa-info-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
+                            <i class="fa fa-question-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
                         </div>
                         <div class="col-sm-8">
                             <p class="text-justify">
@@ -248,7 +253,7 @@
                 <div class="modal-body">
                     <div class="row align-items-center">
                         <div class="col-sm-4 text-center">
-                            <i class="fas fa-info-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
+                            <i class="fa fa-question-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
                         </div>
                         <div class="col-sm-8">
                             <p class="text-justify">
@@ -286,7 +291,7 @@
                 <div class="modal-body">
                     <div class="row align-items-center">
                         <div class="col-sm-4 text-center">
-                            <i class="fas fa-info-circle display-1" style="color: rgb(0, 172, 237) !important;"></i>
+                            <i class="fa fa-question-circle  display-1" style="color: rgb(0, 172, 237) !important;"></i>
                         </div>
                         <div class="col-sm-8">
                             <p class="text-justify">
@@ -423,9 +428,12 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">$</div>
                                         </div>
-                                        <asp:TextBox ID="TbxTender" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="TbxTender_TextChanged"></asp:TextBox>
-
+                                        <asp:TextBox ID="TbxTender" runat="server" CssClass="form-control" AutoPostBack="true"
+                                            OnTextChanged="TbxTender_TextChanged" ValidationGroup="tender"></asp:TextBox>
                                     </div>
+                                    <asp:RequiredFieldValidator ID="ReqValTender" runat="server"
+                                        ErrorMessage="This field is rquired" ForeColor="Red" Display="Dynamic"
+                                        ControlToValidate="TbxTender" ValidationGroup="tender"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group mb-1">
                                     <p class="h6">Change</p>
@@ -441,7 +449,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="BtnEndTran" runat="server"
-                                onserverclick="BtnEndTran_ServerClick">
+                                onserverclick="BtnEndTran_ServerClick" validationgroup="tender">
                                 CONFIRM CHECKOUT</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                 id="BtnCancelCheckout" runat="server" onserverclick="BtnCancelCheckout_ServerClick">

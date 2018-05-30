@@ -17,7 +17,8 @@ namespace WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            BtnCancelTransac.DataBind();
+            BtnPay.DataBind();
         }
 
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -98,6 +99,8 @@ namespace WebApplication
             Session["transacID"] = transactionID;
             GridView1.DataBind();
             ListView1.DataBind();
+            BtnCancelTransac.DataBind();
+            BtnPay.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "NewTransacModal",
                 @"$('#NewTransacModal').modal('hide');", true);
 
@@ -105,13 +108,13 @@ namespace WebApplication
 
         protected bool IsInTransaction()
         {
-            if(Session["transacID"] != null)
+            if(Session["transacID"] == null)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -159,6 +162,8 @@ namespace WebApplication
             Session.Remove("transacID");
             LvwTotals.DataBind();
             GridView1.DataBind();
+            BtnCancelTransac.DataBind();
+            BtnPay.DataBind();
             ScriptManager.RegisterStartupScript(BtnCancelTransac, GetType(), "CancelTransacModal",
                 @"$('#CancelTransacModal').modal('hide');", true);
         }
@@ -251,28 +256,36 @@ namespace WebApplication
 
         protected void BtnEndTran_ServerClick(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connString))
+            if (IsValid)
             {
-                using (SqlCommand comm = new SqlCommand("DeleteTransaction", conn))
-                {
-                    comm.CommandType = CommandType.StoredProcedure;
-                    comm.Parameters.Add("@tranID", SqlDbType.Int).Value = Convert.ToInt32(Session["transacID"]);
-                    conn.Open();
-                    comm.ExecuteNonQuery();
-                }
-            }
+                //using (SqlConnection conn = new SqlConnection(connString))
+                //{
+                //    using (SqlCommand comm = new SqlCommand("DeleteTransaction", conn))
+                //    {
+                //        comm.CommandType = CommandType.StoredProcedure;
+                //        comm.Parameters.Add("@tranID", SqlDbType.Int).Value = Convert.ToInt32(Session["transacID"]);
+                //        conn.Open();
+                //        comm.ExecuteNonQuery();
+                //    }
+                //}
 
-            Session.Remove("transacID");
-            LvwTotals.DataBind();
-            GridView1.DataBind();
-            ScriptManager.RegisterStartupScript(BtnEndTran, GetType(), "EndTranModal",
-                @"$('#EndTranModal').modal('hide');", true);
+                Session.Remove("transacID");
+                LvwTotals.DataBind();
+                GridView1.DataBind();
+                BtnCancelTransac.DataBind();
+                BtnPay.DataBind();
+                ScriptManager.RegisterStartupScript(BtnEndTran, GetType(), "EndTranModal",
+                    @"$('#EndTranModal').modal('hide');", true); 
+            }
         }
 
         protected void BtnCancelCheckout_ServerClick(object sender, EventArgs e)
         {
             TbxTender.Text = "";
             TbxChange.Text = 0.ToString();
+            ClientScript.RegisterStartupScript(GetType(), "disableTendrErr", @"$(#ReqValTender).hide();", 
+                true);
+
         }
 
         protected void CancelUpd_ServerClick(object sender, EventArgs e)

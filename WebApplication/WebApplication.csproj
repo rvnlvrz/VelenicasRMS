@@ -147,6 +147,8 @@
     <Content Include="Content\Dashboard\admin.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome-all.css" />
+    <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\Images\flourish.png" />
     <Content Include="Content\Images\food\foodA.jpg" />
     <Content Include="Content\Images\food\foodB.jpeg" />
@@ -226,6 +228,9 @@
     <Content Include="fonts\Arvo\Arvo-Regular.ttf" />
     <Content Include="fonts\Exo\Exo-Light.ttf" />
     <Content Include="fonts\Slabo\Slabo27px-Regular.ttf" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <EntityDeploy Include="RestaurantModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RestaurantModel.Designer.cs</LastGenOutput>
@@ -289,6 +294,18 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

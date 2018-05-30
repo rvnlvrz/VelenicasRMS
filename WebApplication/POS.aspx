@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="POS.aspx.cs" Inherits="WebApplication.POS" %>
+﻿<%@ Page Title="POS" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="POS.aspx.cs" Inherits="WebApplication.POS" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="backdrop">
@@ -366,17 +366,21 @@
                                     </div>
                                     <div class="input-group">
                                         <asp:TextBox ID="DiscountTextBox" runat="server" CssClass="form-control"
-                                            Enabled="false" TextMode="Number"></asp:TextBox>
+                                            Enabled="false" TextMode="Number" ValidationGroup="transacU"></asp:TextBox>
                                         <div class="input-group-append">
                                             <div class="input-group-text">%</div>
                                         </div>
                                     </div>
+                                    <asp:RequiredFieldValidator ID="ReqValDiscount" runat="server"
+                                        ErrorMessage="This field is rquired" ForeColor="Red" Display="Dynamic"
+                                        ControlToValidate="DiscountTextBox" ValidationGroup="transacU"
+                                        Enabled='<%# DiscountTextBox.Enabled %>'></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" id="BtnUpdateTransac" runat="server"
-                                onserverclick="BtnUpdateTransac_ServerClick" ValidationGroup="transacU">
+                                onserverclick="BtnUpdateTransac_ServerClick" validationgroup="transacU">
                                 Update</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                 id="CancelUpd" runat="server" onserverclick="CancelUpd_ServerClick">

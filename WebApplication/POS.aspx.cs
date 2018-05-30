@@ -208,6 +208,7 @@ namespace WebApplication
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             HfdTransacID.Value = e.CommandArgument.ToString();
+            ReqValDiscount.DataBind();
         }
 
         protected void ChkDiscount_CheckedChanged(object sender, EventArgs e)
@@ -220,6 +221,9 @@ namespace WebApplication
             {
                 DiscountTextBox.Enabled = false;
             }
+
+            ReqValDiscount.DataBind();
+
         }
 
         protected void Button2_ServerClick(object sender, EventArgs e)

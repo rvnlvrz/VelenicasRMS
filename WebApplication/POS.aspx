@@ -169,9 +169,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="CategoricalMenuModalLongTitle">
                         <strong>
-                        <i class="fas fa-list"></i> &nbsp;Add Item
+                            <i class="fas fa-list"></i>&nbsp;Add Item
                         </strong>
-
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -352,7 +351,10 @@
                                         <div class="form-group mb-1">
                                             <p class="h6">Quantity</p>
                                             <asp:TextBox ID="QuantityTextBox" runat="server" Text='<%# Bind("Quantity") %>'
-                                                CssClass="form-control" TextMode="Number" min="1" />
+                                                CssClass="form-control" TextMode="Number" min="1" ValidationGroup="transacU" />
+                                            <asp:RequiredFieldValidator ID="ReqValQuantityU" runat="server"
+                                                ErrorMessage="This field is rquired" ForeColor="Red" Display="Dynamic"
+                                                ControlToValidate="QuantityTextBox" ValidationGroup="transacU"></asp:RequiredFieldValidator>
                                         </div>
                                     </EditItemTemplate>
                                 </asp:FormView>
@@ -364,7 +366,7 @@
                                     </div>
                                     <div class="input-group">
                                         <asp:TextBox ID="DiscountTextBox" runat="server" CssClass="form-control"
-                                            Enabled="false"></asp:TextBox>
+                                            Enabled="false" TextMode="Number"></asp:TextBox>
                                         <div class="input-group-append">
                                             <div class="input-group-text">%</div>
                                         </div>
@@ -374,7 +376,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" id="BtnUpdateTransac" runat="server"
-                                onserverclick="BtnUpdateTransac_ServerClick">
+                                onserverclick="BtnUpdateTransac_ServerClick" ValidationGroup="transacU">
                                 Update</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                 id="CancelUpd" runat="server" onserverclick="CancelUpd_ServerClick">

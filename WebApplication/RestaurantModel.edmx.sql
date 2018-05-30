@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2018 22:56:14
--- Generated from EDMX file: C:\Users\Carl Ivan\Documents\GitHub\VelenicasRMS\WebApplication\RestaurantModel.edmx
+-- Date Created: 05/30/2018 11:44:56
+-- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -84,7 +84,7 @@ GO
 CREATE TABLE [dbo].[Products] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL
+    [Price] decimal(19,2)  NOT NULL
 );
 GO
 
@@ -100,7 +100,8 @@ GO
 CREATE TABLE [dbo].[Orders] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Total] decimal(19,2)  NOT NULL,
-    [ItemCount] int  NOT NULL
+    [ItemCount] int  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -131,9 +132,18 @@ GO
 
 -- Creating table 'Inventory'
 CREATE TABLE [dbo].[Inventory] (
+    [ID] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
+    [Type] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'InventoryItems'
+CREATE TABLE [dbo].[InventoryItems] (
+    [ID] int IDENTITY(1,1) NOT NULL,
     [ProductID] int  NOT NULL,
-    [Quantity] smallint  NOT NULL
+    [InventoryID] int  NOT NULL,
+    [Quantity] int  NOT NULL
 );
 GO
 
@@ -183,10 +193,16 @@ ADD CONSTRAINT [PK_Beverages]
     PRIMARY KEY CLUSTERED ([ID], [ProductID] ASC);
 GO
 
--- Creating primary key on [Date] in table 'Inventory'
+-- Creating primary key on [ID] in table 'Inventory'
 ALTER TABLE [dbo].[Inventory]
 ADD CONSTRAINT [PK_Inventory]
-    PRIMARY KEY CLUSTERED ([Date] ASC);
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'InventoryItems'
+ALTER TABLE [dbo].[InventoryItems]
+ADD CONSTRAINT [PK_InventoryItems]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
 -- --------------------------------------------------
@@ -283,19 +299,34 @@ ON [dbo].[Beverages]
     ([ProductID]);
 GO
 
--- Creating foreign key on [ProductID] in table 'Inventory'
-ALTER TABLE [dbo].[Inventory]
-ADD CONSTRAINT [FK_InventoryProduct]
+-- Creating foreign key on [ProductID] in table 'InventoryItems'
+ALTER TABLE [dbo].[InventoryItems]
+ADD CONSTRAINT [FK_InventoryItemProduct]
     FOREIGN KEY ([ProductID])
     REFERENCES [dbo].[Products]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_InventoryProduct'
-CREATE INDEX [IX_FK_InventoryProduct]
-ON [dbo].[Inventory]
+-- Creating non-clustered index for FOREIGN KEY 'FK_InventoryItemProduct'
+CREATE INDEX [IX_FK_InventoryItemProduct]
+ON [dbo].[InventoryItems]
     ([ProductID]);
+GO
+
+-- Creating foreign key on [InventoryID] in table 'InventoryItems'
+ALTER TABLE [dbo].[InventoryItems]
+ADD CONSTRAINT [FK_InventoryInventoryItem]
+    FOREIGN KEY ([InventoryID])
+    REFERENCES [dbo].[Inventory]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InventoryInventoryItem'
+CREATE INDEX [IX_FK_InventoryInventoryItem]
+ON [dbo].[InventoryItems]
+    ([InventoryID]);
 GO
 
 -- --------------------------------------------------

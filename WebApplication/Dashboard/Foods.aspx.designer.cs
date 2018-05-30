@@ -10,51 +10,60 @@
 namespace WebApplication.Dashboard {
     
     
-    public partial class Inventory {
+    public partial class Products {
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// SearchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
         
         /// <summary>
-        /// GoButton control.
+        /// SearchButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GoButton;
+        protected global::System.Web.UI.WebControls.Button SearchButton;
         
         /// <summary>
-        /// ListView1 control.
+        /// AddProductButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.Button AddProductButton;
         
         /// <summary>
-        /// DateDataSource control.
+        /// ProductGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource DateDataSource;
+        protected global::System.Web.UI.WebControls.GridView ProductGridView;
+        
+        /// <summary>
+        /// FoodsSqlDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FoodsSqlDataSource;
     }
 }

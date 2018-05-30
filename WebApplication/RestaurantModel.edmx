@@ -57,7 +57,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="19" Scale="2" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
@@ -257,7 +257,7 @@
           <NavigationProperty Name="Beverage" Relationship="RestaurantModel.BeverageProduct" FromRole="Product" ToRole="Beverage" />
           <NavigationProperty Name="Inventory" Relationship="RestaurantModel.InventoryProduct" FromRole="Product" ToRole="Inventory" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
         </EntityType>
         <EntityType Name="MenuItem">
           <Key>

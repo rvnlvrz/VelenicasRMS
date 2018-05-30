@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication.UserControl
+namespace WebApplication.Dashboard
 {
-    public partial class EditProductControl : System.Web.UI.UserControl
+    public partial class Products : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -13,6 +13,15 @@ namespace WebApplication.UserControl {
     public partial class AddItemControl {
         
         /// <summary>
+        /// AddProductEditPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel AddProductEditPanel;
+        
+        /// <summary>
         /// FormAddItem control.
         /// </summary>
         /// <remarks>
@@ -76,24 +85,6 @@ namespace WebApplication.UserControl {
         protected global::System.Web.UI.WebControls.TextBox TextBoxPrice;
         
         /// <summary>
-        /// LabelQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelQuantity;
-        
-        /// <summary>
-        /// TextBoxQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
-        
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace WebApplication.UserControl {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// SubPersonButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SubPersonButton;
+        
+        /// <summary>
         /// TextBoxPeople control.
         /// </summary>
         /// <remarks>
@@ -110,6 +110,15 @@ namespace WebApplication.UserControl {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPeople;
+        
+        /// <summary>
+        /// AddPersonButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton AddPersonButton;
         
         /// <summary>
         /// ButtonAdd control.

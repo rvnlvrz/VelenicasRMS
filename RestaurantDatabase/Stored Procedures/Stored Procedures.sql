@@ -26,8 +26,7 @@ GO
 -- =============================================
 CREATE OR ALTER PROCEDURE [dbo].uspInsertBeverage   
     @Name nvarchar(max),
-	@Price nvarchar(max),
-	@Quantity nvarchar(max)
+	@Price nvarchar(max)
 AS   
     SET NOCOUNT ON; 
 	BEGIN
@@ -36,6 +35,17 @@ AS
 
 		INSERT INTO Products(Name, Price) VALUES (@Name, @Price);
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
+	END
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspUpdateBeverage                                                  
+    @Name nvarchar(max),
+	@Price nvarchar(max)
+AS   
+    SET NOCOUNT ON; 
+	BEGIN
+		UPDATE [dbo].[Products]
+		SET [Name] = @Name, [Price] = @Price
 	END
 GO
 

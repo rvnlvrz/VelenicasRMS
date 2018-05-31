@@ -32,6 +32,7 @@ CREATE OR ALTER VIEW SpecificOrder AS
 GO
 
 -- BEVERAGE LIST 
+CREATE OR ALTER VIEW [dbo].[Beverage Products] AS
 SELECT Products.ID, Products.[Name], Products.Price   
 	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Beverages)
 GO

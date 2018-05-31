@@ -61,5 +61,3 @@ set @ProductID = SCOPE_IDENTITY()
 insert into Beverages(ProductID)
 values (@ProductID)
 GO
-
--- Insert inventory Records

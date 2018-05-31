@@ -34,7 +34,12 @@ GO
 -- BEVERAGE LIST 
 SELECT Products.ID, Products.[Name], Products.Price   
 	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Beverages)
+GO
 
 -- FOOD LIST
-SELECT Products.ID, Products.[Name], Products.Price 
-	FROM Products WHERE Products.ID IN (SELECT ProductID FROM Foods)
+CREATE OR ALTER VIEW [dbo].[Food Products] AS
+SELECT Products.ID, Products.[Name], Products.Price, Foods.PersonCount
+  FROM Products 
+  INNER JOIN Foods ON Foods.ProductID = Products.ID
+  WHERE Products.ID IN (SELECT ProductID FROM Foods)
+GO

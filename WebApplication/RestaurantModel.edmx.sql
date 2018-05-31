@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/30/2018 11:44:56
+-- Date Created: 05/30/2018 13:15:48
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -35,8 +35,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_BeverageProduct]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Beverages] DROP CONSTRAINT [FK_BeverageProduct];
 GO
-IF OBJECT_ID(N'[dbo].[FK_InventoryProduct]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Inventory] DROP CONSTRAINT [FK_InventoryProduct];
+IF OBJECT_ID(N'[dbo].[FK_InventoryItemProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InventoryItems] DROP CONSTRAINT [FK_InventoryItemProduct];
+GO
+IF OBJECT_ID(N'[dbo].[FK_InventoryInventoryItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InventoryItems] DROP CONSTRAINT [FK_InventoryInventoryItem];
 GO
 
 -- --------------------------------------------------
@@ -66,6 +69,9 @@ IF OBJECT_ID(N'[dbo].[Beverages]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Inventory]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Inventory];
+GO
+IF OBJECT_ID(N'[dbo].[InventoryItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[InventoryItems];
 GO
 
 -- --------------------------------------------------

@@ -46,9 +46,9 @@ GO
 -- =============================================
 
 ---------- CREATE ----------
-CREATE OR ALTER PROCEDURE [dbo].AddFood 
+CREATE OR ALTER PROCEDURE [dbo].uspInsertFood 
 	@name NVARCHAR(MAX), 
-	@price NVARCHAR(MAX),
+	@price DECIMAL(19,2),
 	@personCount INT
 AS
 BEGIN
@@ -58,9 +58,10 @@ END
 GO
 
 ---------- UPDATE -----------
-CREATE OR ALTER PROCEDURE [dbo].updateFood
+CREATE OR ALTER PROCEDURE [dbo].uspUpdateFood
 	@name NVARCHAR(MAX), 
-	@price NVARCHAR(MAX), 
+	@price DECIMAL(19,2), 
+	@personCount INT,
 	@ProductID INT
 AS
 BEGIN
@@ -68,13 +69,17 @@ BEGIN
 	UPDATE Products
 	SET Name = @name,
 		Price = @price
-	WHERE EXISTS (Select @ProductID from Foods where @ProductID = Products.ID)
+	WHERE ID = @ProductID
+
+	UPDATE Foods
+	SET	PersonCount = @personCount
+	WHERE [ProductID] = @ProductID
 		 
 END
 GO
 
 ---------- DELETE ----------
-CREATE OR ALTER PROCEDURE [dbo].deleteFood
+CREATE OR ALTER PROCEDURE [dbo].uspDeleteFood
 	@ProductID INT
 AS
 BEGIN

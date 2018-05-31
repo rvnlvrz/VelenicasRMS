@@ -175,7 +175,9 @@
   </Association>
   <Association Name="FoodProduct">
     <End Role="Food" Type="RestaurantModel.Store.Foods" Multiplicity="*" />
-    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ID" />
@@ -201,7 +203,9 @@
   </Association>
   <Association Name="InventoryItemProduct">
     <End Role="InventoryItem" Type="RestaurantModel.Store.InventoryItems" Multiplicity="*" />
-    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ID" />
@@ -212,7 +216,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="InventoryInventoryItem">
-    <End Role="Inventory" Type="RestaurantModel.Store.Inventory" Multiplicity="1" />
+    <End Role="Inventory" Type="RestaurantModel.Store.Inventory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="InventoryItem" Type="RestaurantModel.Store.InventoryItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Inventory">
@@ -393,7 +399,9 @@
         </EntityType>
         <Association Name="FoodProduct">
           <End Type="RestaurantModel.Food" Role="Food" Multiplicity="*" />
-          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
@@ -439,7 +447,9 @@
         </EntityType>
         <Association Name="InventoryItemProduct">
           <End Type="RestaurantModel.InventoryItem" Role="InventoryItem" Multiplicity="*" />
-          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
@@ -450,7 +460,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="InventoryInventoryItem">
-          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="RestaurantModel.Inventory" Role="Inventory" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="RestaurantModel.InventoryItem" Role="InventoryItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">

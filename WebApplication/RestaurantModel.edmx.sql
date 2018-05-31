@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/30/2018 13:15:48
+-- Date Created: 05/31/2018 15:10:50
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -281,7 +281,7 @@ ADD CONSTRAINT [FK_FoodProduct]
     FOREIGN KEY ([ProductID])
     REFERENCES [dbo].[Products]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FoodProduct'
@@ -311,7 +311,7 @@ ADD CONSTRAINT [FK_InventoryItemProduct]
     FOREIGN KEY ([ProductID])
     REFERENCES [dbo].[Products]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_InventoryItemProduct'
@@ -326,7 +326,7 @@ ADD CONSTRAINT [FK_InventoryInventoryItem]
     FOREIGN KEY ([InventoryID])
     REFERENCES [dbo].[Inventory]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_InventoryInventoryItem'

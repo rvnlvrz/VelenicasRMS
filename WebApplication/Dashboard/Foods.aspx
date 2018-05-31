@@ -37,7 +37,7 @@
                                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID"></asp:BoundField>
                                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"/>
                                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:c}"/>
-                                <asp:BoundField DataField="PersonCount" HeaderText="PersonCount" SortExpression="PersonCount"/>
+                                <asp:BoundField DataField="PersonCount" HeaderText="Serving Count" SortExpression="PersonCount"/>
                                 <asp:TemplateField HeaderText="Manage">
                                     <ItemTemplate>
                                         <div class="d-flex flex-row justify-content-center">

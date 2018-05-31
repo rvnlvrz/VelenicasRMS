@@ -180,7 +180,8 @@ namespace WebApplication
             }
 
             decimal originalPrice = Convert.ToDecimal(Session[idTbx.Text]);
-            
+            int quantity = Convert.ToInt32(quantTbx.Text);
+
             if (DiscountTextBox.Enabled)
             {
                 decimal discount = (Convert.ToDecimal(DiscountTextBox.Text) / 100m);
@@ -190,6 +191,17 @@ namespace WebApplication
                 priceTbx.Text = computedPrice.ToString();
                 string name = (string)Session["foodKey"] + "discount";
                 Session[name] = DiscountTextBox.Text;
+            }
+            else if (ChkSenior.Checked)
+            {
+                int count = GetServingCount(Convert.ToInt32(HfdTransacID.Value));
+                decimal discount = 0.20m;
+                decimal perServingPrice = originalPrice / count;
+                decimal lessSeniorServing = perServingPrice * count - 1;
+                decimal discountedPricePerServing = perServingPrice * discount;
+                decimal seniorDiscount = perServingPrice - discountedPricePerServing;
+                decimal computedPrice =  originalPrice - seniorDiscount;
+                priceTbx.Text = computedPrice.ToString();
             }
             else
             {
@@ -204,6 +216,29 @@ namespace WebApplication
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "UpdateTransacModal",
                 @"$('#UpdateTransacModal').modal('hide');", true);
         }
+
+        protected int GetServingCount (int productID)
+        {
+            int count = -1;
+            using(SqlConnection conn = new SqlConnection(connString))
+            {
+                using(SqlCommand comm = new SqlCommand("SELECT PersonCount FROM Foods WHERE " +
+                    "productID = @id",conn))
+                {
+                    comm.Parameters.Add("@id", SqlDbType.Int).Value = productID;
+                    conn.Open();
+                    using(SqlDataReader reader = comm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count = Convert.ToInt32(reader["PersonCount"]);
+                        }
+                    }
+                }
+            }
+
+            return count;
+        } 
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -289,11 +324,22 @@ namespace WebApplication
             TbxChange.Text = 0.ToString();
             ClientScript.RegisterStartupScript(GetType(), "disableTendrErr", @"$(#ReqValTender).hide();", 
                 true);
-
         }
 
         protected void CancelUpd_ServerClick(object sender, EventArgs e)
         {
+        }
+
+        protected void ChkSenior_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkSenior.Checked)
+            {
+                TbxSeniorDiscount.Text = 20.ToString();
+            }
+            else
+            {
+                TbxSeniorDiscount.Text = string.Empty;
+            }
         }
     }
 }

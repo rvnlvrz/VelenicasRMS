@@ -1518,6 +1518,7 @@ pre code {
   max-width: 100%;
   margin-bottom: 1rem;
   background-color: transparent;
+    margin-top: 0px;
 }
 
 .table th,

@@ -109,7 +109,6 @@
                                                                             style="border-right: solid; border-right-width: 1px;">
                                                                             <asp:Label ID="ItemCountLabel" runat="server" Text='<%# Eval("ItemCount") %>'
                                                                                 CssClass="h6" />
-
                                                                         </div>
                                                                         <div class="col-sm-3 text-center"
                                                                             style="border-right: solid; border-right-width: 1px;">
@@ -361,20 +360,31 @@
                                 <p class="h6">Price Discount</p>
                                 <div class="form-group mb-1">
                                     <div class="form-group">
-                                        <asp:CheckBox ID="ChkDiscount" runat="server" OnCheckedChanged="ChkDiscount_CheckedChanged"
-                                            AutoPostBack="true" Text="Apply Discount" />
-                                    </div>
-                                    <div class="input-group">
-                                        <asp:TextBox ID="DiscountTextBox" runat="server" CssClass="form-control"
-                                            Enabled="false" TextMode="Number" ValidationGroup="transacU"></asp:TextBox>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">%</div>
+                                        <asp:CheckBox ID="ChkSenior" runat="server" OnCheckedChanged="ChkSenior_CheckedChanged"
+                                            AutoPostBack="true" Text="Aplly Senior Discount" />
+                                        <div class="input-group">
+                                            <asp:TextBox ID="TbxSeniorDiscount" runat="server" CssClass="form-control"
+                                                Enabled="false" TextMode="Number" ValidationGroup="transacU"></asp:TextBox>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">%</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <asp:RequiredFieldValidator ID="ReqValDiscount" runat="server"
-                                        ErrorMessage="This field is rquired" ForeColor="Red" Display="Dynamic"
-                                        ControlToValidate="DiscountTextBox" ValidationGroup="transacU"
-                                        Enabled='<%# DiscountTextBox.Enabled %>'></asp:RequiredFieldValidator>
+                                    <div class="form-group">
+                                        <asp:CheckBox ID="ChkDiscount" runat="server" OnCheckedChanged="ChkDiscount_CheckedChanged"
+                                            AutoPostBack="true" Text="Apply Discount" />
+                                        <div class="input-group">
+                                            <asp:TextBox ID="DiscountTextBox" runat="server" CssClass="form-control"
+                                                Enabled="false" TextMode="Number" ValidationGroup="transacU"></asp:TextBox>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">%</div>
+                                            </div>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="ReqValDiscount" runat="server"
+                                            ErrorMessage="This field is rquired" ForeColor="Red" Display="Dynamic"
+                                            ControlToValidate="DiscountTextBox" ValidationGroup="transacU"
+                                            Enabled='<%# DiscountTextBox.Enabled %>'></asp:RequiredFieldValidator>
+                                    </div>
                                 </div>
                             </div>
                         </div>

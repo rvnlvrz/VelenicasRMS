@@ -11,7 +11,7 @@
                         <div class="input-group">
                             <asp:TextBox ID="SearchTextBox" runat="server" placeholder="Product Name" CssClass="form-control"></asp:TextBox>
                             <div class="input-group-append">
-                                <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="btn btn-primary"/>
+                                <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="SearchButton_OnClick"/>
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,11 @@
     </asp:Panel>
 
     <%-- Data Source --%>
-    <asp:SqlDataSource ID="FoodsSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="FoodsSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([Name] LIKE '%' + @Name + '%')">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="SearchTextBox" DefaultValue=" " Name="Name" PropertyName="Text" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteFood" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertFood" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateFood @Name, @Price, @PersonCount, @ID" UpdateCommandType="Text">
         <DeleteParameters>
             <asp:Parameter Name="ProductID" Type="Int32"/>

@@ -93,5 +93,11 @@ namespace WebApplication.Dashboard
             ProductsGridView.DataBind();
             GridUpdatePanel.Update();
         }
+
+        protected void SearchButton_OnClick(object sender, EventArgs e)
+        {
+            FoodsSqlDataSource.Select(DataSourceSelectArguments.Empty);
+            GridUpdatePanel.Update();
+        }
     }
 }

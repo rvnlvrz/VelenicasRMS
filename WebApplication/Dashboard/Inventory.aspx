@@ -14,7 +14,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </asp:Panel>
-
+    
+    <%-- Edit Panel --%>
     <asp:Panel ID="EditPanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1">
          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -27,8 +28,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="" DataKeyNames="ID">
-                                
+                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="InventorySqlDataSource" DataKeyNames="ID">
                             </asp:FormView>
                         </div>
                         <div class="modal-footer">
@@ -42,6 +42,7 @@
     </asp:Panel>
 
     <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-
+    
+    <%-- Data Source --%>
     <asp:SqlDataSource ID="InventorySqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Inventory]"></asp:SqlDataSource>
 </asp:Content>

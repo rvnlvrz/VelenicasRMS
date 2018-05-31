@@ -175,6 +175,7 @@
     <Content Include="Content\Materialize\javascript\materialize.js" />
     <Content Include="Content\Materialize\javascript\materialize.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Dashboard\Beverages.aspx" />
     <Content Include="Dashboard\Debug.aspx" />
     <Content Include="Dashboard\Index.aspx" />
     <Content Include="Dashboard\Inventory.aspx" />
@@ -323,6 +324,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Beverages.aspx.cs">
+      <DependentUpon>Beverages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Beverages.aspx.designer.cs">
+      <DependentUpon>Beverages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\Dashboard.Master.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>

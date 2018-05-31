@@ -38,7 +38,8 @@ AS
 	END
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspUpdateBeverage                                                  
+CREATE OR ALTER PROCEDURE [dbo].uspUpdateBeverage   
+	@ID INT,
     @Name nvarchar(max),
 	@Price nvarchar(max)
 AS   
@@ -46,6 +47,7 @@ AS
 	BEGIN
 		UPDATE [dbo].[Products]
 		SET [Name] = @Name, [Price] = @Price
+		WHERE [ID] = @ID
 	END
 GO
 

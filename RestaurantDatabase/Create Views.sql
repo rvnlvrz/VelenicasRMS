@@ -2,7 +2,7 @@
 GO
 
 -- INVENTORY VIEW
-CREATE OR ALTER VIEW [All Products] AS
+--CREATE OR ALTER VIEW [All Products] AS
 SELECT Products.ID, Products.[Name], Products.Price,
 	Inventory.Quantity, Foods.PersonCount
 	FROM Products

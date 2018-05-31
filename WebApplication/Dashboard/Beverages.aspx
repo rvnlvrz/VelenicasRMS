@@ -27,7 +27,7 @@
         <ContentTemplate>
             <div class="card mb-3">
                 <div class="card-header">
-                    <span class="fa fa-table"></span>&nbsp;Food Products
+                    <span class="fa fa-table"></span>&nbsp;Beverage Products
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -138,17 +138,21 @@
 
     <%-- Data Source --%>
     <asp:SqlDataSource ID="BeveragesSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteBeverage" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertBeverage" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateBeverage @ID, @Name, @Price" UpdateCommandType="Text">
+    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteBeverage" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertBeverage" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateBeverage @ID, @Name, @Price">
         <DeleteParameters>
             <asp:Parameter Name="ID" Type="Int32"/>
         </DeleteParameters>
         <InsertParameters>
             <asp:Parameter Name="name" Type="String"/>
             <asp:Parameter Name="price" Type="Decimal"/>
-            <asp:Parameter Name="Quantity" Type="String"/>
         </InsertParameters>
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="ID"/>
         </SelectParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="ID" />
+            <asp:Parameter Name="Name" />
+            <asp:Parameter Name="Price" />
+        </UpdateParameters>
     </asp:SqlDataSource>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Foods" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Foods.aspx.cs" Inherits="WebApplication.Dashboard.Products" %>
+﻿<%@ Page Title="Foods" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Foods.aspx.cs" Inherits="WebApplication.Dashboard.Products" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 

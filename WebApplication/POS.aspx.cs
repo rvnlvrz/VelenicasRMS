@@ -45,6 +45,9 @@ namespace WebApplication
             foreach (var value in selectedValues)
             {
                 AddToTransaction(Convert.ToInt32(value));
+                Session[value] = "selected";
+                CheckBoxList1.Items.FindByValue(value).Enabled = false;
+                CheckBoxList1.Items.FindByValue(value).Selected = false;
             }
 
             GridView1.DataBind();
@@ -197,10 +200,8 @@ namespace WebApplication
                 int count = GetServingCount(Convert.ToInt32(HfdTransacID.Value));
                 decimal discount = 0.20m;
                 decimal perServingPrice = originalPrice / count;
-                decimal lessSeniorServing = perServingPrice * count - 1;
-                decimal discountedPricePerServing = perServingPrice * discount;
-                decimal seniorDiscount = perServingPrice - discountedPricePerServing;
-                decimal computedPrice =  originalPrice - seniorDiscount;
+                decimal seniorDiscount = perServingPrice * discount;
+                decimal computedPrice = originalPrice - seniorDiscount;
                 priceTbx.Text = computedPrice.ToString();
             }
             else
@@ -339,6 +340,17 @@ namespace WebApplication
             else
             {
                 TbxSeniorDiscount.Text = string.Empty;
+            }
+        }
+
+        protected void CheckBoxList1_DataBound(object sender, EventArgs e)
+        {
+            foreach (ListItem li in CheckBoxList1.Items)
+            {
+                if (Session[li.Value] != null)
+                {
+                    li.Enabled = false;
+                }
             }
         }
     }

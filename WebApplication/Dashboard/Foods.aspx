@@ -153,9 +153,10 @@
     <%-- Data Source --%>
     <asp:SqlDataSource ID="FoodsSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([Name] LIKE '%' + @Name + '%')">
         <SelectParameters>
-            <asp:ControlParameter ControlID="SearchTextBox" DefaultValue=" " Name="Name" PropertyName="Text" Type="String" />
+            <asp:ControlParameter ControlID="SearchTextBox" DefaultValue=" " Name="Name" PropertyName="Text" Type="String"/>
         </SelectParameters>
     </asp:SqlDataSource>
+
     <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteFood" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertFood" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateFood @Name, @Price, @PersonCount, @ID" UpdateCommandType="Text">
         <DeleteParameters>
             <asp:Parameter Name="ProductID" Type="Int32"/>

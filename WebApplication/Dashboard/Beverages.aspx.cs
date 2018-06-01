@@ -96,5 +96,11 @@ namespace WebApplication.Dashboard
             ProductsGridView.DataBind();
             GridUpdatePanel.Update();
         }
+
+        protected void SearchButton_OnClick(object sender, EventArgs e)
+        {
+            BeveragesSqlDataSource.Select(DataSourceSelectArguments.Empty);
+            GridUpdatePanel.Update();
+        }
     }
 }

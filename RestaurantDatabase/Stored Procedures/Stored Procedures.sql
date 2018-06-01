@@ -96,9 +96,7 @@ CREATE OR ALTER PROCEDURE [dbo].uspDeleteFood
 AS
 BEGIN
 	SET NOCOUNT ON;
-	DELETE FROM Foods WHERE ProductID = @ProductID
-	DELETE FROM Products WHERE @ProductID = Products.ID
- 
+	DELETE FROM Products WHERE @ProductID = Products.ID 
 END
 GO
 
@@ -154,4 +152,33 @@ GO
 CREATE OR ALTER PROCEDURE DeleteTransaction (@tranID INT) AS
 	DELETE FROM OrderItems WHERE OrderID = @tranID
 	DELETE FROM Orders WHERE ID = @tranID
+GO
+
+-- --------------------------------------------------
+-- Inventory Stored Procedures
+-- --------------------------------------------------
+
+CREATE OR ALTER PROCEDURE [dbo].uspInsertInventory 
+	@Type NVARCHAR(MAX),
+	@Date SMALLDATETIME
+AS
+	INSERT INTO [dbo].[Inventory]
+	VALUES (@Date, @Type)
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory 
+	@ID INT,
+	@Type NVARCHAR(MAX),
+	@Date SMALLDATETIME
+AS
+	UPDATE [dbo].[Inventory]
+	SET [Date] = @Date, [Type] = @Type
+	WHERE [ID] = ID
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventory 
+	@ID INT
+AS
+	DELETE [dbo].[Inventory]
+	WHERE [ID] = @ID
 GO

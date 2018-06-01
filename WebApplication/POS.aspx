@@ -23,7 +23,7 @@
                                         <div class="row no-gutters">
                                             <div class="col">
                                                 <asp:ListView ID="ListView1" runat="server" DataKeyNames="ID" DataSourceID="SourceCategories"
-                                                    GroupItemCount="3" OnItemCommand="ListView1_ItemCommand" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+                                                    GroupItemCount="3" OnItemCommand="ListView1_ItemCommand">
                                                     <EmptyDataTemplate>
                                                         <table runat="server" style="">
                                                             <tr>

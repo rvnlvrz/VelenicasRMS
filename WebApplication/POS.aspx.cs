@@ -24,11 +24,6 @@ namespace WebApplication
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             Session["foodKey"] = e.CommandArgument.ToString();
-            
-        }
-
-        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -51,7 +46,7 @@ namespace WebApplication
             }
 
             GridView1.DataBind();
-            LvwTotals.DataBind();   
+            LvwTotals.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "CategoricalMenuModal",
                 @"$('#CategoricalMenuModal').modal('hide');", true);
         }
@@ -111,7 +106,7 @@ namespace WebApplication
 
         protected bool IsInTransaction()
         {
-            if(Session["transacID"] == null)
+            if (Session["transacID"] == null)
             {
                 return false;
             }
@@ -175,14 +170,14 @@ namespace WebApplication
         {
             TextBox quantTbx = (TextBox)FvwTransacItem.Row.FindControl("QuantityTextBox");
             TextBox priceTbx = (TextBox)FvwTransacItem.Row.FindControl("PriceTextBox");
-            TextBox idTbx= (TextBox)FvwTransacItem.Row.FindControl("MenuItemIDTextbox");
+            TextBox idTbx = (TextBox)FvwTransacItem.Row.FindControl("MenuItemIDTextbox");
 
-            if(Session[idTbx.Text] == null)
+            if (Session[$"price_{idTbx.Text}"] == null)
             {
-                Session[idTbx.Text] = priceTbx.Text;
+                Session[$"price_{idTbx.Text}"] = priceTbx.Text;
             }
 
-            decimal originalPrice = Convert.ToDecimal(Session[idTbx.Text]);
+            decimal originalPrice = Convert.ToDecimal(Session[$"price_{idTbx.Text}"]);
             int quantity = Convert.ToInt32(quantTbx.Text);
 
             if (DiscountTextBox.Enabled)
@@ -192,8 +187,6 @@ namespace WebApplication
                 decimal discountedPrice = originalPrice = discountAmount;
                 decimal computedPrice = discountedPrice * Convert.ToDecimal(quantTbx.Text);
                 priceTbx.Text = computedPrice.ToString();
-                string name = (string)Session["foodKey"] + "discount";
-                Session[name] = DiscountTextBox.Text;
             }
             else if (ChkSenior.Checked)
             {
@@ -209,26 +202,30 @@ namespace WebApplication
                 priceTbx.Text = (Convert.ToInt32(quantTbx.Text) * Convert.ToDecimal(originalPrice)).ToString();
             }
 
-            FvwTransacItem.UpdateItem(true);
-            
-            GridView1.DataBind();
-            LvwTotals.DataBind();
+            if (IsValid)
+            {
 
-            ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "UpdateTransacModal",
-                @"$('#UpdateTransacModal').modal('hide');", true);
+                FvwTransacItem.UpdateItem(true);
+
+                GridView1.DataBind();
+                LvwTotals.DataBind();
+
+                ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "UpdateTransacModal",
+                    @"$('#UpdateTransacModal').modal('hide');", true);
+            }
         }
 
-        protected int GetServingCount (int productID)
+        protected int GetServingCount(int productID)
         {
             int count = -1;
-            using(SqlConnection conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                using(SqlCommand comm = new SqlCommand("SELECT PersonCount FROM Foods WHERE " +
-                    "productID = @id",conn))
+                using (SqlCommand comm = new SqlCommand("SELECT PersonCount FROM Foods WHERE " +
+                    "productID = @id", conn))
                 {
                     comm.Parameters.Add("@id", SqlDbType.Int).Value = productID;
                     conn.Open();
-                    using(SqlDataReader reader = comm.ExecuteReader())
+                    using (SqlDataReader reader = comm.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -239,7 +236,7 @@ namespace WebApplication
             }
 
             return count;
-        } 
+        }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -267,6 +264,9 @@ namespace WebApplication
             SourceTransacItemEdit.Delete();
             LvwTotals.DataBind();
             GridView1.DataBind();
+            Session[HfdTransacID.Value] = null;
+            CheckBoxList1.Items.FindByValue(HfdTransacID.Value).Enabled = true;
+            CheckBoxList1.DataBind();
             ScriptManager.RegisterStartupScript(Button2, GetType(), "DeleteProdModal",
                 @"$('#DeleteProdModal').modal('hide');", true);
         }
@@ -275,13 +275,12 @@ namespace WebApplication
         {
             FvwTotal.DataBind();
             Label TotalLabel = (Label)FvwTotal.FindControl("TotalLabel");
-            //Session["totalPayable"] = Convert.ToDecimal(TotalLabel.Text);
             TbxPayable.Text = TotalLabel.Text;
         }
 
         protected void TbxTender_TextChanged(object sender, EventArgs e)
         {
-            if(TbxTender.Text != string.Empty)
+            if (TbxTender.Text != string.Empty)
             {
                 decimal tender = Convert.ToDecimal(TbxTender.Text);
                 decimal payable = Convert.ToDecimal(TbxPayable.Text);
@@ -315,7 +314,7 @@ namespace WebApplication
                 BtnCancelTransac.DataBind();
                 BtnPay.DataBind();
                 ScriptManager.RegisterStartupScript(BtnEndTran, GetType(), "EndTranModal",
-                    @"$('#EndTranModal').modal('hide');", true); 
+                    @"$('#EndTranModal').modal('hide');", true);
             }
         }
 
@@ -323,7 +322,7 @@ namespace WebApplication
         {
             TbxTender.Text = "";
             TbxChange.Text = 0.ToString();
-            ClientScript.RegisterStartupScript(GetType(), "disableTendrErr", @"$(#ReqValTender).hide();", 
+            ClientScript.RegisterStartupScript(GetType(), "disableTendrErr", @"$(#ReqValTender).hide();",
                 true);
         }
 
@@ -335,7 +334,7 @@ namespace WebApplication
         {
             if (ChkSenior.Checked)
             {
-                TbxSeniorDiscount.Text = 20.ToString();
+                TbxSeniorDiscount.Text = "20";
             }
             else
             {

@@ -45,6 +45,7 @@ namespace WebApplication
             foreach (var value in selectedValues)
             {
                 AddToTransaction(Convert.ToInt32(value));
+                Session[value] = "selected";
                 CheckBoxList1.Items.FindByValue(value).Enabled = false;
                 CheckBoxList1.Items.FindByValue(value).Selected = false;
             }
@@ -339,6 +340,17 @@ namespace WebApplication
             else
             {
                 TbxSeniorDiscount.Text = string.Empty;
+            }
+        }
+
+        protected void CheckBoxList1_DataBound(object sender, EventArgs e)
+        {
+            foreach (ListItem li in CheckBoxList1.Items)
+            {
+                if (Session[li.Value] != null)
+                {
+                    li.Enabled = false;
+                }
             }
         }
     }

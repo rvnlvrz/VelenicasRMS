@@ -61,7 +61,7 @@
                                                         <asp:HiddenField ID="HfdItemID" runat="server" />
                                                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
                                                             DataSourceID="SourceItems" CssClass="table" BorderStyle="None" GridLines="Horizontal"
-                                                            ShowHeaderWhenEmpty="True" OnRowCommand="GridView1_RowCommand">
+                                                            ShowHeaderWhenEmpty="True" OnRowCommand="GridView1_RowCommand" AllowPaging="true" PageSize="5">
                                                             <Columns>
                                                                 <%-- <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
                                             <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" SortExpression="MenuItemID" />--%>
@@ -180,7 +180,7 @@
                         <ContentTemplate>
                             <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="SourceFoods"
                                 DataTextField="productName" DataValueField="itemID"
-                                CssClass="form-check">
+                                CssClass="form-check" OnDataBound="CheckBoxList1_DataBound">
                             </asp:CheckBoxList>
                         </ContentTemplate>
                     </asp:UpdatePanel>

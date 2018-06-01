@@ -45,6 +45,8 @@ namespace WebApplication
             foreach (var value in selectedValues)
             {
                 AddToTransaction(Convert.ToInt32(value));
+                CheckBoxList1.Items.FindByValue(value).Enabled = false;
+                CheckBoxList1.Items.FindByValue(value).Selected = false;
             }
 
             GridView1.DataBind();
@@ -197,10 +199,8 @@ namespace WebApplication
                 int count = GetServingCount(Convert.ToInt32(HfdTransacID.Value));
                 decimal discount = 0.20m;
                 decimal perServingPrice = originalPrice / count;
-                decimal lessSeniorServing = perServingPrice * count - 1;
-                decimal discountedPricePerServing = perServingPrice * discount;
-                decimal seniorDiscount = perServingPrice - discountedPricePerServing;
-                decimal computedPrice =  originalPrice - seniorDiscount;
+                decimal seniorDiscount = perServingPrice * discount;
+                decimal computedPrice = originalPrice - seniorDiscount;
                 priceTbx.Text = computedPrice.ToString();
             }
             else

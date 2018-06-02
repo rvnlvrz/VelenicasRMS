@@ -160,10 +160,67 @@ GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspInsertInventory 
 	@Type NVARCHAR(MAX),
+	@Date SMALLDATETIME,
+	@SourceRecord INT
+AS
+	INSERT INTO [dbo].[Inventory]
+	VALUES (@Date, @Type)
+
+	DECLARE @Cursor CURSOR, @Current INT, @Quantity INT
+	DECLARE @ID INT, @Name NVARCHAR(MAX)
+	
+	BEGIN
+		SET @Cursor = CURSOR FOR SELECT [ID], [Name] FROM [dbo].[Products]
+
+		OPEN @Cursor
+		FETCH NEXT FROM @Cursor
+		INTO @ID, @Name
+
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			SET @Current = IDENT_CURRENT('inventory')
+			SET @Quantity = (SELECT [Quantity] FROM [dbo].[InventoryItems] 
+			WHERE [InventoryID] = @SourceRecord AND [ProductID] = @ID)
+			EXEC [dbo].[uspInsertInventoryItem] @ID, @Current, @Quantity
+
+			FETCH NEXT FROM @Cursor
+			INTO @ID, @Name
+		END
+
+		CLOSE @Cursor
+		DEALLOCATE @Cursor
+	END
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspInsertInitialInventory 
+	@Type NVARCHAR(MAX),
 	@Date SMALLDATETIME
 AS
 	INSERT INTO [dbo].[Inventory]
 	VALUES (@Date, @Type)
+
+	DECLARE @Cursor CURSOR, @Current INT, @Quantity INT
+	DECLARE @ID INT, @Name NVARCHAR(MAX)
+	
+	BEGIN
+		SET @Cursor = CURSOR FOR SELECT [ID], [Name] FROM [dbo].[Products]
+
+		OPEN @Cursor
+		FETCH NEXT FROM @Cursor
+		INTO @ID, @Name
+
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			SET @Current = IDENT_CURRENT('inventory')
+			EXEC [dbo].[uspInsertInventoryItem] @ID, @Current, 1
+
+			FETCH NEXT FROM @Cursor
+			INTO @ID, @Name
+		END
+
+		CLOSE @Cursor
+		DEALLOCATE @Cursor
+	END
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory 
@@ -180,5 +237,28 @@ CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventory
 	@ID INT
 AS
 	DELETE [dbo].[Inventory]
+	WHERE [ID] = @ID
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspInsertInventoryItem 
+	@ProductID INT,
+	@InventoryID INT,
+	@Quantity INT
+AS
+	INSERT INTO [dbo].[InventoryItems]
+	VALUES (@ProductID, @InventoryID, @Quantity)
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventoryItem 
+	@Quantity INT
+AS
+	UPDATE [dbo].[InventoryItems]
+	SET [Quantity] = @Quantity
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventoryItem 
+	@ID INT
+AS
+	DELETE [dbo].[InventoryItems]
 	WHERE [ID] = @ID
 GO

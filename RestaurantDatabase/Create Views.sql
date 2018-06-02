@@ -3,11 +3,8 @@ GO
 
 -- INVENTORY VIEW
 --CREATE OR ALTER VIEW [All Products] AS
-SELECT Products.ID, Products.[Name], Products.Price,
-	Inventory.Quantity, Foods.PersonCount
-	FROM Products
-	INNER JOIN Inventory ON Inventory.ProductID = Products.ID
-	INNER JOIN Foods ON Foods.ProductID = Products.ID
+SELECT [Products].[ID], [Name] FROM [dbo].[Products]
+	INNER JOIN [dbo].[InventoryItems] ON [InventoryItems].[ProductID] = [Products].[ID]
 GO
 
 -- CATEGORICAL ITEM VIEW

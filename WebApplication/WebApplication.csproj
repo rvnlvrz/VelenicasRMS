@@ -180,6 +180,7 @@
     <Content Include="Dashboard\Index.aspx" />
     <Content Include="Dashboard\Inventory.aspx" />
     <Content Include="Dashboard\Foods.aspx" />
+    <Content Include="Dashboard\InventoryDetails.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -366,6 +367,13 @@
     </Compile>
     <Compile Include="Dashboard\Foods.aspx.designer.cs">
       <DependentUpon>Foods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\InventoryDetails.aspx.cs">
+      <DependentUpon>InventoryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\InventoryDetails.aspx.designer.cs">
+      <DependentUpon>InventoryDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

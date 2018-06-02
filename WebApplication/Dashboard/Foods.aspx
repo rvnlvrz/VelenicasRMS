@@ -56,7 +56,7 @@
     </asp:UpdatePanel>
 
     <%-- Add/Edit Modal --%>
-    <asp:Panel ID="EditPanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1">
+    <asp:Panel ID="EditPanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1" DefaultButton="ButtonModalUpdate">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <asp:UpdatePanel ID="EditUpdatePanel" runat="server" UpdateMode="Conditional">

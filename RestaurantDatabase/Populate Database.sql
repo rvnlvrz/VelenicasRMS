@@ -1,6 +1,10 @@
 ﻿USE VelenicasRMS
 GO
 
+--ALTER TABLE [dbo].[Inventory]
+--ALTER COLUMN [Date] DATETIME
+--GO
+
 -- Insert Food Products
 EXEC [dbo].[uspInsertFood] N'Spring Rolls', 100, 1
 EXEC [dbo].[uspInsertFood] N'Pork Sinigang', 275, 3
@@ -17,10 +21,12 @@ EXEC [dbo].[uspInsertBeverage] N'Four Seasons', 50
 GO
 
 -- Insert Inventory Records
-DECLARE @Date SMALLDATETIME = GETDATE(), @ID INT
-
+DECLARE @Date DATETIME = GETDATE(), @ID INT
 EXEC [dbo].[uspInsertInitialInventory] N'Opening', @Date
 
+WAITFOR DELAY '00:00:01'
+
+SET @Date = GETDATE()
 SET @ID = IDENT_CURRENT('inventory')
 EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
 GO

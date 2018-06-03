@@ -160,7 +160,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspInsertInventory 
 	@Type NVARCHAR(MAX),
-	@Date SMALLDATETIME,
+	@Date DATETIME,
 	@SourceRecord INT
 AS
 	INSERT INTO [dbo].[Inventory]
@@ -194,7 +194,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspInsertInitialInventory 
 	@Type NVARCHAR(MAX),
-	@Date SMALLDATETIME
+	@Date DATETIME
 AS
 	INSERT INTO [dbo].[Inventory]
 	VALUES (@Date, @Type)
@@ -226,7 +226,7 @@ GO
 CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory 
 	@ID INT,
 	@Type NVARCHAR(MAX),
-	@Date SMALLDATETIME
+	@Date DATETIME
 AS
 	UPDATE [dbo].[Inventory]
 	SET [Date] = @Date, [Type] = @Type

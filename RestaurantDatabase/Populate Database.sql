@@ -24,9 +24,43 @@ GO
 DECLARE @Date DATETIME = GETDATE(), @ID INT
 EXEC [dbo].[uspInsertInitialInventory] N'Opening', @Date
 
-WAITFOR DELAY '00:00:01'
-
-SET @Date = GETDATE()
+SET @Date = DATEADD(HOUR, 14, @Date)
 SET @ID = IDENT_CURRENT('inventory')
 EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 14, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 14, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 14, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 14, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
 GO

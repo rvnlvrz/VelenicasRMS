@@ -1,38 +1,6 @@
 ﻿USE VelenicasRMS
 GO
 
--- INVENTORY VIEW
---CREATE OR ALTER VIEW [All Products] AS
-SELECT [Products].[ID], [Name], [Date] FROM [dbo].[Products]
-	INNER JOIN (SELECT [Date], [ProductID] FROM [dbo].[Inventory], [dbo].[InventoryItems]) s ON [Products].[ID] = s.[ProductID]
-	GROUP BY [Products].[ID], [Name], [Date]
-GO
-
--- PIVOT
-SELECT i.[ProductID], p.[Name], i.[Quantity], [Date] FROM [dbo].[Inventory]
-	INNER JOIN [dbo].[InventoryItems] i ON [Inventory].[ID] = i.[InventoryID]
-	INNER JOIN [dbo].[Products] p ON i.[ProductID] = p.[ID]
-GO
-
--- STUFF
-DECLARE @DynamicPivotQuery AS NVARCHAR(MAX)
-DECLARE @ColumnName AS NVARCHAR(MAX)
- 
---Get distinct values of the PIVOT Column 
-SELECT @ColumnName= ISNULL(@ColumnName + ',','') 
-       + QUOTENAME(Course)
-FROM (SELECT DISTINCT Course FROM #CourseSales) AS Courses
- 
---Prepare the PIVOT query using the dynamic 
-SET @DynamicPivotQuery = 
-  N'SELECT Year, ' + @ColumnName + '
-    FROM #CourseSales
-    PIVOT(SUM(Earning) 
-          FOR Course IN (' + @ColumnName + ')) AS PVTTable'
---Execute the Dynamic Pivot Query
-EXEC sp_executesql @DynamicPivotQuery
-GO
-
 -- CATEGORICAL ITEM VIEW
 CREATE OR ALTER VIEW ItemMenu AS
 	SELECT Menus.ID as menuID, Menus.Name as menuCategory, MenuItems.ID AS itemID, 

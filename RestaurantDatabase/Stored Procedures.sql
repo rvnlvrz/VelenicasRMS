@@ -1,6 +1,7 @@
-﻿SET ANSI_NULLS ON
+﻿USE VelenicasRMS;  
 GO
-USE VelenicasRMS;  
+
+SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -261,4 +262,33 @@ CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventoryItem
 AS
 	DELETE [dbo].[InventoryItems]
 	WHERE [ID] = @ID
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[uspGetInventoryTable]
+	@StartDate DATETIME,
+	@EndDate DATETIME
+AS
+	DECLARE @Columns as VARCHAR(MAX)
+	SELECT @Columns =
+	COALESCE(@Columns + ', ','') + QUOTENAME(CONVERT(VARCHAR(23), [Date], 121))
+	FROM
+	   (SELECT DISTINCT [Date] FROM [dbo].[Inventory] WHERE [Date] BETWEEN @StartDate AND @EndDate) AS B
+	ORDER BY B.Date
+	PRINT @Columns
+
+	DECLARE @SQL as VARCHAR(MAX)
+	SET @SQL = 'SELECT ProductName, ' + @Columns + '
+	FROM
+	(
+	 SELECT i.[ProductID] ProductID, p.[Name] as ProductName, i.[Quantity], [Date] FROM [dbo].[Inventory]
+		INNER JOIN [dbo].[InventoryItems] i ON [Inventory].[ID] = i.[InventoryID]
+		INNER JOIN [dbo].[Products] p ON i.[ProductID] = p.[ID]
+	) as PivotData
+	PIVOT
+	(
+	   MAX([Quantity])
+	   FOR [Date] IN (' + @Columns + ')
+	) AS PivotResult
+	ORDER BY ProductName'
+	EXEC(@SQL)
 GO

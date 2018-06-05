@@ -53,67 +53,67 @@ SELECT * FROM MENUS
 delete from Menus where ID < 13
 -- Breakfast Plates
 --EXEC AddFood N'Tapa', 132, 5
-EXEC AddFood N'Tocino', 94, 2
-EXEC AddFood N'Traditional Imus Longganisa', 55, 1
-EXEC AddFood N'Shanghai Rolls', 250, 6
+EXEC [dbo].[uspInsertFood] N'Tocino', 94, 2
+EXEC [dbo].[uspInsertFood] N'Traditional Imus Longganisa', 55, 1
+EXEC [dbo].[uspInsertFood] N'Shanghai Rolls', 250, 6
 
 -- Pasta
-EXEC AddFood N'Chicken and Bacon Penne Pasta', 150, 2
-EXEC AddFood N'Lasagna', 75, 1
-EXEC AddFood N'Spaghetti', 90, 1
+EXEC [dbo].[uspInsertFood] N'Chicken and Bacon Penne Pasta', 150, 2
+EXEC [dbo].[uspInsertFood] N'Lasagna', 75, 1
+EXEC [dbo].[uspInsertFood] N'Spaghetti', 90, 1
 
 -- Merienda Special
-EXEC AddFood N'Clubhouse with Chips on Top', 120, 2
-EXEC AddFood N'Clubhouse Solo', 60, 1
-EXEC AddFood N'Pancit Bihon Guisado', 175, 2
-EXEC AddFood N'Pancit Sotanghon', 120, 2
-EXEC AddFood N'Pancit Canton', 75, 1
+EXEC [dbo].[uspInsertFood] N'Clubhouse with Chips on Top', 120, 2
+EXEC [dbo].[uspInsertFood] N'Clubhouse Solo', 60, 1
+EXEC [dbo].[uspInsertFood] N'Pancit Bihon Guisado', 175, 2
+EXEC [dbo].[uspInsertFood] N'Pancit Sotanghon', 120, 2
+EXEC [dbo].[uspInsertFood] N'Pancit Canton', 75, 1
 
 -- Seafood Lovers
-EXEC AddFood N'Fried Bangus Inasal', 75, 1
-EXEC AddFood N'Boneless Daing na Bangus', 50, 1
+EXEC [dbo].[uspInsertFood] N'Fried Bangus Inasal', 75, 1
+EXEC [dbo].[uspInsertFood] N'Boneless Daing na Bangus', 50, 1
 --EXEC AddFood N'Camaron Rebusado', 75, 1
 
 -- Starters
-EXEC AddFood N'Ultimate Nachos', 190, 4
-EXEC AddFood N'Buffalo Wings', 170, 2
-EXEC AddFood N'Crunchy Tacos', 190, 4
-EXEC AddFood N'Fench Fries', 50, 1
-EXEC AddFood N'Mojos', 200, 4
-EXEC AddFood N'Pork Shanghai Rolls', 250, 3
+EXEC [dbo].[uspInsertFood] N'Ultimate Nachos', 190, 4
+EXEC [dbo].[uspInsertFood] N'Buffalo Wings', 170, 2
+EXEC [dbo].[uspInsertFood] N'Crunchy Tacos', 190, 4
+EXEC [dbo].[uspInsertFood] N'Fench Fries', 50, 1
+EXEC [dbo].[uspInsertFood] N'Mojos', 200, 4
+EXEC [dbo].[uspInsertFood] N'Pork Shanghai Rolls', 250, 3
 
 -- Daily Specials
-EXEC AddFood N'Adobosilog', 50, 1
-EXEC AddFood N'Hungarian Sausage', 90, 1
-EXEC AddFood N'Beef Mechado', 270, 5
-EXEC AddFood N'Lechon Kawali', 290, 5
+EXEC [dbo].[uspInsertFood] N'Adobosilog', 50, 1
+EXEC [dbo].[uspInsertFood] N'Hungarian Sausage', 90, 1
+EXEC [dbo].[uspInsertFood] N'Beef Mechado', 270, 5
+EXEC [dbo].[uspInsertFood] N'Lechon Kawali', 290, 5
 
 -- By the grill
-EXEC AddFood N'Baby Back Ribs', 170, 1
-EXEC AddFood N'Pork BBQ', 100, 1
-EXEC AddFood N'Grilled Liempo', 175, 1
-EXEC AddFood N'Spicy Grilled Liempo', 125, 1
-EXEC AddFood N'Pork BBQ Trio', 300, 3
+EXEC [dbo].[uspInsertFood] N'Baby Back Ribs', 170, 1
+EXEC [dbo].[uspInsertFood] N'Pork BBQ', 100, 1
+EXEC [dbo].[uspInsertFood] N'Grilled Liempo', 175, 1
+EXEC [dbo].[uspInsertFood] N'Spicy Grilled Liempo', 125, 1
+EXEC [dbo].[uspInsertFood] N'Pork BBQ Trio', 300, 3
 
 -- Desserts
-EXEC AddFood N'Choco Cherry Cream Cake', 250, 3
-EXEC AddFood N'Blueberry Cheesecake', 300, 2
-EXEC AddFood N'Sinful Chocolate Cake', 200, 2
-EXEC AddFood N'Litlle Clan Choco Ice Cream', 170, 2
-EXEC AddFood N'Brownie Ala Mode', 55, 1
+EXEC [dbo].[uspInsertFood] N'Choco Cherry Cream Cake', 250, 3
+EXEC [dbo].[uspInsertFood] N'Blueberry Cheesecake', 300, 2
+EXEC [dbo].[uspInsertFood] N'Sinful Chocolate Cake', 200, 2
+EXEC [dbo].[uspInsertFood] N'Litlle Clan Choco Ice Cream', 170, 2
+EXEC [dbo].[uspInsertFood] N'Brownie Ala Mode', 55, 1
 
 -- Best Sellers
-EXEC AddFood N'Domingo''s Beefsteak', 350, 4
-EXEC AddFood N'Velenica''s Special Kare Kare', 400, 3
-EXEC AddFood N'Emilio''s Fried Chicken', 250, 2
-EXEC AddFood N'Crispy Pata', 200, 3
-EXEC AddFood N'Sizzling Sisig', 150, 2
+EXEC [dbo].[uspInsertFood] N'Domingo''s Beefsteak', 350, 4
+EXEC [dbo].[uspInsertFood] N'Velenica''s Special Kare Kare', 400, 3
+EXEC [dbo].[uspInsertFood] N'Emilio''s Fried Chicken', 250, 2
+EXEC [dbo].[uspInsertFood] N'Crispy Pata', 200, 3
+EXEC [dbo].[uspInsertFood] N'Sizzling Sisig', 150, 2
 
 -- Other Choices
-EXEC AddFood N'Traditional Egg Drop Soup', 250, 2
-EXEC AddFood N'Feisty Hungarian Sausage', 200, 2
-EXEC AddFood N'Chopsuey', 100, 2
-EXEC AddFood N'Pork Liempo Sinigang', 125, 2
+EXEC [dbo].[uspInsertFood] N'Traditional Egg Drop Soup', 250, 2
+EXEC [dbo].[uspInsertFood] N'Feisty Hungarian Sausage', 200, 2
+EXEC [dbo].[uspInsertFood] N'Chopsuey', 100, 2
+EXEC [dbo].[uspInsertFood] N'Pork Liempo Sinigang', 125, 2
 
 -- Drinks
 EXEC uspInsertBeverage N'Water', 25
@@ -122,13 +122,13 @@ EXEC uspInsertBeverage N'Coke', 45
 EXEC uspInsertBeverage N'Sprite', 40
 
 -- Extras
-EXEC AddFood N'Atsara', 20, 1
-EXEC AddFood N'Egg', 10, 1
-EXEC AddFood N'Toasted Bread', 15, 1
-EXEC AddFood N'Bagoong', 5, 1
-EXEC AddFood N'Plain Rice', 20, 1
-EXEC AddFood N'Garlic Rice', 25, 1
-EXEC AddFood N'Java Rice', 30, 1
+EXEC [dbo].[uspInsertFood] N'Atsara', 20, 1
+EXEC [dbo].[uspInsertFood] N'Egg', 10, 1
+EXEC [dbo].[uspInsertFood] N'Toasted Bread', 15, 1
+EXEC [dbo].[uspInsertFood] N'Bagoong', 5, 1
+EXEC [dbo].[uspInsertFood] N'Plain Rice', 20, 1
+EXEC [dbo].[uspInsertFood] N'Garlic Rice', 25, 1
+EXEC [dbo].[uspInsertFood] N'Java Rice', 30, 1
 
 -- Breakfast Plates
 EXEC AddMenuItem 13, 1

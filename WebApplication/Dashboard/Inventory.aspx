@@ -8,14 +8,14 @@
             <ContentTemplate>
                 <div class="row">
                     <div class="col mx-auto ">
-                        <asp:Button ID="CreateRecordButton" runat="server" Text="Create Record" CssClass="btn btn-success pull-right" OnClick="CreateRecordButton_OnClick"/>
+                        <asp:Button ID="CreateRecordButton" runat="server" Text="Create Record" CssClass="btn btn-success pull-right" OnClick="CreateRecordButton_OnClick" CausesValidation="False"/>
                     </div>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </asp:Panel>
 
-    <%-- Table --%>
+    <%-- Inventory Table --%>
     <asp:UpdatePanel ID="GridUpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="card mb-3">
@@ -26,18 +26,49 @@
                     <asp:GridView ID="InventoryGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="InventorySqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="InventoryGridView_OnRowCommand" GridLines="None">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" InsertVisible="False"></asp:BoundField>
-                            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" DataFormatString="{0:f}"/>
-                            <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type"/>
+                            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" DataFormatString="{0:F}" />
+                            <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                             <asp:TemplateField HeaderText="Manage">
                                 <ItemTemplate>
                                     <div class="d-flex flex-row justify-content-center">
-                                        <asp:Button ID="ViewButton" runat="server" Text="View" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" CommandName="ViewRecord" CommandArgument='<%# Eval("ID") %>'/>
-                                        <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" CommandName="DeleteRecord" CommandArgument='<%# Eval("ID") %>' OnClick="DeleteButton_OnClick"/>
+                                        <asp:Button ID="ViewButton" runat="server" Text="View" CssClass="btn btn-sm btn-secondary mr-2" UseSubmitBehavior="False" CommandName="ViewRecord" CommandArgument='<%# Eval("ID") %>' />
+                                        <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" CommandName="EditRecord" CommandArgument='<%# Eval("ID") %>' OnClick="EditButton_OnClick" />
+                                        <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" CommandName="DeleteRecord" CommandArgument='<%# Eval("ID") %>' OnClick="DeleteButton_OnClick" />
                                     </div>
                                 </ItemTemplate>
-                                <HeaderStyle CssClass="text-center"/>
+                                <HeaderStyle CssClass="text-center" />
                             </asp:TemplateField>
                         </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <%-- Inventory Details Table --%>
+    <asp:UpdatePanel ID="PivotGridUpdatePanel" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <span class="fa fa-table"></span>&nbsp;Inventory Record Per Product
+                </div>
+                <div class="card-body">
+
+                    <%-- Top Panel --%>
+                    <asp:Panel ID="OptionsPanel" runat="server">
+                        <asp:UpdatePanel ID="OptionsUpdatePanel" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <div class="input-group">
+                                            Range Picker
+                                        </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </asp:Panel>
+
+                    <%-- Grid View --%>
+                    <asp:GridView ID="PivotGridView" runat="server" DataKeyNames="ProductName" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" GridLines="None" AutoGenerateColumns="False">
                     </asp:GridView>
                 </div>
             </div>
@@ -59,46 +90,79 @@
                         <div class="modal-body">
                             <asp:FormView ID="EditFormView" runat="server" DefaultMode="Insert" CssClass="w-100" DataSourceID="ModalSqlDataSource" DataKeyNames="ID">
                                 <EditItemTemplate>
-                                    ID:
-                                    <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>'/>
-                                    <br/>
-                                    Date:
-                                    <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>'/>
-                                    <br/>
-                                    Type:
-                                    <asp:TextBox ID="TypeTextBox" runat="server" Text='<%# Bind("Type") %>'/>
-                                    <br/>
-                                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">ID:</div>
+                                        <asp:Label ID="IDLabel" runat="server" Text='<%# Eval("ID") %>' CssClass="col-sm-9 col-form-label" />
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Date:</div>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:s}") %>' CssClass="form-control" TextMode="DateTimeLocal" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Type:</div>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="TypeDropDownList" runat="server" Text='<%# Bind("Type") %>' CssClass="form-control">
+                                                <asp:ListItem Text="Opening" Value="Opening"></asp:ListItem>
+                                                <asp:ListItem Text="Closing" Value="Closing"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
                                 </EditItemTemplate>
                                 <InsertItemTemplate>
-                                    Date:
-                                    <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>'/>
-                                    <br/>
-                                    Type:
-                                    <asp:TextBox ID="TypeTextBox" runat="server" Text='<%# Bind("Type") %>'/>
-                                    <br/>
-                                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Source:</div>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="DropDownList1" runat="server" Text='<%# Bind("SourceRecord") %>' CssClass="form-control" DataSourceID="RecordSqlDataSource" DataValueField="ID" DataTextField="Value">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Type:</div>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="TypeDropDownList" runat="server" Text='<%# Bind("Type") %>' CssClass="form-control">
+                                                <asp:ListItem Text="Opening" Value="Opening"></asp:ListItem>
+                                                <asp:ListItem Text="Closing" Value="Closing"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Date:</div>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:s}") %>' CssClass="form-control" TextMode="DateTimeLocal" />
+                                        </div>
+                                    </div>
                                 </InsertItemTemplate>
-                                <ItemTemplate>
-                                    ID:
-                                    <asp:Label ID="IDLabel" runat="server" Text='<%# Eval("ID") %>' />
-                                    <br />
-                                    Date:
-                                    <asp:Label ID="DateLabel" runat="server" Text='<%# Bind("Date") %>' />
-                                    <br />
-                                    Type:
-                                    <asp:Label ID="TypeLabel" runat="server" Text='<%# Bind("Type") %>' />
-                                    <br />
-                                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                                    &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                                    &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
-                                </ItemTemplate>
                             </asp:FormView>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="ButtonModalUpdate_OnClick"/>
+                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="ButtonModalUpdate_OnClick" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </asp:Panel>
+
+    <%-- Delete Modal --%>
+    <asp:Panel ID="DeletePanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <asp:UpdatePanel ID="DeleteUpdatePanel" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <h5 id="deleteModalTitle" runat="server" class="modal-title">Delete Product</h5>
+                            <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you wish to delete this item?
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="ButtonModalDelete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="ButtonModalDelete_Click" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
@@ -110,18 +174,24 @@
     <%-- Data Source --%>
     <asp:SqlDataSource ID="InventorySqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Inventory]"></asp:SqlDataSource>
 
-    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Inventory]" InsertCommand="uspInsertInventory" InsertCommandType="StoredProcedure" UpdateCommand="uspUpdateInventory" UpdateCommandType="StoredProcedure" DeleteCommand="uspDeleteInventory" DeleteCommandType="StoredProcedure">
+    <asp:SqlDataSource ID="RecordSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT [ID], CONCAT([ID],' - ', [Date]) as Value FROM [Inventory] ORDER BY ID DESC"></asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Inventory] WHERE ([ID] = @ID)" InsertCommand="uspInsertInventory" InsertCommandType="StoredProcedure" UpdateCommand="uspUpdateInventory" UpdateCommandType="StoredProcedure" DeleteCommand="uspDeleteInventory" DeleteCommandType="StoredProcedure">
         <DeleteParameters>
             <asp:Parameter Name="ID" Type="Int32" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="Type" Type="String"/>
-            <asp:Parameter Name="Date" Type="DateTime"/>
+            <asp:Parameter Name="Type" Type="String" />
+            <asp:Parameter Name="Date" Type="DateTime" />
+            <asp:Parameter Name="SourceRecord" Type="Int32" />
         </InsertParameters>
+        <SelectParameters>
+            <asp:Parameter DefaultValue="1" Name="ID" />
+        </SelectParameters>
         <UpdateParameters>
-            <asp:Parameter Name="ID" Type="Int32"/>
-            <asp:Parameter Name="Type" Type="String"/>
-            <asp:Parameter Name="Date" Type="DateTime"/>
+            <asp:Parameter Name="ID" Type="Int32" />
+            <asp:Parameter Name="Type" Type="String" />
+            <asp:Parameter Name="Date" Type="DateTime" />
         </UpdateParameters>
     </asp:SqlDataSource>
 </asp:Content>

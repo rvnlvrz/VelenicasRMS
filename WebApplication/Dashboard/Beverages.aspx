@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="BeveragesSqlDataSource" CssClass="table table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand">
+                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="BeveragesSqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" InsertVisible="False"></asp:BoundField>
                                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"/>
@@ -40,8 +40,8 @@
                                 <asp:TemplateField HeaderText="Manage">
                                     <ItemTemplate>
                                         <div class="d-flex flex-row justify-content-center">
-                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-primary mr-2" UseSubmitBehavior="False" OnClick="EditButton_OnClick" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>'/>
-                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-danger" UseSubmitBehavior="False" OnClick="DeleteButton_OnClick" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>'/>
+                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" OnClick="EditButton_OnClick" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>'/>
+                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" OnClick="DeleteButton_OnClick" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>'/>
                                         </div>
                                     </ItemTemplate>
                                     <HeaderStyle CssClass="text-center"/>

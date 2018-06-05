@@ -58,6 +58,42 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.GridView InventoryGridView;
         
         /// <summary>
+        /// PivotGridUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel PivotGridUpdatePanel;
+        
+        /// <summary>
+        /// OptionsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel OptionsPanel;
+        
+        /// <summary>
+        /// OptionsUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel OptionsUpdatePanel;
+        
+        /// <summary>
+        /// PivotGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView PivotGridView;
+        
+        /// <summary>
         /// EditPanel control.
         /// </summary>
         /// <remarks>
@@ -103,6 +139,42 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.Button ButtonModalUpdate;
         
         /// <summary>
+        /// DeletePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DeletePanel;
+        
+        /// <summary>
+        /// DeleteUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel DeleteUpdatePanel;
+        
+        /// <summary>
+        /// deleteModalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteModalTitle;
+        
+        /// <summary>
+        /// ButtonModalDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonModalDelete;
+        
+        /// <summary>
         /// InventorySqlDataSource control.
         /// </summary>
         /// <remarks>
@@ -110,6 +182,15 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource InventorySqlDataSource;
+        
+        /// <summary>
+        /// RecordSqlDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource RecordSqlDataSource;
         
         /// <summary>
         /// ModalSqlDataSource control.

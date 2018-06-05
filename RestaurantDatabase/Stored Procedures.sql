@@ -33,9 +33,10 @@ AS
 	BEGIN
 	
 	DECLARE @ID INT
-
 		INSERT INTO Products(Name, Price) VALUES (@Name, @Price);
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
+		INSERT INTO [dbo].[InventoryItems]([ProductID], [InventoryID], [Quantity]) 
+		VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
 	END
 GO
 
@@ -67,6 +68,9 @@ AS
 BEGIN
 	INSERT INTO Products VALUES (@name, @price)
 	INSERT INTO Foods VALUES (IDENT_CURRENT('Products'), @personCount)
+
+	INSERT INTO [dbo].[InventoryItems]([ProductID], [InventoryID], [Quantity]) 
+		VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
 END
 GO
 
@@ -169,7 +173,7 @@ AS
 
 	DECLARE @Cursor CURSOR, @Current INT, @Quantity INT
 	DECLARE @ID INT, @Name NVARCHAR(MAX)
-	
+		
 	BEGIN
 		SET @Cursor = CURSOR FOR SELECT [ID], [Name] FROM [dbo].[Products]
 
@@ -179,9 +183,12 @@ AS
 
 		WHILE @@FETCH_STATUS = 0
 		BEGIN
+			PRINT @SourceRecord
+			PRINT @ID
+			PRINT @Name
 			SET @Current = IDENT_CURRENT('inventory')
-			SET @Quantity = (SELECT [Quantity] FROM [dbo].[InventoryItems] 
-			WHERE [InventoryID] = @SourceRecord AND [ProductID] = @ID)
+			SET @Quantity = ISNULL((SELECT [Quantity] FROM [dbo].[InventoryItems] 
+			WHERE [InventoryID] = @SourceRecord AND [ProductID] = @ID), 1)
 			EXEC [dbo].[uspInsertInventoryItem] @ID, @Current, @Quantity
 
 			FETCH NEXT FROM @Cursor
@@ -231,7 +238,7 @@ CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory
 AS
 	UPDATE [dbo].[Inventory]
 	SET [Date] = @Date, [Type] = @Type
-	WHERE [ID] = ID
+	WHERE [ID] = @ID
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventory 
@@ -251,10 +258,12 @@ AS
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventoryItem 
+	@ID INT,
 	@Quantity INT
 AS
 	UPDATE [dbo].[InventoryItems]
 	SET [Quantity] = @Quantity
+	WHERE [ID] = @ID
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventoryItem 

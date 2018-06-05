@@ -170,11 +170,6 @@
     <Content Include="Content\Images\Scenery\presentation6.jpg" />
     <Content Include="Content\Images\setups\tableA.jpg" />
     <Content Include="Content\Images\setups\tableB.jpg" />
-    <Content Include="Content\Materialize\css\materialize.css" />
-    <Content Include="Content\Materialize\css\materialize.min.css" />
-    <Content Include="Content\Materialize\javascript\Init.js" />
-    <Content Include="Content\Materialize\javascript\materialize.js" />
-    <Content Include="Content\Materialize\javascript\materialize.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard\Beverages.aspx" />
     <Content Include="Dashboard\Debug.aspx" />
@@ -241,6 +236,7 @@
     <Content Include="RestaurantModel.edmx.diagram">
       <DependentUpon>RestaurantModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\LocalDeployment.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

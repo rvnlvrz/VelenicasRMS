@@ -8,7 +8,7 @@
             <ContentTemplate>
                 <div class="row">
                     <div class="col mx-auto ">
-                        <asp:Button ID="CreateRecordButton" runat="server" Text="Create Record" CssClass="btn btn-success pull-right" OnClick="CreateRecordButton_OnClick" CausesValidation="False"/>
+                        <asp:Button ID="CreateRecordButton" runat="server" Text="Create Record" CssClass="btn btn-success pull-right" OnClick="CreateRecordButton_OnClick" CausesValidation="False" />
                     </div>
                 </div>
             </ContentTemplate>
@@ -50,7 +50,7 @@
         <ContentTemplate>
             <div class="card mb-3">
                 <div class="card-header">
-                    <span class="fa fa-table"></span>&nbsp;Inventory Record Per Product
+                    <span class="fa fa-table"></span>&nbsp;Inventory Summary
                 </div>
                 <div class="card-body">
 
@@ -58,11 +58,13 @@
                     <asp:Panel ID="OptionsPanel" runat="server">
                         <asp:UpdatePanel ID="OptionsUpdatePanel" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <div class="input-group">
-                                            Range Picker
-                                        </div>
+                                <div class="d-flex flex-row">
+                                    <div class=" col-form-label">Display From:</div>
+                                    <asp:DropDownList ID="FromDropDownList" runat="server" DataSourceID="RecordSqlDataSource" DataTextField="Value" DataValueField="ID" CssClass="form-control col-2 mx-2"></asp:DropDownList>
+                                    <div class="col-form-label">To</div>
+                                        <asp:DropDownList ID="ToDrowDownList" runat="server" DataSourceID="RecordSqlDataSource" DataValueField="ID" DataTextField="Value" CssClass="form-control col-2 mx-2"></asp:DropDownList>
+                                    <asp:Button ID="GoButton" runat="server" Text="Go" CssClass="btn btn-success" />
+                                </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </asp:Panel>
@@ -147,7 +149,7 @@
     </asp:Panel>
 
     <%-- Delete Modal --%>
-    <asp:Panel ID="DeletePanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1">
+    <asp:Panel ID="DeletePanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1" DefaultButton="ButtonModalDelete">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <asp:UpdatePanel ID="DeleteUpdatePanel" runat="server" UpdateMode="Conditional">

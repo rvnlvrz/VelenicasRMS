@@ -113,7 +113,7 @@
     </asp:Panel>
 
     <%-- Delete Modal --%>
-    <asp:Panel ID="DeletePanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1">
+    <asp:Panel ID="DeletePanel" runat="server" CssClass="modal fade" role="dialog" TabIndex="-1" DefaultButton="ButtonModalDelete">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <asp:UpdatePanel ID="DeleteUpdatePanel" runat="server" UpdateMode="Conditional">

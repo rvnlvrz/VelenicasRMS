@@ -17,56 +17,9 @@ namespace WebApplication.Dashboard
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                using (var connection = new SqlConnection(ConfigurationManager
-                    .ConnectionStrings["VelenicasRMSConnectionString"].ConnectionString))
-                {
-                    var selectCommand = new SqlCommand
-                    {
-                        CommandText = "uspGetInventoryTable",
-                        CommandType = CommandType.StoredProcedure,
-                        Connection = connection,
-                        Parameters =
-                        {
-                            new SqlParameter("@StartDate", SqlDbType.DateTime),
-                            new SqlParameter("@EndDate", SqlDbType.DateTime)
-                        }
-                    };
-                    selectCommand.Parameters[0].Value = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-                    selectCommand.Parameters[1].Value = DateTime.Now.AddDays(6).ToString(CultureInfo.CurrentCulture);
-                    
-
-                    _pivotDataSet = new DataSet("Pivot");
-                    _pivotDataAdapter = new SqlDataAdapter(selectCommand);
-
-                    connection.Open();
-                    _pivotDataAdapter.Fill(_pivotDataSet);
-
-                    if (_pivotDataSet.Tables.Count == 0)
-                    {
-                        return;
-                    }
-
-                    for (var i = 0; i < _pivotDataSet.Tables[0].Columns.Count; i++)
-                    {
-                        var col = _pivotDataSet.Tables[0].Columns[i];
-                        var field = new BoundField();
-                        if (i == 0)
-                        {
-                            field.HeaderText = "Product Name";
-                        }
-                        else
-                        {
-                            var dt = DateTime.Parse(col.ColumnName);
-                            field.HeaderText = $"{dt:MMMM dd, yyyy \n hh:mm tt}";
-                        }
-
-                        field.DataField = col.ColumnName;
-                        PivotGridView.Columns.Add(field);
-                    }
-
-                    PivotGridView.DataSource = _pivotDataSet;
-                    PivotGridView.DataBind();
-                }
+            {
+                PopulateTable();
+            }
         }
 
         protected void CreateRecordButton_OnClick(object sender, EventArgs e)
@@ -142,6 +95,60 @@ namespace WebApplication.Dashboard
             {
                 Response.Redirect($"InventoryDetails.aspx?InventoryID={Session["recordID"]}");
             }
+        }
+
+        protected void PopulateTable()
+        {
+            using (var connection = new SqlConnection(ConfigurationManager
+                    .ConnectionStrings["VelenicasRMSConnectionString"].ConnectionString))
+                {
+                    var selectCommand = new SqlCommand
+                    {
+                        CommandText = "uspGetInventoryTable",
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = connection,
+                        Parameters =
+                        {
+                            new SqlParameter("@StartDate", SqlDbType.DateTime),
+                            new SqlParameter("@EndDate", SqlDbType.DateTime)
+                        }
+                    };
+                    selectCommand.Parameters[0].Value = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                    selectCommand.Parameters[1].Value = DateTime.Now.AddDays(6).ToString(CultureInfo.CurrentCulture);
+                    
+
+                    _pivotDataSet = new DataSet("Pivot");
+                    _pivotDataAdapter = new SqlDataAdapter(selectCommand);
+
+                    connection.Open();
+                    _pivotDataAdapter.Fill(_pivotDataSet);
+
+                    if (_pivotDataSet.Tables.Count == 0)
+                    {
+                        return;
+                    }
+
+                    for (var i = 0; i < _pivotDataSet.Tables[0].Columns.Count; i++)
+                    {
+                        var col = _pivotDataSet.Tables[0].Columns[i];
+                        var field = new BoundField();
+                        if (i == 0)
+                        {
+                            field.HeaderText = "Product Name";
+                        }
+                        else
+                        {
+                            var dt = DateTime.Parse(col.ColumnName);
+                            field.HeaderText = $"{dt:MMMM dd, yyyy \n hh:mm tt}";
+                        }
+
+                        field.DataField = col.ColumnName;
+                        PivotGridView.Columns.Add(field);
+                    }
+
+                    PivotGridView.DataSource = _pivotDataSet;
+                    PivotGridView.DataBind();
+                }
         }
     }
 }

@@ -5,6 +5,10 @@ GO
 --ALTER COLUMN [Date] DATETIME
 --GO
 
+DECLARE @Date DATETIME = GETDATE(), @ID INT
+EXEC [dbo].[uspInsertInitialInventory] N'Initial Tally', @Date
+GO
+
 -- Insert Food Products
 EXEC [dbo].[uspInsertFood] N'Spring Rolls', 100, 1
 EXEC [dbo].[uspInsertFood] N'Pork Sinigang', 275, 3
@@ -22,8 +26,6 @@ GO
 
 -- Insert Inventory Records
 DECLARE @Date DATETIME = GETDATE(), @ID INT
-EXEC [dbo].[uspInsertInitialInventory] N'Opening', @Date
-
 SET @Date = DATEADD(HOUR, 14, @Date)
 SET @ID = IDENT_CURRENT('inventory')
 EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID

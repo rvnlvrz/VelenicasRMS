@@ -94,9 +94,12 @@ namespace WebApplication
                 }
             }
 
+            Session.Abandon();
+            Session.RemoveAll();
             Session["transacID"] = transactionID;
             GridView1.DataBind();
             ListView1.DataBind();
+            CheckBoxList1.DataBind();
             BtnCancelTransac.DataBind();
             BtnPay.DataBind();
             ScriptManager.RegisterStartupScript(BtnConfirmStart, GetType(), "NewTransacModal",
@@ -157,9 +160,13 @@ namespace WebApplication
                 }
             }
 
-            Session.Remove("transacID");
+            //Session.Remove("transacID");
+            Session.Abandon();
+            Session.RemoveAll();
             LvwTotals.DataBind();
             GridView1.DataBind();
+            ListView1.DataBind();
+            CheckBoxList1.DataBind();
             BtnCancelTransac.DataBind();
             BtnPay.DataBind();
             ScriptManager.RegisterStartupScript(BtnCancelTransac, GetType(), "CancelTransacModal",
@@ -351,6 +358,11 @@ namespace WebApplication
                     li.Enabled = false;
                 }
             }
+        }
+
+        protected void BtnCancelTransac_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

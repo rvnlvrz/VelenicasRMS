@@ -58,69 +58,6 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.GridView InventoryGridView;
         
         /// <summary>
-        /// PivotGridUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel PivotGridUpdatePanel;
-        
-        /// <summary>
-        /// OptionsPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel OptionsPanel;
-        
-        /// <summary>
-        /// OptionsUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel OptionsUpdatePanel;
-        
-        /// <summary>
-        /// FromDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FromDropDownList;
-        
-        /// <summary>
-        /// ToDrowDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ToDrowDownList;
-        
-        /// <summary>
-        /// GoButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GoButton;
-        
-        /// <summary>
-        /// PivotGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PivotGridView;
-        
-        /// <summary>
         /// EditPanel control.
         /// </summary>
         /// <remarks>

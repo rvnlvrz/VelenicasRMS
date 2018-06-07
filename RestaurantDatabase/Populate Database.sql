@@ -1,42 +1,7 @@
 ﻿USE VelenicasRMS
 GO
 
---ALTER TABLE [dbo].[Inventory]
---ALTER COLUMN [Date] DATETIME
---GO
-
-DECLARE @Date DATETIME = GETDATE(), @ID INT
-EXEC [dbo].[uspInsertInitialInventory] N'Initial Tally', @Date
-GO
-
--- Insert Food Products
-EXEC [dbo].[uspInsertFood] N'Spring Rolls', 100, 1
-EXEC [dbo].[uspInsertFood] N'Pork Sinigang', 275, 3
-EXEC [dbo].[uspInsertFood] N'Salmon with Mango Salsa', 175, 1
-EXEC [dbo].[uspInsertFood] N'Domingo''s Beefsteak', 145, 1
-EXEC [dbo].[uspInsertFood] N'Breakfast Bangus', 100, 1
-GO
-
--- Insert Beverage Products
-EXEC [dbo].[uspInsertBeverage] N'Strawberry Milkshake', 85
-EXEC [dbo].[uspInsertBeverage] N'Hazelnut Coffee', 60
-EXEC [dbo].[uspInsertBeverage] N'Brewed Iced Tea', 45
-EXEC [dbo].[uspInsertBeverage] N'Four Seasons', 50
-GO
-
--- Insert Inventory Records
-DECLARE @Date DATETIME = GETDATE(), @ID INT
-SET @Date = DATEADD(HOUR, 14, @Date)
-SET @ID = IDENT_CURRENT('inventory')
-EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
-
-SET @Date = DATEADD(HOUR, 10, @Date)
-SET @ID = IDENT_CURRENT('inventory')
-EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
-GO
-
 ----SELECT * FROM Menus
-
 INSERT INTO Menus VALUES (N'Breakfast Plates','')
 INSERT INTO Menus VALUES (N'Starters','')
 INSERT INTO Menus VALUES (N'Best Sellers','')
@@ -51,8 +16,8 @@ INSERT INTO Menus VALUES (N'Drinks','')
 INSERT INTO Menus VALUES (N'Seafood Lovers','')
 INSERT INTO Menus VALUES (N'Desserts','')
 INSERT INTO Menus VALUES (N'Extras','')
-SELECT * FROM MENUS
-delete from Menus where ID < 13
+--SELECT * FROM MENUS
+--delete from Menus where ID < 13
 -- Breakfast Plates
 --EXEC AddFood N'Tapa', 132, 5
 EXEC [dbo].[uspInsertFood] N'Tocino', 94, 2
@@ -137,19 +102,23 @@ EXEC AddMenuItem 13, 1
 EXEC AddMenuItem 13, 3
 EXEC AddMenuItem 13, 4
 EXEC AddMenuItem 13, 5
+
 -- Pasta
 EXEC AddMenuItem 16, 6
 EXEC AddMenuItem 16, 7
 EXEC AddMenuItem 16, 8
+
 -- Merienda Special
 EXEC AddMenuItem 19, 9
 EXEC AddMenuItem 19, 10
 EXEC AddMenuItem 19, 11
 EXEC AddMenuItem 19, 12
 EXEC AddMenuItem 19, 13
+
 -- Seafood Lovers
 EXEC AddMenuItem 23, 14
 EXEC AddMenuItem 23, 15
+
 -- Starters
 EXEC AddMenuItem 14, 16
 EXEC AddMenuItem 14, 17
@@ -157,39 +126,46 @@ EXEC AddMenuItem 14, 18
 EXEC AddMenuItem 14, 19
 EXEC AddMenuItem 14, 20
 EXEC AddMenuItem 14, 21
+
 -- Daily Special
 EXEC AddMenuItem 17, 22
 EXEC AddMenuItem 17, 23
 EXEC AddMenuItem 17, 24
 EXEC AddMenuItem 17, 25
+
 -- By the Grill
 EXEC AddMenuItem 20, 26
 EXEC AddMenuItem 20, 27
 EXEC AddMenuItem 20, 28
 EXEC AddMenuItem 20, 29
 EXEC AddMenuItem 20, 30
+
 -- Desserts
 EXEC AddMenuItem 23, 31
 EXEC AddMenuItem 23, 32
 EXEC AddMenuItem 23, 33
 EXEC AddMenuItem 23, 34
 EXEC AddMenuItem 23, 35
+
 -- Extras
 EXEC AddMenuItem 24, 36
 EXEC AddMenuItem 24, 36
 EXEC AddMenuItem 24, 36
 EXEC AddMenuItem 24, 36
 EXEC AddMenuItem 24, 40
+
 -- Other Choices
 EXEC AddMenuItem 18, 41
 EXEC AddMenuItem 18, 42
 EXEC AddMenuItem 18, 43
 EXEC AddMenuItem 18, 44
+
 -- Drinks
 EXEC AddMenuItem 21, 45
 EXEC AddMenuItem 21, 46
 EXEC AddMenuItem 21, 47
 EXEC AddMenuItem 21, 48
+
 -- Extras
 EXEC AddMenuItem 24, 49
 EXEC AddMenuItem 24, 50
@@ -198,4 +174,15 @@ EXEC AddMenuItem 24, 52
 EXEC AddMenuItem 24, 53
 EXEC AddMenuItem 24, 54
 EXEC AddMenuItem 24, 55
+GO
+
+-- Insert Inventory Records
+DECLARE @Date DATETIME = GETDATE(), @ID INT
+EXEC [dbo].[uspInsertInitialInventory] N'Opening', @Date
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
+
+SET @Date = DATEADD(HOUR, 10, @Date)
+SET @ID = IDENT_CURRENT('inventory')
+EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
 GO

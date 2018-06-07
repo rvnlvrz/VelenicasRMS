@@ -138,10 +138,10 @@
     </asp:Panel>
 
     <%-- Data Source --%>
-    <asp:SqlDataSource ID="BeveragesSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products] WHERE ([Name] LIKE '%' + @Name + '%')">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="SearchTextBox" DefaultValue=" " Name="Name" PropertyName="Text" Type="String"/>
-        </SelectParameters>
+    <asp:SqlDataSource ID="BeveragesSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products]" FilterExpression="Name LIKE '%{0}%'">
+        <FilterParameters>
+            <asp:ControlParameter ControlID="SearchTextBox" Name="Name" PropertyName="Text"/>
+        </FilterParameters>
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteBeverage" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertBeverage" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateBeverage @ID, @Name, @Price">

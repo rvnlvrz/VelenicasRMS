@@ -127,7 +127,9 @@
   </EntityType>
   <Association Name="FoodMenuItem">
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="*" />
-    <End Role="Food" Type="RestaurantModel.Store.Products" Multiplicity="1" />
+    <End Role="Food" Type="RestaurantModel.Store.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Food">
         <PropertyRef Name="ID" />
@@ -310,7 +312,9 @@
         </EntityType>
         <Association Name="FoodMenuItem">
           <End Type="RestaurantModel.MenuItem" Role="MenuItem" Multiplicity="*" />
-          <End Type="RestaurantModel.Product" Role="Food" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Food" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Food">
               <PropertyRef Name="ID" />

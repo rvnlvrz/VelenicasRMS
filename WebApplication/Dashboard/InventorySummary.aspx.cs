@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,9 +11,10 @@ namespace WebApplication.Dashboard
     {
         private readonly DataSet _pivotDataSet = new DataSet();
         private SqlDataAdapter _pivotDataAdapter;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) PopulateTable(0, 15);
+            //if (!IsPostBack) PopulateTable(0, 99);
         }
 
         private void ClearTable()
@@ -28,10 +26,13 @@ namespace WebApplication.Dashboard
 
         protected void GoButton_OnClick(object sender, EventArgs e)
         {
-            var start = Convert.ToInt32(FromDropDownList.SelectedValue);
-            var end = Convert.ToInt32(ToDropDownList.SelectedValue);
-
-            PopulateTable(start, end);
+            PivotSqlDataSource.Select(DataSourceSelectArguments.Empty);
+            PivotGridView.DataBind();
+            PivotGridUpdatePanel.Update();
+            //var start = Convert.ToInt32(FromDropDownList.SelectedValue);
+            //var end = Convert.ToInt32(ToDropDownList.SelectedValue);
+            //ClearTable();
+            //PopulateTable(start, end);
         }
 
         protected void FromDropDownList_OnSelectedIndexChanged(object sender, EventArgs e)

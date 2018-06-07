@@ -76,6 +76,15 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.GridView PivotGridView;
         
         /// <summary>
+        /// PivotSqlDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource PivotSqlDataSource;
+        
+        /// <summary>
         /// RecordSqlDataSource control.
         /// </summary>
         /// <remarks>

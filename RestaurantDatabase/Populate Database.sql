@@ -16,10 +16,10 @@ INSERT INTO Menus VALUES (N'Drinks','')
 INSERT INTO Menus VALUES (N'Seafood Lovers','')
 INSERT INTO Menus VALUES (N'Desserts','')
 INSERT INTO Menus VALUES (N'Extras','')
---SELECT * FROM MENUS
---delete from Menus where ID < 13
+-- SELECT * FROM MENUS
+-- delete from Menus where ID < 13
 -- Breakfast Plates
---EXEC AddFood N'Tapa', 132, 5
+-- EXEC AddFood N'Tapa', 132, 5
 EXEC [dbo].[uspInsertFood] N'Tocino', 94, 2
 EXEC [dbo].[uspInsertFood] N'Traditional Imus Longganisa', 55, 1
 EXEC [dbo].[uspInsertFood] N'Shanghai Rolls', 250, 6
@@ -98,82 +98,82 @@ EXEC [dbo].[uspInsertFood] N'Garlic Rice', 25, 1
 EXEC [dbo].[uspInsertFood] N'Java Rice', 30, 1
 
 -- Breakfast Plates
-EXEC AddMenuItem 13, 1
-EXEC AddMenuItem 13, 3
-EXEC AddMenuItem 13, 4
-EXEC AddMenuItem 13, 5
+EXEC AddMenuItem 1, 1
+EXEC AddMenuItem 1, 3
+EXEC AddMenuItem 1, 4
+EXEC AddMenuItem 1, 5
 
 -- Pasta
-EXEC AddMenuItem 16, 6
-EXEC AddMenuItem 16, 7
-EXEC AddMenuItem 16, 8
+EXEC AddMenuItem 4, 6
+EXEC AddMenuItem 4, 7
+EXEC AddMenuItem 4, 8
 
 -- Merienda Special
-EXEC AddMenuItem 19, 9
-EXEC AddMenuItem 19, 10
-EXEC AddMenuItem 19, 11
-EXEC AddMenuItem 19, 12
-EXEC AddMenuItem 19, 13
+EXEC AddMenuItem 7, 9
+EXEC AddMenuItem 7, 10
+EXEC AddMenuItem 7, 11
+EXEC AddMenuItem 7, 12
+EXEC AddMenuItem 7, 13
 
 -- Seafood Lovers
-EXEC AddMenuItem 23, 14
-EXEC AddMenuItem 23, 15
+EXEC AddMenuItem 10, 14
+EXEC AddMenuItem 10, 15
 
 -- Starters
-EXEC AddMenuItem 14, 16
-EXEC AddMenuItem 14, 17
-EXEC AddMenuItem 14, 18
-EXEC AddMenuItem 14, 19
-EXEC AddMenuItem 14, 20
-EXEC AddMenuItem 14, 21
+EXEC AddMenuItem 2, 16
+EXEC AddMenuItem 2, 17
+EXEC AddMenuItem 2, 18
+EXEC AddMenuItem 2, 19
+EXEC AddMenuItem 2, 20
+EXEC AddMenuItem 2, 21
 
 -- Daily Special
-EXEC AddMenuItem 17, 22
-EXEC AddMenuItem 17, 23
-EXEC AddMenuItem 17, 24
-EXEC AddMenuItem 17, 25
+EXEC AddMenuItem 5, 22
+EXEC AddMenuItem 5, 23
+EXEC AddMenuItem 5, 24
+EXEC AddMenuItem 5, 25
 
 -- By the Grill
-EXEC AddMenuItem 20, 26
-EXEC AddMenuItem 20, 27
-EXEC AddMenuItem 20, 28
-EXEC AddMenuItem 20, 29
-EXEC AddMenuItem 20, 30
+EXEC AddMenuItem 8, 26
+EXEC AddMenuItem 8, 27
+EXEC AddMenuItem 8, 28
+EXEC AddMenuItem 8, 29
+EXEC AddMenuItem 8, 30
 
 -- Desserts
-EXEC AddMenuItem 23, 31
-EXEC AddMenuItem 23, 32
-EXEC AddMenuItem 23, 33
-EXEC AddMenuItem 23, 34
-EXEC AddMenuItem 23, 35
+EXEC AddMenuItem 11, 31
+EXEC AddMenuItem 11, 32
+EXEC AddMenuItem 11, 33
+EXEC AddMenuItem 11, 34
+EXEC AddMenuItem 11, 35
 
 -- Extras
-EXEC AddMenuItem 24, 36
-EXEC AddMenuItem 24, 36
-EXEC AddMenuItem 24, 36
-EXEC AddMenuItem 24, 36
-EXEC AddMenuItem 24, 40
+EXEC AddMenuItem 12, 36
+EXEC AddMenuItem 12, 36
+EXEC AddMenuItem 12, 36
+EXEC AddMenuItem 12, 36
+EXEC AddMenuItem 12, 40
 
 -- Other Choices
-EXEC AddMenuItem 18, 41
-EXEC AddMenuItem 18, 42
-EXEC AddMenuItem 18, 43
-EXEC AddMenuItem 18, 44
+EXEC AddMenuItem 6 , 41
+EXEC AddMenuItem 6 , 42
+EXEC AddMenuItem 6 , 43
+EXEC AddMenuItem 6 , 44
 
 -- Drinks
-EXEC AddMenuItem 21, 45
-EXEC AddMenuItem 21, 46
-EXEC AddMenuItem 21, 47
-EXEC AddMenuItem 21, 48
+EXEC AddMenuItem 9 , 45
+EXEC AddMenuItem 9 , 46
+EXEC AddMenuItem 9 , 47
+EXEC AddMenuItem 9 , 48
 
 -- Extras
-EXEC AddMenuItem 24, 49
-EXEC AddMenuItem 24, 50
-EXEC AddMenuItem 24, 51
-EXEC AddMenuItem 24, 52
-EXEC AddMenuItem 24, 53
-EXEC AddMenuItem 24, 54
-EXEC AddMenuItem 24, 55
+EXEC AddMenuItem 12, 49
+EXEC AddMenuItem 12, 50
+EXEC AddMenuItem 12, 51
+EXEC AddMenuItem 12, 52
+EXEC AddMenuItem 12, 53
+EXEC AddMenuItem 12, 54
+EXEC AddMenuItem 12, 55
 GO
 
 -- Insert Inventory Records

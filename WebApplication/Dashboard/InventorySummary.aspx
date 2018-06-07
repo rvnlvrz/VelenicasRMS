@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Inventory Summary" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="InventorySummary.aspx.cs" Inherits="WebApplication.Dashboard.InventorySummary" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
      <%-- Inventory Details Table --%>
     <asp:UpdatePanel ID="PivotGridUpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -26,12 +27,19 @@
                     </asp:Panel>
 
                     <%-- Grid View --%>
-                    <asp:GridView ID="PivotGridView" runat="server" DataKeyNames="ProductName" CssClass="table table-sm table-bordered table-striped"  AllowSorting="True" GridLines="None" AutoGenerateColumns="False">
+                    <asp:GridView ID="PivotGridView" runat="server" DataKeyNames="ProductName" CssClass="table table-sm table-bordered table-striped"  AllowSorting="True" GridLines="None" AutoGenerateColumns="False" DataSourceID="PivotSqlDataSource">
                     </asp:GridView>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    
+    <asp:SqlDataSource ID="PivotSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="EXEC [dbo].[uspGetInventoryTable] @StartIndex, @EndIndex">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="FromDropDownList" Name="StartIndex" PropertyName="SelectedValue" Type="Int32" />
+            <asp:ControlParameter ControlID="ToDropDownList" Name="EndIndex" PropertyName="SelectedValue" Type="Int32" />
+        </SelectParameters>
+     </asp:SqlDataSource>
     
     <asp:SqlDataSource ID="RecordSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT [ID], CONCAT([ID],' - ', [Date]) as Value FROM [Inventory] ORDER BY ID DESC"></asp:SqlDataSource>
 </asp:Content>

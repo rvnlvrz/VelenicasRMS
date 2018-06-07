@@ -94,6 +94,7 @@ namespace WebApplication
                 }
             }
 
+            Session.RemoveAll();
             Session["transacID"] = transactionID;
             GridView1.DataBind();
             ListView1.DataBind();

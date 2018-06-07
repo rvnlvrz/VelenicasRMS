@@ -96,7 +96,6 @@ namespace WebApplication.Dashboard
 
         protected void SearchButton_OnClick(object sender, EventArgs e)
         {
-            BeveragesSqlDataSource.Select(DataSourceSelectArguments.Empty);
             GridUpdatePanel.Update();
         }
     }

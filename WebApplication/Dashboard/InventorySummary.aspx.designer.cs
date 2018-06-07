@@ -10,78 +10,78 @@
 namespace WebApplication.Dashboard {
     
     
-    public partial class InventoryDetails {
+    public partial class InventorySummary {
         
         /// <summary>
-        /// FoodUpdatePanel control.
+        /// PivotGridUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel FoodUpdatePanel;
+        protected global::System.Web.UI.UpdatePanel PivotGridUpdatePanel;
         
         /// <summary>
-        /// FoodSearchTextBox control.
+        /// OptionsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FoodSearchTextBox;
+        protected global::System.Web.UI.WebControls.Panel OptionsPanel;
         
         /// <summary>
-        /// FoodSearchButton control.
+        /// OptionsUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button FoodSearchButton;
+        protected global::System.Web.UI.UpdatePanel OptionsUpdatePanel;
         
         /// <summary>
-        /// FoodGridView control.
+        /// FromDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView FoodGridView;
+        protected global::System.Web.UI.WebControls.DropDownList FromDropDownList;
         
         /// <summary>
-        /// BeverageUpdatePanel control.
+        /// ToDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel BeverageUpdatePanel;
+        protected global::System.Web.UI.WebControls.DropDownList ToDropDownList;
         
         /// <summary>
-        /// BeverageGridView control.
+        /// GoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView BeverageGridView;
+        protected global::System.Web.UI.WebControls.Button GoButton;
         
         /// <summary>
-        /// FoodSqlDataSource control.
+        /// PivotGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource FoodSqlDataSource;
+        protected global::System.Web.UI.WebControls.GridView PivotGridView;
         
         /// <summary>
-        /// BeverageSqlDataSource control.
+        /// RecordSqlDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource BeverageSqlDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource RecordSqlDataSource;
     }
 }

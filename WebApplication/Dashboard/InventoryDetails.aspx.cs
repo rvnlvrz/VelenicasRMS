@@ -18,6 +18,9 @@ namespace WebApplication.Dashboard
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            FoodSqlDataSource.FilterExpression = "Name LIKE '%{0}%'";
+            FoodSqlDataSource.FilterParameters.Add(new ControlParameter("Name", "FoodSearchTextBox", "Text"));
+
             try
             {
                 _recordId = Request.QueryString[0];
@@ -40,6 +43,12 @@ namespace WebApplication.Dashboard
                 Console.WriteLine(exception);
                 throw;
             }
+        }
+
+        protected void FoodSearchButton_OnClick(object sender, EventArgs e)
+        {
+            FoodGridView.DataBind();
+            //FoodUpdatePanel.Update();
         }
     }
 }

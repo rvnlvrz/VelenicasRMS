@@ -35,6 +35,7 @@ AS
 	DECLARE @ID INT
 		INSERT INTO Products(Name, Price) VALUES (@Name, @Price);
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
+
 		INSERT INTO [dbo].[InventoryItems]([ProductID], [InventoryID], [Quantity]) 
 		VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
 	END
@@ -274,14 +275,14 @@ AS
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].[uspGetInventoryTable]
-	@StartDate DATETIME,
-	@EndDate DATETIME
+	@StartIndex INT,
+	@EndIndex INT
 AS
 	DECLARE @Columns as VARCHAR(MAX)
 	SELECT @Columns =
 	COALESCE(@Columns + ', ','') + QUOTENAME(CONVERT(VARCHAR(23), [Date], 121))
 	FROM
-	   (SELECT DISTINCT [Date] FROM [dbo].[Inventory] WHERE [Date] BETWEEN @StartDate AND @EndDate) AS B
+	   (SELECT DISTINCT [Date] FROM [dbo].[Inventory] WHERE [Inventory].[ID] BETWEEN @StartIndex AND @EndIndex) AS B
 	ORDER BY B.Date
 	PRINT @Columns
 

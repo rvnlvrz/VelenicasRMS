@@ -178,6 +178,8 @@
     <Content Include="Dashboard\Foods.aspx" />
     <Content Include="Dashboard\InventoryDetails.aspx" />
     <Content Include="Dashboard\InventorySummary.aspx" />
+    <Content Include="Dashboard\Menu.aspx" />
+    <Content Include="Dashboard\MenuDetails.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -370,6 +372,20 @@
     </Compile>
     <Compile Include="Dashboard\InventorySummary.aspx.designer.cs">
       <DependentUpon>InventorySummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\MenuDetails.aspx.cs">
+      <DependentUpon>MenuDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\MenuDetails.aspx.designer.cs">
+      <DependentUpon>MenuDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/07/2018 10:31:23
+-- Date Created: 06/14/2018 12:39:10
 -- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
 -- --------------------------------------------------
 
@@ -82,7 +82,7 @@ GO
 CREATE TABLE [dbo].[Menus] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Description] nvarchar(max)  NOT NULL
+    [Description] nvarchar(max)  NULL
 );
 GO
 
@@ -236,7 +236,7 @@ ADD CONSTRAINT [FK_MenuMenuItem]
     FOREIGN KEY ([MenuID])
     REFERENCES [dbo].[Menus]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MenuMenuItem'
@@ -251,7 +251,7 @@ ADD CONSTRAINT [FK_OrderOrderItem]
     FOREIGN KEY ([OrderID])
     REFERENCES [dbo].[Orders]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_OrderOrderItem'
@@ -266,7 +266,7 @@ ADD CONSTRAINT [FK_OrderItemMenuItem]
     FOREIGN KEY ([MenuItemID])
     REFERENCES [dbo].[MenuItems]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_OrderItemMenuItem'

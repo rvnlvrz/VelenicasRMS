@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Foods" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Foods.aspx.cs" Inherits="WebApplication.Dashboard.Products" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="Product Menu" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="WebApplication.Dashboard.Menu" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -9,14 +9,14 @@
                 <div class="row">
                     <div class="form-group col-sm-4">
                         <div class="input-group">
-                            <asp:TextBox ID="SearchTextBox" runat="server" placeholder="Product Name" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="SearchTextBox" runat="server" placeholder="Product Category" CssClass="form-control"></asp:TextBox>
                             <div class="input-group-append">
-                                <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="SearchButton_OnClick"/>
+                                <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="SearchButton_OnClicktton_OnClick"/>
                             </div>
                         </div>
                     </div>
                     <div class="col mx-auto ">
-                        <asp:Button ID="AddProductButton" runat="server" Text="Add Food" CssClass="btn btn-success pull-right" OnClick="AddProductButton_OnClick"/>
+                        <asp:Button ID="AddMenuButton" runat="server" Text="Add Menu Category" CssClass="btn btn-success pull-right" OnClick="AddMenuButton_OnClick"/>
                     </div>
                 </div>
             </ContentTemplate>
@@ -28,21 +28,21 @@
         <ContentTemplate>
             <div class="card mb-3">
                 <div class="card-header">
-                    <span class="fa fa-table"></span>&nbsp;Food Products
+                    <span class="fa fa-table"></span>&nbsp;Product Menu (POS)
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="FoodsSqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand" PagerSettings-Position="Bottom">
+                        <asp:GridView ID="MenuGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="MenuSqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="MenuGridView_OnRowCommand" PagerSettings-Position="Bottom">
                             <Columns>
-                                <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID"></asp:BoundField>
+                                <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" InsertVisible="False"></asp:BoundField>
                                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"/>
-                                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:c}"/>
-                                <asp:BoundField DataField="PersonCount" HeaderText="Serving Count" SortExpression="PersonCount"/>
+                                <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description"/>
                                 <asp:TemplateField HeaderText="Manage">
                                     <ItemTemplate>
                                         <div class="d-flex flex-row justify-content-center">
-                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" OnClick="EditButton_OnClick" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>'/>
-                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" OnClick="DeleteButton_OnClick" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>'/>
+                                            <asp:Button ID="ViewButton" runat="server" Text="View" CssClass="btn btn-sm btn-secondary mr-2" UseSubmitBehavior="False" CommandName="ViewMenu" CommandArgument='<%# Eval("ID") %>'/>
+                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" CommandName="EditMenu" CommandArgument='<%# Eval("ID") %>' OnClick="EditButton_OnClick"/>
+                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" CommandName="DeleteMenu" CommandArgument='<%# Eval("ID") %>' OnClick="DeleteButton_OnClick"/>
                                         </div>
                                     </ItemTemplate>
                                     <HeaderStyle CssClass="text-center"/>
@@ -68,11 +68,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="ModalSqlDataSource" DataKeyNames="ID">
+                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" DataSourceID="ModalSqlDataSource" DataKeyNames="ID">
                                 <EditItemTemplate>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">ID:</div>
-                                        <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' CssClass="form-control"/>
+                                        <div class="col-sm-9">
+                                            <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' CssClass="form-control"/>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Name:</div>
@@ -81,15 +83,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label text-right">Price:</div>
+                                        <div class="col-sm-3 col-form-label text-right">Description:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label text-right">Good for:</div>
-                                        <div class="col-sm-9">
-                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number"/>
+                                            <asp:TextBox ID="DescriptionTextBox" runat="server" Text='<%# Bind("Description") %>' CssClass="form-control" TextMode="MultiLine"/>
                                         </div>
                                     </div>
                                 </EditItemTemplate>
@@ -101,17 +97,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label text-right">Price:</div>
-                                        <div class="col-sm-9">
-                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label text-right">Good for:</div>
-                                        <div class="col-sm-9">
-                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number"/>
-                                        </div>
-                                    </div>
+                                    <div class="col-sm-3 col-form-label text-right">Description:</div>
+                                    <div class="col-sm-9">
+                                    <asp:TextBox ID="DescriptionTextBox" runat="server" Text='<%# Bind("Description") %>' CssClass="form-control" TextMode="MultiLine"/>
                                 </InsertItemTemplate>
                             </asp:FormView>
                         </div>
@@ -132,7 +120,7 @@
                 <asp:UpdatePanel ID="DeleteUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="modal-header">
-                            <h5 id="deleteModalTitle" runat="server" class="modal-title">Delete Product</h5>
+                            <h5 id="deleteModalTitle" runat="server" class="modal-title">Delete Product Menu</h5>
                             <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -151,23 +139,29 @@
     </asp:Panel>
 
     <%-- Data Source --%>
-    <asp:SqlDataSource ID="FoodsSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products]" FilterExpression="Name LIKE '%{0}%'">
+    <asp:SqlDataSource ID="MenuSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Menus]" FilterExpression="Name LIKE '%{0}%'">
         <FilterParameters>
             <asp:ControlParameter ControlID="SearchTextBox" Name="Name" PropertyName="Text"/>
         </FilterParameters>
     </asp:SqlDataSource>
 
-    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteFood" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertFood" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateFood @Name, @Price, @PersonCount, @ID" UpdateCommandType="Text">
+    <%-- Data Source --%>
+    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Menus] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteMenu" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertMenu" InsertCommandType="StoredProcedure" UpdateCommand="uspUpdateMenu" UpdateCommandType="StoredProcedure">
         <DeleteParameters>
-            <asp:Parameter Name="ProductID" Type="Int32"/>
+            <asp:Parameter Name="ID" Type="Int32"/>
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="name" Type="String"/>
-            <asp:Parameter Name="price" Type="Decimal"/>
-            <asp:Parameter Name="personCount" Type="Int32"/>
+            <asp:Parameter Name="Name" Type="String"/>
+            <asp:Parameter Name="Description" Type="String"/>
         </InsertParameters>
         <SelectParameters>
-            <asp:Parameter DefaultValue="1" Name="ID"/>
+            <asp:Parameter DefaultValue="1" Name="ID" Type="Int32"/>
         </SelectParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="ID" Type="Int32"/>
+            <asp:Parameter Name="Name" Type="String"/>
+            <asp:Parameter Name="Description" Type="String"/>
+        </UpdateParameters>
     </asp:SqlDataSource>
+
 </asp:Content>

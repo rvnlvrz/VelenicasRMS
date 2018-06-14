@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebApplication.Dashboard
 {
@@ -18,9 +12,6 @@ namespace WebApplication.Dashboard
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            FoodSqlDataSource.FilterExpression = "Name LIKE '%{0}%'";
-            FoodSqlDataSource.FilterParameters.Add(new ControlParameter("Name", "FoodSearchTextBox", "Text"));
-
             try
             {
                 _recordId = Request.QueryString[0];
@@ -47,8 +38,12 @@ namespace WebApplication.Dashboard
 
         protected void FoodSearchButton_OnClick(object sender, EventArgs e)
         {
-            FoodGridView.DataBind();
-            //FoodUpdatePanel.Update();
+            FoodUpdatePanel.Update();
+        }
+
+        protected void BeverageSearchButton_OnClick(object sender, EventArgs e)
+        {
+            BeverageUpdatePanel.Update();
         }
     }
 }

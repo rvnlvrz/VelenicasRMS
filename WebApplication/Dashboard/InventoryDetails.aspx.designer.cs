@@ -22,6 +22,15 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.UpdatePanel FoodUpdatePanel;
         
         /// <summary>
+        /// FoodSearchPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FoodSearchPanel;
+        
+        /// <summary>
         /// FoodSearchTextBox control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,33 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel BeverageUpdatePanel;
+        
+        /// <summary>
+        /// BeverageSearchPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel BeverageSearchPanel;
+        
+        /// <summary>
+        /// BeverageSearchTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BeverageSearchTextBox;
+        
+        /// <summary>
+        /// BeverageSearchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BeverageSearchButton;
         
         /// <summary>
         /// BeverageGridView control.

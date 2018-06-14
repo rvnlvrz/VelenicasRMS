@@ -13,13 +13,22 @@ namespace WebApplication.Dashboard {
     public partial class InventorySummary {
         
         /// <summary>
-        /// PivotGridUpdatePanel control.
+        /// HeaderPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel PivotGridUpdatePanel;
+        protected global::System.Web.UI.WebControls.Panel HeaderPanel;
+        
+        /// <summary>
+        /// ExportButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ExportButton;
         
         /// <summary>
         /// OptionsPanel control.
@@ -29,15 +38,6 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel OptionsPanel;
-        
-        /// <summary>
-        /// OptionsUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel OptionsUpdatePanel;
         
         /// <summary>
         /// FromDropDownList control.

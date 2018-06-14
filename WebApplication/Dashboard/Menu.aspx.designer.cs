@@ -10,7 +10,7 @@
 namespace WebApplication.Dashboard {
     
     
-    public partial class Inventory {
+    public partial class Menu {
         
         /// <summary>
         /// HeaderPanel control.
@@ -31,22 +31,31 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.UpdatePanel HeaderUpdatePanel;
         
         /// <summary>
-        /// CreateRecordButton control.
+        /// SearchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CreateRecordButton;
+        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
         
         /// <summary>
-        /// ViewSummaryRecordButton control.
+        /// SearchButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewSummaryRecordButton;
+        protected global::System.Web.UI.WebControls.Button SearchButton;
+        
+        /// <summary>
+        /// AddMenuButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddMenuButton;
         
         /// <summary>
         /// GridUpdatePanel control.
@@ -58,13 +67,13 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.UpdatePanel GridUpdatePanel;
         
         /// <summary>
-        /// InventoryGridView control.
+        /// MenuGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView InventoryGridView;
+        protected global::System.Web.UI.WebControls.GridView MenuGridView;
         
         /// <summary>
         /// EditPanel control.
@@ -148,22 +157,13 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.Button ButtonModalDelete;
         
         /// <summary>
-        /// InventorySqlDataSource control.
+        /// MenuSqlDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource InventorySqlDataSource;
-        
-        /// <summary>
-        /// RecordSqlDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource RecordSqlDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource MenuSqlDataSource;
         
         /// <summary>
         /// ModalSqlDataSource control.

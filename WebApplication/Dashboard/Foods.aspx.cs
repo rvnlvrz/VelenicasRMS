@@ -11,7 +11,7 @@ namespace WebApplication.Dashboard
 
         }
 
-        protected void EditFormView_OnItemUpdating(object sender, FormViewUpdateEventArgs e)
+        protected void EditFormView_OnItemInserting(object sender, FormViewInsertEventArgs e)
         {
             // Hide update modal (calls main DOM)
             ScriptManager.RegisterStartupScript(GridUpdatePanel, GridUpdatePanel.GetType(), "hide",
@@ -20,7 +20,7 @@ namespace WebApplication.Dashboard
             GridUpdatePanel.Update();
         }
 
-        protected void EditFormView_OnItemInserting(object sender, FormViewInsertEventArgs e)
+        protected void EditFormView_OnItemUpdating(object sender, FormViewUpdateEventArgs e)
         {
             // Hide update modal (calls main DOM)
             ScriptManager.RegisterStartupScript(GridUpdatePanel, GridUpdatePanel.GetType(), "hide",

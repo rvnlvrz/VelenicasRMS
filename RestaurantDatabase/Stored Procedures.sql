@@ -302,3 +302,31 @@ AS
 	ORDER BY ProductName'
 	EXEC(@SQL)
 GO
+
+-- --------------------------------------------------
+-- Product Menu Stored Procedures
+-- --------------------------------------------------
+CREATE OR ALTER PROCEDURE [dbo].[uspInsertMenu]
+	@Name NVARCHAR(MAX),
+	@Description NVARCHAR(MAX)
+AS
+	INSERT INTO [dbo].[Menus]
+	VALUES (@Name, @Description)
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[uspUpdateMenu]
+	@ID INT,
+	@Name NVARCHAR(MAX),
+	@Description NVARCHAR(MAX)
+AS
+	UPDATE [dbo].[Menus]
+	SET [Name] = @Name, [Description] = @Description
+	WHERE [ID] = @ID
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[uspDeleteMenu]
+	@ID INT
+AS
+	DELETE [dbo].[Menus]
+	WHERE [ID] = @ID
+GO

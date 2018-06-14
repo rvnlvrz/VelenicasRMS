@@ -10,11 +10,6 @@ CREATE OR ALTER VIEW ItemMenu AS
 GO
 
 -- ORDERS VIEW
---SELECT Products.ID, Products.Name, Products.Price, OrderItems.Quantity, 
---	(OrderItems.Quantity * Products.Price) AS itemPrice FROM Products
---	INNER JOIN MenuItems ON MenuItems.ProductID = Products.ID
---	INNER JOIN OrderItems ON OrderItems.OrderID = MenuItems.ID
---	INNER JOIN Orders ON OrderItems.OrderID = Orders.ID
 CREATE OR ALTER VIEW SpecificOrder AS
 	SELECT Orders.ID, MenuItems.ID as MenuItemID, Products.Name, OrderItems.Price, OrderItems.Quantity FROM Orders
 		INNER JOIN OrderItems ON OrderItems.OrderID = Orders.ID

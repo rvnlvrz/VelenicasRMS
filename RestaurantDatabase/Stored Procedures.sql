@@ -166,7 +166,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [dbo].uspInsertInventory 
 	@Type NVARCHAR(MAX),
-	@Date DATETIME,
+	@Date DATE,
 	@SourceRecord INT
 AS
 	INSERT INTO [dbo].[Inventory]
@@ -235,7 +235,7 @@ GO
 CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory 
 	@ID INT,
 	@Type NVARCHAR(MAX),
-	@Date DATETIME
+	@Date DATE
 AS
 	UPDATE [dbo].[Inventory]
 	SET [Date] = @Date, [Type] = @Type
@@ -274,35 +274,6 @@ AS
 	WHERE [ID] = @ID
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[uspGetInventoryTable]
-	@StartIndex INT,
-	@EndIndex INT
-AS
-	DECLARE @Columns as VARCHAR(MAX)
-	SELECT @Columns =
-	COALESCE(@Columns + ', ','') + QUOTENAME(CONVERT(VARCHAR(23), [Date], 121))
-	FROM
-	   (SELECT DISTINCT [Date] FROM [dbo].[Inventory] WHERE [Inventory].[ID] BETWEEN @StartIndex AND @EndIndex) AS B
-	ORDER BY B.Date
-	PRINT @Columns
-
-	DECLARE @SQL as VARCHAR(MAX)
-	SET @SQL = 'SELECT ProductName, ' + @Columns + '
-	FROM
-	(
-	 SELECT i.[ProductID] ProductID, p.[Name] as ProductName, i.[Quantity], [Date] FROM [dbo].[Inventory]
-		INNER JOIN [dbo].[InventoryItems] i ON [Inventory].[ID] = i.[InventoryID]
-		INNER JOIN [dbo].[Products] p ON i.[ProductID] = p.[ID]
-	) as PivotData
-	PIVOT
-	(
-	   MAX([Quantity])
-	   FOR [Date] IN (' + @Columns + ')
-	) AS PivotResult
-	ORDER BY ProductName'
-	EXEC(@SQL)
-GO
-
 -- --------------------------------------------------
 -- Product Menu Stored Procedures
 -- --------------------------------------------------
@@ -329,4 +300,40 @@ CREATE OR ALTER PROCEDURE [dbo].[uspDeleteMenu]
 AS
 	DELETE [dbo].[Menus]
 	WHERE [ID] = @ID
+GO
+
+-- --------------------------------------------------
+-- Reporting Stored Procedures
+-- --------------------------------------------------
+
+CREATE OR ALTER PROCEDURE [dbo].[uspFoodInvReport]
+	@Date DATE
+AS
+	-- work week is set from tuesdays(start) to sundays(+5)
+	DECLARE @today DATE, @tue DATE, @wed DATE, @thu DATE, @fri DATE, @sat DATE, @sun DATE
+	
+	IF (DATEPART(DW, @today) = 1)	-- checks if today is sunday, and changes date to saturday
+		SET @Date = DATEADD(day, -1, @Date)
+
+	DECLARE @start DATE
+	SET @start = DATEADD(WEEK, DATEDIFF(WEEK, '19050103', @Date), '19050103')
+	SET @tue = @start
+	SET @wed = DATEADD(DAY, 1, @start)
+	SET @thu = DATEADD(DAY, 2, @start)
+	SET @fri = DATEADD(DAY, 3, @start)
+	SET @sat = DATEADD(DAY, 4, @start)
+	SET @sun = DATEADD(DAY, 5, @start)
+
+	SELECT 
+		p.Name, 
+		t.Quantity,
+		i.Date,
+		i.Type
+	FROM 
+		Inventory AS i LEFT OUTER JOIN
+		InventoryItems AS t ON i.ID = t.InventoryID LEFT OUTER JOIN
+		Products AS p ON p.ID = t.ProductID
+	WHERE
+		CAST(i.Date AS date) IN (@tue, @wed, @thu, @fri, @sat, @sun) AND
+		(p.ID IN(SELECT ProductID FROM Foods))	
 GO

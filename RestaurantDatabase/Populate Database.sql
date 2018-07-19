@@ -4,7 +4,7 @@ GO
 SET NOCOUNT ON
 GO
 
-DECLARE @Date DATETIME = GETDATE(), @ID INT
+DECLARE @Date DATE = GETDATE(), @ID INT
 EXEC [dbo].[uspInsertInitialInventory] N'Opening', @Date
 
 ----SELECT * FROM Menus
@@ -195,11 +195,11 @@ GO
 --GO
 
 -- Insert Inventory Records
-DECLARE @Date DATETIME = GETDATE(), @ID INT
+DECLARE @Date DATE = GETDATE(), @ID INT
 SET @ID = IDENT_CURRENT('inventory')
 EXEC [dbo].[uspInsertInventory] N'Closing', @Date, @ID
 
-SET @Date = DATEADD(HOUR, 10, @Date)
+SET @Date = DATEADD(DAY, 1, @Date)
 SET @ID = IDENT_CURRENT('inventory')
 EXEC [dbo].[uspInsertInventory] N'Opening', @Date, @ID
 GO

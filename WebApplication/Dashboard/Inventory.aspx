@@ -9,7 +9,6 @@
                 <div class="row">
                     <div class="col mx-auto ">
                         <asp:Button ID="CreateRecordButton" runat="server" Text="Create Record" CssClass="btn btn-success pull-right" OnClick="CreateRecordButton_OnClick" CausesValidation="False" />
-                        <asp:Button ID="ViewSummaryRecordButton" runat="server" Text="View Summary" CssClass="btn btn-primary pull-right mr-2" OnClick="ViewSummaryRecordButton_OnClick" CausesValidation="False" />
                     </div>
                 </div>
             </ContentTemplate>
@@ -27,7 +26,7 @@
                     <asp:GridView ID="InventoryGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="InventorySqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="InventoryGridView_OnRowCommand" GridLines="None">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" InsertVisible="False"></asp:BoundField>
-                            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" DataFormatString="{0:F}" />
+                            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" DataFormatString="{0:D}" />
                             <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                             <asp:TemplateField HeaderText="Manage">
                                 <ItemTemplate>
@@ -68,7 +67,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Date:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:s}") %>' CssClass="form-control" TextMode="DateTimeLocal" />
+                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:yyyy-MM-dd}") %>' CssClass="form-control" TextMode="Date" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -90,18 +89,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div class="col-sm-3 col-form-label text-right">Date:</div>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:yyyy-MM-dd}") %>' CssClass="form-control" TextMode="Date" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Type:</div>
                                         <div class="col-sm-9">
                                             <asp:DropDownList ID="TypeDropDownList" runat="server" Text='<%# Bind("Type") %>' CssClass="form-control">
                                                 <asp:ListItem Text="Opening" Value="Opening"></asp:ListItem>
                                                 <asp:ListItem Text="Closing" Value="Closing"></asp:ListItem>
                                             </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 col-form-label text-right">Date:</div>
-                                        <div class="col-sm-9">
-                                            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date", "{0:s}") %>' CssClass="form-control" TextMode="DateTimeLocal" />
                                         </div>
                                     </div>
                                 </InsertItemTemplate>

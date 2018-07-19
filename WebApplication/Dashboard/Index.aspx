@@ -1,11 +1,10 @@
 ﻿<%@ Page Title="Dashboard Home" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebApplication.Dashboard.Index" %>
+<%@ Register TagPrefix="rsweb" Namespace="Microsoft.Reporting.WebForms" Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">My Dashboard</li>
-    </ol>
+   
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" ProcessingMode="Remote" Width="100%" Height="700px" AsyncRendering="False">
+        <ServerReport ReportServerUrl="http://localhost/reportserver" ReportPath="/Report/Inventory Report" />
+    </rsweb:ReportViewer>
+
 </asp:Content>

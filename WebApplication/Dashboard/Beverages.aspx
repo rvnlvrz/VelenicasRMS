@@ -61,7 +61,7 @@
                 <asp:UpdatePanel ID="EditUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="modal-header">
-                            <h5 id="ModalTitle" runat="server" class="modal-title">Edit Food</h5>
+                            <h5 id="ModalTitle" runat="server" class="modal-title">Edit Beverage</h5>
                             <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -71,7 +71,10 @@
                                 <EditItemTemplate>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">ID:</div>
-                                        <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' CssClass="col-sm-9 col-form-label"/>
+                                        
+                                        <div class="col-sm-9 col-form-label">
+                                            <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>'/>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Name:</div>
@@ -103,7 +106,7 @@
                             </asp:FormView>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="ButtonModalUpdate_OnClick"/>
+                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="ButtonModalUpdate_OnClick"/>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>

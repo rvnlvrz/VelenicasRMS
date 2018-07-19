@@ -72,7 +72,10 @@
                                 <EditItemTemplate>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">ID:</div>
-                                        <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' CssClass="form-control"/>
+                                        <div class="col-sm-9 col-form-label
+                                            ">
+                                            <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>'/>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Name:</div>
@@ -116,7 +119,7 @@
                             </asp:FormView>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="ButtonModalUpdate_OnClick"/>
+                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="ButtonModalUpdate_OnClick"/>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>

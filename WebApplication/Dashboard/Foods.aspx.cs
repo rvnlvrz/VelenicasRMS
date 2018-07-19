@@ -59,7 +59,7 @@ namespace WebApplication.Dashboard
                 "$(function () { $('#" + EditPanel.ClientID + "').modal('show'); });", true);
             EditFormView.ChangeMode(FormViewMode.Insert);
             ButtonModalUpdate.Text = "Add";
-            ModalTitle.InnerHtml = "Add Product";
+            ModalTitle.InnerHtml = "Add Food";
             EditUpdatePanel.Update();
         }
 

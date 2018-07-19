@@ -34,7 +34,7 @@
                             <asp:TemplateField ShowHeader="False">
                                 <EditItemTemplate>
                                     <div class="d-flex flex-row justify-content-center">
-                                        <asp:LinkButton ID="UpdateLinkButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-sm btn-primary"></asp:LinkButton>
+                                        <asp:LinkButton ID="UpdateLinkButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                         &nbsp;<asp:LinkButton ID="CancelLinkButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-sm btn-secondary"></asp:LinkButton>
                                     </div>
                                 </EditItemTemplate>
@@ -77,13 +77,13 @@
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" Visible="False" />
                             <asp:BoundField DataField="InventoryID" HeaderText="InventoryID" SortExpression="InventoryID" ReadOnly="True" Visible="False" />
-                            <asp:BoundField DataField="ProductID" HeaderText="ProductID" SortExpression="ProductID" ReadOnly="True" />
+                            <asp:BoundField DataField="ProductID" HeaderText="ID" SortExpression="ProductID" ReadOnly="True" />
                             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" ReadOnly="True" />
                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
                             <asp:TemplateField ShowHeader="False">
                                 <EditItemTemplate>
                                     <div class="d-flex flex-row justify-content-center">
-                                        <asp:LinkButton ID="UpdateLinkButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-sm btn-primary"></asp:LinkButton>
+                                        <asp:LinkButton ID="UpdateLinkButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="btn btn-sm btn-success"></asp:LinkButton>
                                         &nbsp;<asp:LinkButton ID="CancelLinkButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="btn btn-sm btn-secondary"></asp:LinkButton>
                                     </div>
                                 </EditItemTemplate>

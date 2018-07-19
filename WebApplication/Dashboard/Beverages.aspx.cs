@@ -59,7 +59,7 @@ namespace WebApplication.Dashboard
                 "$(function () { $('#" + EditPanel.ClientID + "').modal('show'); });", true);
             EditFormView.ChangeMode(FormViewMode.Insert);
             ButtonModalUpdate.Text = "Add";
-            ModalTitle.InnerHtml = "Add Product";
+            ModalTitle.InnerHtml = "Add Beverage";
             EditUpdatePanel.Update();
         }
 
@@ -70,7 +70,7 @@ namespace WebApplication.Dashboard
                 "$(function () { $('#" + EditPanel.ClientID + "').modal('show'); });", true);
             EditFormView.ChangeMode(FormViewMode.Edit);
             ButtonModalUpdate.Text = "Update";
-            ModalTitle.InnerHtml = "Edit Food";
+            ModalTitle.InnerHtml = "Edit Beverage";
             EditUpdatePanel.Update();
         }
 

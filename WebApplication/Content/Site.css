@@ -12,7 +12,6 @@
 }
 
 /* USER DEFINED STYLE RULES */
-
 @font-face {
     font-family: 'Ikaros-Regular';
     src: url('../fonts/Ikaros/Ikaros-Regular.otf') format('opentype');
@@ -30,8 +29,13 @@
 
 .nospinner::-webkit-outer-spin-button,
 .nospinner[type="number"]::-webkit-inner-spin-button {
+    -moz-appearance: textfield;
     -webkit-appearance: none;
     margin: 0;
+}
+
+.nospinner {
+    -moz-appearance: textfield;
 }
 
 .wrap {
@@ -74,12 +78,11 @@
     display: inline-block;
     font-size: 14px;
     height: auto;
-    margin: 15px;
+    margin: 15px 0;
     padding: 20px;
     padding-bottom: 15px;
     position: relative;
     text-align: center;
-    width: 360px;
 }
 
 .divider {
@@ -88,18 +91,14 @@
     text-align: center;
 }
 
-    .divider hr {
-        margin: 7px 0px;
-        width: 5rem;
-    }
-
-.left {
-    float: left;
+.divider hr {
+    margin: 7px 0px;
+    width: 5rem;
 }
 
-.right {
-    float: right;
-}
+.left { float: left; }
+
+.right { float: right; }
 
 /*HOME*/
 
@@ -149,9 +148,7 @@
     text-align: center;
 }
 
-.header-text-ikaros-black {
-    font-family: Exo-Light;
-}
+.header-text-ikaros-black { font-family: Exo-Light; }
 
 .crop {
     box-shadow: 5px 5px 5px 5px;
@@ -194,4 +191,3 @@
     height: 691px;
     width: 465px;
 }
-

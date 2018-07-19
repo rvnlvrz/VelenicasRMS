@@ -7,22 +7,38 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplic
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RestaurantDatabase", "RestaurantDatabase\RestaurantDatabase.sqlproj", "{704402C4-A582-40AD-BFF4-0C98BE87E921}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Report", "Report\Reporting.rptproj", "{AFC846ED-AA65-42D8-A946-E14ED799017B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DebugLocal|Any CPU = DebugLocal|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{55B0211A-9D38-4F42-84F9-9E1490A22967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55B0211A-9D38-4F42-84F9-9E1490A22967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B0211A-9D38-4F42-84F9-9E1490A22967}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B0211A-9D38-4F42-84F9-9E1490A22967}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{55B0211A-9D38-4F42-84F9-9E1490A22967}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55B0211A-9D38-4F42-84F9-9E1490A22967}.Release|Any CPU.Build.0 = Release|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{704402C4-A582-40AD-BFF4-0C98BE87E921}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{704402C4-A582-40AD-BFF4-0C98BE87E921}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{704402C4-A582-40AD-BFF4-0C98BE87E921}.DebugLocal|Any CPU.Deploy.0 = Debug|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Release|Any CPU.Build.0 = Release|Any CPU
 		{704402C4-A582-40AD-BFF4-0C98BE87E921}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Debug|Any CPU.ActiveCfg = Debug
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Debug|Any CPU.Build.0 = Debug
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Debug|Any CPU.Deploy.0 = Debug
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Release|Any CPU.ActiveCfg = Release
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Release|Any CPU.Build.0 = Release
+		{AFC846ED-AA65-42D8-A946-E14ED799017B}.Release|Any CPU.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

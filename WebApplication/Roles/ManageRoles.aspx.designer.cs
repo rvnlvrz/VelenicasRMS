@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication.Membership {
+namespace WebApplication.Roles {
     
     
-    public partial class CreatingUserAccounts {
+    public partial class ManageRoles {
         
         /// <summary>
-        /// CreateUserWizard control.
+        /// CreateRoleButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard;
+        protected global::System.Web.UI.WebControls.Button CreateRoleButton;
         
         /// <summary>
-        /// CreateUserWizardStep1 control.
+        /// RoleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizardStep CreateUserWizardStep1;
+        protected global::System.Web.UI.WebControls.TextBox RoleName;
         
         /// <summary>
-        /// CompleteWizardStep1 control.
+        /// RoleView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompleteWizardStep CompleteWizardStep1;
+        protected global::System.Web.UI.WebControls.GridView RoleView;
     }
 }

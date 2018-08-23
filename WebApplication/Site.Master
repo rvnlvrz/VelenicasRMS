@@ -40,6 +40,18 @@
         </Scripts>
     </asp:ScriptManager>
     <div>
+        <asp:LoginView ID="LoginView1" runat="server">
+            <LoggedInTemplate>
+                Hello, <asp:LoginName ID="LoginName1" runat="server" />
+            </LoggedInTemplate>
+            <AnonymousTemplate>
+                Hello, stranger
+                <%--<asp:HyperLink ID="LogInHyperLink" runat="server" NavigateUrl="Login.aspx">Log In</asp:HyperLink>--%>
+            </AnonymousTemplate>
+        </asp:LoginView>
+        <asp:LoginStatus ID="LoginStatus1" runat="server" />
+    </div>
+    <div>
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
     </div>

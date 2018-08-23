@@ -3,6 +3,7 @@ GO
 
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
@@ -11,10 +12,9 @@ GO
 -- Create date: May 23, 2018
 -- Description:	Deleting an Item on both Product and Beverage tables
 -- =============================================
-CREATE OR ALTER PROCEDURE [dbo].uspDeleteBeverage   
+CREATE OR ALTER PROCEDURE [dbo].usp_DeleteBeverage   
     @ID int
 AS   
-    SET NOCOUNT ON; 
 	BEGIN
 		DELETE FROM Products WHERE ID = @ID
 	END
@@ -25,11 +25,10 @@ GO
 -- Create date: May 23, 2018
 -- Description:	Inserting an Item on both Product and Beverage tables
 -- =============================================
-CREATE OR ALTER PROCEDURE [dbo].uspInsertBeverage   
+CREATE OR ALTER PROCEDURE [dbo].usp_AddBeverage   
     @Name nvarchar(max),
 	@Price nvarchar(max)
 AS   
-    SET NOCOUNT ON; 
 	BEGIN
 	
 	DECLARE @ID INT
@@ -37,16 +36,18 @@ AS
 		INSERT INTO Beverages(ProductID) VALUES (IDENT_CURRENT('Products'));	
 
 		INSERT INTO [dbo].[InventoryItems]([ProductID], [InventoryID], [Quantity]) 
-		VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
+			VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
+
+		INSERT INTO [dbo].[MenuItems]([MenuID], [ProductID])
+			VALUES(NULL, IDENT_CURRENT('Products'))
 	END
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspUpdateBeverage   
+CREATE OR ALTER PROCEDURE [dbo].usp_UpdateBeverage   
 	@ID INT,
     @Name nvarchar(max),
 	@Price nvarchar(max)
 AS   
-    SET NOCOUNT ON; 
 	BEGIN
 		UPDATE [dbo].[Products]
 		SET [Name] = @Name, [Price] = @Price
@@ -61,7 +62,7 @@ GO
 -- =============================================
 
 ---------- CREATE ----------
-CREATE OR ALTER PROCEDURE [dbo].uspInsertFood 
+CREATE OR ALTER PROCEDURE [dbo].usp_AddFood 
 	@name NVARCHAR(MAX), 
 	@price DECIMAL(19,2),
 	@personCount INT
@@ -72,18 +73,20 @@ BEGIN
 
 	INSERT INTO [dbo].[InventoryItems]([ProductID], [InventoryID], [Quantity]) 
 		VALUES(IDENT_CURRENT('Products'), IDENT_CURRENT('inventory'), 1)
+
+	INSERT INTO [dbo].[MenuItems]([MenuID], [ProductID])
+		VALUES(NULL, IDENT_CURRENT('Products'))
 END
 GO
 
 ---------- UPDATE -----------
-CREATE OR ALTER PROCEDURE [dbo].uspUpdateFood
+CREATE OR ALTER PROCEDURE [dbo].usp_UpdateFood
 	@name NVARCHAR(MAX), 
 	@price DECIMAL(19,2), 
 	@personCount INT,
 	@ProductID INT
 AS
 BEGIN
-	SET NOCOUNT ON;
 	UPDATE Products
 	SET Name = @name,
 		Price = @price
@@ -97,11 +100,10 @@ END
 GO
 
 ---------- DELETE ----------
-CREATE OR ALTER PROCEDURE [dbo].uspDeleteFood
+CREATE OR ALTER PROCEDURE [dbo].usp_DeleteFood
 	@ProductID INT
 AS
 BEGIN
-	SET NOCOUNT ON;
 	DELETE FROM Products WHERE @ProductID = Products.ID 
 END
 GO
@@ -164,7 +166,7 @@ GO
 -- Inventory Stored Procedures
 -- --------------------------------------------------
 
-CREATE OR ALTER PROCEDURE [dbo].uspInsertInventory 
+CREATE OR ALTER PROCEDURE [dbo].usp_AddInventory 
 	@Type NVARCHAR(MAX),
 	@Date DATE,
 	@SourceRecord INT
@@ -190,7 +192,7 @@ AS
 			SET @Current = IDENT_CURRENT('inventory')
 			SET @Quantity = ISNULL((SELECT [Quantity] FROM [dbo].[InventoryItems] 
 			WHERE [InventoryID] = @SourceRecord AND [ProductID] = @ID), 1)
-			EXEC [dbo].[uspInsertInventoryItem] @ID, @Current, @Quantity
+			EXEC [dbo].[usp_AddInventoryItem] @ID, @Current, @Quantity
 
 			FETCH NEXT FROM @Cursor
 			INTO @ID, @Name
@@ -201,7 +203,7 @@ AS
 	END
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspInsertInitialInventory 
+CREATE OR ALTER PROCEDURE [dbo].usp_AddInitialInventory 
 	@Type NVARCHAR(MAX),
 	@Date DATETIME
 AS
@@ -221,7 +223,7 @@ AS
 		WHILE @@FETCH_STATUS = 0
 		BEGIN
 			SET @Current = IDENT_CURRENT('inventory')
-			EXEC [dbo].[uspInsertInventoryItem] @ID, @Current, 1
+			EXEC [dbo].[usp_AddInventoryItem] @ID, @Current, 1
 
 			FETCH NEXT FROM @Cursor
 			INTO @ID, @Name
@@ -232,7 +234,7 @@ AS
 	END
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventory 
+CREATE OR ALTER PROCEDURE [dbo].usp_UpdateInventory 
 	@ID INT,
 	@Type NVARCHAR(MAX),
 	@Date DATE
@@ -242,14 +244,14 @@ AS
 	WHERE [ID] = @ID
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventory 
+CREATE OR ALTER PROCEDURE [dbo].usp_DeleteInventory 
 	@ID INT
 AS
 	DELETE [dbo].[Inventory]
 	WHERE [ID] = @ID
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspInsertInventoryItem 
+CREATE OR ALTER PROCEDURE [dbo].usp_AddInventoryItem 
 	@ProductID INT,
 	@InventoryID INT,
 	@Quantity INT
@@ -258,7 +260,7 @@ AS
 	VALUES (@ProductID, @InventoryID, @Quantity)
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspUpdateInventoryItem 
+CREATE OR ALTER PROCEDURE [dbo].usp_UpdateInventoryItem 
 	@ID INT,
 	@Quantity INT
 AS
@@ -267,7 +269,7 @@ AS
 	WHERE [ID] = @ID
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].uspDeleteInventoryItem 
+CREATE OR ALTER PROCEDURE [dbo].usp_DeleteInventoryItem 
 	@ID INT
 AS
 	DELETE [dbo].[InventoryItems]
@@ -277,7 +279,7 @@ GO
 -- --------------------------------------------------
 -- Product Menu Stored Procedures
 -- --------------------------------------------------
-CREATE OR ALTER PROCEDURE [dbo].[uspInsertMenu]
+CREATE OR ALTER PROCEDURE [dbo].[usp_AddMenu]
 	@Name NVARCHAR(MAX),
 	@Description NVARCHAR(MAX)
 AS
@@ -285,7 +287,7 @@ AS
 	VALUES (@Name, @Description)
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[uspUpdateMenu]
+CREATE OR ALTER PROCEDURE [dbo].[usp_UpdateMenu]
 	@ID INT,
 	@Name NVARCHAR(MAX),
 	@Description NVARCHAR(MAX)
@@ -295,18 +297,46 @@ AS
 	WHERE [ID] = @ID
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[uspDeleteMenu]
+CREATE OR ALTER PROCEDURE [dbo].[usp_DeleteMenu]
 	@ID INT
 AS
 	DELETE [dbo].[Menus]
 	WHERE [ID] = @ID
 GO
 
+CREATE OR ALTER PROCEDURE [dbo].[usp_GetProductsByMenuID]
+	@MenuID INT
+AS
+IF (@MenuID IS NULL)
+	BEGIN
+		SELECT m.MenuID, p.ID, p.Name
+		FROM [dbo].[MenuItems] m
+		LEFT JOIN [dbo].[Products] p ON m.ProductID = p.ID
+		WHERE m.MenuID IS NULL
+	END
+ELSE
+	BEGIN
+		SELECT m.MenuID, p.ID, p.Name
+		FROM [dbo].[MenuItems] m
+		LEFT JOIN [dbo].[Products] p ON m.ProductID = p.ID
+		WHERE m.MenuID = @MenuID
+	END
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[usp_UpdateMenuID]
+	@MenuID INT,
+	@ProductID INT
+AS
+	UPDATE [dbo].[MenuItems]
+	SET MenuID = @MenuID
+	WHERE ProductID = @ProductID
+GO
+
 -- --------------------------------------------------
 -- Reporting Stored Procedures
 -- --------------------------------------------------
 
-CREATE OR ALTER PROCEDURE [dbo].[uspFoodInvReport]
+CREATE OR ALTER PROCEDURE [dbo].[usp_FoodInvReport]
 	@Date DATE
 AS
 	-- work week is set from tuesdays(start) to sundays(+5)

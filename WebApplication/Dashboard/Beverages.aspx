@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="col mx-auto ">
-                        <asp:Button ID="AddProductButton" runat="server" Text="Add Beverage" CssClass="btn btn-success pull-right" OnClick="AddProductButton_OnClick"/>
+                        <asp:Button ID="AddButton" runat="server" Text="Add Beverage" CssClass="btn btn-success pull-right" OnClick="AddButton_OnClick"/>
                     </div>
                 </div>
             </ContentTemplate>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="BeveragesSqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand">
+                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand" OnPageIndexChanging="ProductsGridView_PageIndexChanging" OnSorting="ProductsGridView_Sorting" >
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" InsertVisible="False"></asp:BoundField>
                                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"/>
@@ -67,11 +67,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="ModalSqlDataSource" DataKeyNames="ID">
+                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="BeverageObjectDataSource" DataKeyNames="ID">
                                 <EditItemTemplate>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">ID:</div>
-                                        
                                         <div class="col-sm-9 col-form-label">
                                             <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>'/>
                                         </div>
@@ -141,27 +140,21 @@
     </asp:Panel>
 
     <%-- Data Source --%>
-    <asp:SqlDataSource ID="BeveragesSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products]" FilterExpression="Name LIKE '%{0}%'">
-        <FilterParameters>
-            <asp:ControlParameter ControlID="SearchTextBox" Name="Name" PropertyName="Text"/>
-        </FilterParameters>
-    </asp:SqlDataSource>
-
-    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Beverage Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteBeverage" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertBeverage" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateBeverage @ID, @Name, @Price">
+    <asp:ObjectDataSource ID="BeverageObjectDataSource" runat="server" DeleteMethod="DeleteBeverageProduct" InsertMethod="AddBeverageProduct" SelectMethod="GetBeverageProductByID" TypeName="DataAccessLayer.VelenicasRMSTableAdapters.BeverageProductsTableAdapter" UpdateMethod="UpdateBeverageProduct">
         <DeleteParameters>
-            <asp:Parameter Name="ID" Type="Int32"/>
+            <asp:Parameter Name="ID" Type="Int32" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="name" Type="String"/>
-            <asp:Parameter Name="price" Type="Decimal"/>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Price" Type="String" />
         </InsertParameters>
         <SelectParameters>
-            <asp:Parameter DefaultValue="1" Name="ID"/>
+            <asp:Parameter DefaultValue="1" Name="ID" Type="Int32" />
         </SelectParameters>
         <UpdateParameters>
-            <asp:Parameter Name="ID"/>
-            <asp:Parameter Name="Name"/>
-            <asp:Parameter Name="Price"/>
+            <asp:Parameter Name="ID" Type="Int32" />
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Price" Type="String" />
         </UpdateParameters>
-    </asp:SqlDataSource>
+    </asp:ObjectDataSource>
 </asp:Content>

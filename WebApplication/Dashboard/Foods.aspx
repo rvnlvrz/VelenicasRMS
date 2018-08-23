@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Foods" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Foods.aspx.cs" Inherits="WebApplication.Dashboard.Products" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="Foods" Language="C#" MasterPageFile="~/Dashboard/Dashboard.Master" AutoEventWireup="true" CodeBehind="Foods.aspx.cs" Inherits="WebApplication.Dashboard.Foods" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="col mx-auto ">
-                        <asp:Button ID="AddProductButton" runat="server" Text="Add Food" CssClass="btn btn-success pull-right" OnClick="AddProductButton_OnClick"/>
+                        <asp:Button ID="AddButton" runat="server" Text="Add Food" CssClass="btn btn-success pull-right" OnClick="AddButton_OnClick" />
                     </div>
                 </div>
             </ContentTemplate>
@@ -32,20 +32,20 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="FoodsSqlDataSource" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand" PagerSettings-Position="Bottom">
+                        <asp:GridView ID="ProductsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CssClass="table table-sm table-bordered table-striped" AllowPaging="True" AllowSorting="True" OnRowCommand="ProductsGridView_RowCommand" PagerSettings-Position="Bottom" OnPageIndexChanging="ProductsGridView_PageIndexChanging" OnSorting="ProductsGridView_Sorting">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID"></asp:BoundField>
-                                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"/>
-                                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:c}"/>
-                                <asp:BoundField DataField="PersonCount" HeaderText="Serving Count" SortExpression="PersonCount"/>
+                                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:₱#,###.00}" />
+                                <asp:BoundField DataField="PersonCount" HeaderText="Serving Count" SortExpression="PersonCount" />
                                 <asp:TemplateField HeaderText="Manage">
                                     <ItemTemplate>
                                         <div class="d-flex flex-row justify-content-center">
-                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" OnClick="EditButton_OnClick" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>'/>
-                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" OnClick="DeleteButton_OnClick" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>'/>
+                                            <asp:Button ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-sm btn-primary mr-2" UseSubmitBehavior="False" OnClick="EditButton_OnClick" CommandName="EditProduct" CommandArgument='<%# Eval("ID") %>' />
+                                            <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger" UseSubmitBehavior="False" OnClick="DeleteButton_OnClick" CommandName="DeleteProduct" CommandArgument='<%# Eval("ID") %>' />
                                         </div>
                                     </ItemTemplate>
-                                    <HeaderStyle CssClass="text-center"/>
+                                    <HeaderStyle CssClass="text-center" />
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
@@ -68,31 +68,31 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <asp:FormView ID="EditFormView" runat="server" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" OnItemInserting="EditFormView_OnItemInserting" DataSourceID="ModalSqlDataSource" DataKeyNames="ID">
+                            <asp:FormView ID="EditFormView" runat="server" DataSourceID="FoodObjectDataSource" DefaultMode="Edit" CssClass="w-100" OnItemUpdating="EditFormView_OnItemUpdating" DataKeyNames="ID" OnItemInserting="EditFormView_OnItemInserting">
                                 <EditItemTemplate>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">ID:</div>
                                         <div class="col-sm-9 col-form-label
                                             ">
-                                            <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>'/>
+                                            <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Name:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' CssClass="form-control"/>
+                                            <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' CssClass="form-control" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Price:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number"/>
+                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Good for:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number"/>
+                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number" />
                                         </div>
                                     </div>
                                 </EditItemTemplate>
@@ -100,26 +100,26 @@
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Name:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' CssClass="form-control"/>
+                                            <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' CssClass="form-control" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Price:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number"/>
+                                            <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control nospinner" TextMode="Number" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3 col-form-label text-right">Good for:</div>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number"/>
+                                            <asp:TextBox ID="PersonCountTextBox" runat="server" Text='<%# Bind("PersonCount") %>' CssClass="form-control nospinner" TextMode="Number" />
                                         </div>
                                     </div>
                                 </InsertItemTemplate>
                             </asp:FormView>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="ButtonModalUpdate_OnClick"/>
+                            <asp:Button ID="ButtonModalUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="ButtonModalUpdate_OnClick" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
@@ -144,7 +144,7 @@
                             Are you sure you wish to delete this item?
                         </div>
                         <div class="modal-footer">
-                            <asp:Button ID="ButtonModalDelete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="ButtonModalDelete_Click"/>
+                            <asp:Button ID="ButtonModalDelete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="ButtonModalDelete_Click" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </ContentTemplate>
@@ -154,13 +154,35 @@
     </asp:Panel>
 
     <%-- Data Source --%>
-    <asp:SqlDataSource ID="FoodsSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products]" FilterExpression="Name LIKE '%{0}%'">
+    <asp:ObjectDataSource ID="FoodObjectDataSource" runat="server"
+        DeleteMethod="DeleteFoodProduct" InsertMethod="AddFoodProduct"
+        SelectMethod="GetFoodProductByID"
+        OldValuesParameterFormatString="Product{0}"
+        TypeName="DataAccessLayer.VelenicasRMSTableAdapters.FoodProductsTableAdapter"
+        UpdateMethod="UpdateFoodProduct" FilterExpression="Name LIKE '%{0}%'">
+        <DeleteParameters>
+            <asp:Parameter Name="ProductID" Type="Int32" />
+        </DeleteParameters>
         <FilterParameters>
-            <asp:ControlParameter ControlID="SearchTextBox" Name="Name" PropertyName="Text"/>
+            <asp:ControlParameter ControlID="SearchTextBox" ConvertEmptyStringToNull="False" Name="query" PropertyName="Text" />
         </FilterParameters>
-    </asp:SqlDataSource>
+        <InsertParameters>
+            <asp:Parameter Name="name" Type="String" />
+            <asp:Parameter Name="price" Type="Decimal" />
+            <asp:Parameter Name="personCount" Type="Int32" />
+        </InsertParameters>
+        <SelectParameters>
+            <asp:Parameter DefaultValue="1" Name="ID" Type="Int32" />
+        </SelectParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="name" Type="String" />
+            <asp:Parameter Name="price" Type="Decimal" />
+            <asp:Parameter Name="personCount" Type="Int32" />
+            <%--<asp:Parameter Name="ProductID" Type="Int32" />--%>
+        </UpdateParameters>
+    </asp:ObjectDataSource>
 
-    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteFood" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertFood" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateFood @Name, @Price, @PersonCount, @ID" UpdateCommandType="Text">
+    <%--    <asp:SqlDataSource ID="ModalSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:VelenicasRMSConnectionString %>" SelectCommand="SELECT * FROM [Food Products] WHERE ([ID] = @ID)" DeleteCommand="uspDeleteFood" DeleteCommandType="StoredProcedure" InsertCommand="uspInsertFood" InsertCommandType="StoredProcedure" UpdateCommand="EXEC [dbo].uspUpdateFood @Name, @Price, @PersonCount, @ID" UpdateCommandType="Text">
         <DeleteParameters>
             <asp:Parameter Name="ProductID" Type="Int32"/>
         </DeleteParameters>
@@ -172,5 +194,5 @@
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="ID"/>
         </SelectParameters>
-    </asp:SqlDataSource>
+    </asp:SqlDataSource>--%>
 </asp:Content>

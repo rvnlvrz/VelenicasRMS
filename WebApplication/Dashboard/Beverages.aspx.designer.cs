@@ -49,13 +49,13 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.Button SearchButton;
         
         /// <summary>
-        /// AddProductButton control.
+        /// AddButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddProductButton;
+        protected global::System.Web.UI.WebControls.Button AddButton;
         
         /// <summary>
         /// GridUpdatePanel control.
@@ -157,21 +157,12 @@ namespace WebApplication.Dashboard {
         protected global::System.Web.UI.WebControls.Button ButtonModalDelete;
         
         /// <summary>
-        /// BeveragesSqlDataSource control.
+        /// BeverageObjectDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource BeveragesSqlDataSource;
-        
-        /// <summary>
-        /// ModalSqlDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ModalSqlDataSource;
+        protected global::System.Web.UI.WebControls.ObjectDataSource BeverageObjectDataSource;
     }
 }

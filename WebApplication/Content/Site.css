@@ -12,6 +12,7 @@
 }
 
 /* USER DEFINED STYLE RULES */
+
 @font-face {
     font-family: 'Ikaros-Regular';
     src: url('../fonts/Ikaros/Ikaros-Regular.otf') format('opentype');
@@ -34,9 +35,7 @@
     margin: 0;
 }
 
-.nospinner {
-    -moz-appearance: textfield;
-}
+.nospinner { -moz-appearance: textfield; }
 
 .wrap {
     font-size: 14px;
@@ -46,7 +45,7 @@
 .backdrop {
     background-image: url('Images/RestoBackdrop.jpg');
     background-size: cover;
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    /*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;*/
     font-size: 13px;
     font-style: normal;
     font-variant: normal;
@@ -191,3 +190,19 @@
     height: 691px;
     width: 465px;
 }
+
+/* Form Check List Styling */
+
+.checkbox-list td {
+    display: block;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.checkbox-list td input {
+    margin-left: -1.25rem;
+    margin-top: 0.3rem;
+    position: absolute;
+}
+
+.checkbox-list td label { margin-bottom: 0; }

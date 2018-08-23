@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication.Dashboard {
-    
-    
-    public partial class Products {
-        
+namespace WebApplication.Dashboard
+{
+
+
+    public partial class Foods
+    {
+
         /// <summary>
         /// HeaderPanel control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel HeaderPanel;
-        
+
         /// <summary>
         /// HeaderUpdatePanel control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel HeaderUpdatePanel;
-        
+
         /// <summary>
         /// SearchTextBox control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
-        
+
         /// <summary>
         /// SearchButton control.
         /// </summary>
@@ -47,16 +49,16 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SearchButton;
-        
+
         /// <summary>
-        /// AddProductButton control.
+        /// AddButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddProductButton;
-        
+        protected global::System.Web.UI.WebControls.Button AddButton;
+
         /// <summary>
         /// GridUpdatePanel control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel GridUpdatePanel;
-        
+
         /// <summary>
         /// ProductsGridView control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ProductsGridView;
-        
+
         /// <summary>
         /// EditPanel control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel EditPanel;
-        
+
         /// <summary>
         /// EditUpdatePanel control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel EditUpdatePanel;
-        
+
         /// <summary>
         /// ModalTitle control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ModalTitle;
-        
+
         /// <summary>
         /// EditFormView control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FormView EditFormView;
-        
+
         /// <summary>
         /// ButtonModalUpdate control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonModalUpdate;
-        
+
         /// <summary>
         /// DeletePanel control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel DeletePanel;
-        
+
         /// <summary>
         /// DeleteUpdatePanel control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel DeleteUpdatePanel;
-        
+
         /// <summary>
         /// deleteModalTitle control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteModalTitle;
-        
+
         /// <summary>
         /// ButtonModalDelete control.
         /// </summary>
@@ -155,23 +157,14 @@ namespace WebApplication.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonModalDelete;
-        
+
         /// <summary>
-        /// FoodsSqlDataSource control.
+        /// FoodObjectDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource FoodsSqlDataSource;
-        
-        /// <summary>
-        /// ModalSqlDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ModalSqlDataSource;
+        protected global::System.Web.UI.WebControls.ObjectDataSource FoodObjectDataSource;
     }
 }

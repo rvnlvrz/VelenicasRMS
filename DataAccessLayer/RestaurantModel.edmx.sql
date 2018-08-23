@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/13/2018 20:09:04
--- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\WebApplication\RestaurantModel.edmx
+-- Date Created: 07/28/2018 13:35:02
+-- Generated from EDMX file: C:\Users\Arvin\source\repos\VelenicasRMS\DataAccessLayer\RestaurantModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -97,7 +97,7 @@ GO
 -- Creating table 'MenuItems'
 CREATE TABLE [dbo].[MenuItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [MenuID] int  NOT NULL,
+    [MenuID] int  NULL,
     [ProductID] int  NOT NULL
 );
 GO

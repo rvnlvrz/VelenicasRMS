@@ -56,6 +56,12 @@
     <Reference Include="AspNet.ScriptManager.jQuery, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.3.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -110,6 +116,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -179,6 +188,15 @@
     <Content Include="Content\Images\Scenery\presentation6.jpg" />
     <Content Include="Content\Images\setups\tableA.jpg" />
     <Content Include="Content\Images\setups\tableB.jpg" />
+    <Content Include="Content\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard\Beverages.aspx" />
     <Content Include="Dashboard\Debug.aspx" />
@@ -204,7 +222,10 @@
     <Content Include="Membership\UserBasedAuthorization.aspx" />
     <Content Include="POS.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="RestaurantModel.edmx.sql" />
+    <Content Include="Roles\CreateUserWizardWithRoles.aspx" />
+    <Content Include="Roles\ManageRoles.aspx" />
+    <Content Include="Roles\RoleBasedAuthorization.aspx" />
+    <Content Include="Roles\UsersAndRoles.aspx" />
     <Content Include="Scripts\admin-min.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -238,6 +259,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -246,15 +268,12 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Unauthorized.aspx" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
-    <EntityDeploy Include="RestaurantModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RestaurantModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="RestaurantModel.edmx.diagram">
-      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+    <Content Include="Membership\Web.config">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\LocalDeployment.pubxml" />
     <Content Include="Scripts\esm\popper.min.js.map" />
@@ -460,10 +479,33 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RestaurantModel.Designer.cs">
-      <DependentUpon>RestaurantModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Roles\CreateUserWizardWithRoles.aspx.cs">
+      <DependentUpon>CreateUserWizardWithRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Roles\CreateUserWizardWithRoles.aspx.designer.cs">
+      <DependentUpon>CreateUserWizardWithRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\ManageRoles.aspx.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Roles\ManageRoles.aspx.designer.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\RoleBasedAuthorization.aspx.cs">
+      <DependentUpon>RoleBasedAuthorization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Roles\RoleBasedAuthorization.aspx.designer.cs">
+      <DependentUpon>RoleBasedAuthorization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\UsersAndRoles.aspx.cs">
+      <DependentUpon>UsersAndRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Roles\UsersAndRoles.aspx.designer.cs">
+      <DependentUpon>UsersAndRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -478,6 +520,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\AddProductControl.ascx.cs">
       <DependentUpon>AddProductControl.ascx</DependentUpon>
@@ -502,6 +551,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -531,6 +581,16 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
+      <Project>{443c7022-1e3b-4a31-877b-048c8780c69f}</Project>
+      <Name>BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{B0469B78-446D-4514-9DDB-C2D26977D477}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -550,7 +610,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65523</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:65428/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

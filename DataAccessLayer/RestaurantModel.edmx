@@ -69,7 +69,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MenuID" Type="int" Nullable="false" />
+    <Property Name="MenuID" Type="int" Nullable="true" />
     <Property Name="ProductID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Orders">
@@ -140,7 +140,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MenuMenuItem">
-    <End Role="Menu" Type="RestaurantModel.Store.Menus" Multiplicity="1">
+    <End Role="Menu" Type="RestaurantModel.Store.Menus" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="MenuItem" Type="RestaurantModel.Store.MenuItems" Multiplicity="*" />
@@ -310,7 +310,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="true" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="RestaurantModel.FoodMenuItem" FromRole="MenuItem" ToRole="Food" />
           <NavigationProperty Name="Menu" Relationship="RestaurantModel.MenuMenuItem" FromRole="MenuItem" ToRole="Menu" />
@@ -331,7 +331,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="MenuMenuItem">
-          <End Type="RestaurantModel.Menu" Role="Menu" Multiplicity="1" >
+          <End Type="RestaurantModel.Menu" Role="Menu" Multiplicity="0..1" >
             <OnDelete Action="Cascade" />
           </End>
           <End Type="RestaurantModel.MenuItem" Role="MenuItem" Multiplicity="*" />
